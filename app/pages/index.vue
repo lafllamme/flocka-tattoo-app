@@ -43,10 +43,10 @@ const services = [
   { title: 'COVER-UPS', body: 'Eine neue Richtung für ein altes Tattoo – ehrlich geplant und mit genug Raum für eine gute Lösung.' },
 ]
 const process = [
-  { number: '01', prefix: 'DEINE', title: 'IDEE', body: 'Wir sprechen über dein Motiv, Referenzen, die Körperstelle und darüber, was dein Tattoo auslösen soll.' },
-  { number: '02', prefix: 'DEIN', title: 'ENTWURF', body: 'Aus deinem ersten Gedanken wird eine klare Richtung – mit Größe, Rhythmus und einer eigenen Haltung.' },
-  { number: '03', prefix: 'DEIN', title: 'TATTOO', body: 'Schablone, Linie, Schatten und rote oder farbige Details kommen in einer konzentrierten Session zusammen.' },
-  { number: '04', prefix: 'DEINE', title: 'PFLEGE', body: 'Du bekommst klare Hinweise für die Heilung und ehrliche Tipps, damit dein Tattoo gut ankommt.' },
+  { number: '01', title: 'IDEE', body: 'Wir sprechen über dein Motiv, Referenzen, die Körperstelle und darüber, was dein Tattoo auslösen soll.' },
+  { number: '02', title: 'ENTWURF', body: 'Aus deinem ersten Gedanken wird eine klare Richtung – mit Größe, Rhythmus und einer eigenen Haltung.' },
+  { number: '03', title: 'TATTOO', body: 'Schablone, Linie, Schatten und rote oder farbige Details kommen in einer konzentrierten Session zusammen.' },
+  { number: '04', title: 'PFLEGE', body: 'Du bekommst klare Hinweise für die Heilung und ehrliche Tipps, damit dein Tattoo gut ankommt.' },
 ]
 const testimonials = [
   { quote: 'Der Prozess war persönlich und konzentriert. Mit jedem Gespräch wurde die Idee klarer – und das Tattoo stärker, als ich es mir vorgestellt hatte.', author: 'Mara K.', image: '/images/portfolio/archive.png' },
@@ -172,41 +172,36 @@ function toggleFaq(index: number) {
     <FlockaSiteHeader />
     <FlockaHeroSection />
 
-      <section id="about" class="surface-card surface-section page-shell -mt-2 grid gap-12 border border-line py-24 md:grid-cols-[.8fr_1.2fr] md:py-36">
-      <FlockaReveal direction="left"><p class="eyebrow text-signal-bright">Über mich</p></FlockaReveal>
-      <FlockaReveal direction="right"><div class="grid gap-20 md:grid-cols-[1.05fr_.95fr]"><p class="surface-lead">Flocka Tattoo ist die unabhängige Praxis von Sascha Schlüter in Köln. 31 Jahre, Vollzeit-Tätowierer, Quereinstieg – und jeden Tag ein Stück näher an einer eigenen Handschrift.</p><div class="flex flex-col justify-between gap-10"><div class="space-y-7 text-sm leading-relaxed text-muted md:text-base"><p>Ich bin noch Newcomer und lerne mit jedem Stück dazu. Gerade deshalb probiere ich viel aus: klare Formen, feine Linien, Schwarz-Rot und Farbe, wenn sie dem Motiv etwas geben.</p><ul class="border-t border-line pt-5 text-bone"><li class="border-b border-line py-3 text-muted">Unabhängige Praxis</li><li class="border-b border-line py-3 text-muted">Schwarz-Rot &amp; Farbe</li><li class="border-b border-line py-3 text-muted">Grafische Motive</li><li class="py-3 text-muted">Flash-Archiv</li></ul></div><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="eyebrow w-fit border-b border-line pb-2 text-bone transition-colors hover:border-signal hover:text-signal-bright">Mehr über Flocka <Icon name="lucide:arrow-up-right" size="14" /></a></div></div></FlockaReveal>
-    </section>
+      <section id="about" class="surface-card surface-section page-shell -mt-2 border border-line px-5 py-16 md:px-[2vw] md:py-24">
+        <div class="section-rule"><p class="eyebrow text-signal-bright">Über mich</p><span class="section-rule__line" /></div>
+        <div class="about-layout mt-16 grid gap-16 md:mt-24 md:grid-cols-2 md:gap-x-24 md:gap-y-24">
+          <FlockaReveal direction="right" class="md:col-start-2"><p class="surface-lead max-w-3xl">Ich bin Sascha, 31, Vollzeit-Tätowierer aus Köln. Als Newcomer im Quereinstieg entwickle ich gerade meine eigene Handschrift – mit klaren Linien, starken Symbolen und Farbe, wenn sie passt.</p></FlockaReveal>
+          <FlockaReveal direction="left" class="md:col-start-1 md:row-start-2"><div class="space-y-8 text-sm leading-relaxed text-muted md:text-base"><p>Ich lerne mit jedem Stück dazu und probiere mich bewusst durch unterschiedliche Richtungen. Von feinen Symbolen bis zu kräftigem Blackwork, von Schwarz-Rot bis Farbe.</p><ul class="border-t border-line pt-5 text-bone"><li class="border-b border-line py-3 text-muted">Unabhängige Praxis</li><li class="border-b border-line py-3 text-muted">Blackwork &amp; Fine Line</li><li class="border-b border-line py-3 text-muted">Schwarz-Rot &amp; Farbe</li><li class="py-3 text-muted">Flash-Archiv</li></ul></div></FlockaReveal>
+          <FlockaReveal direction="right" class="md:col-start-2 md:row-start-2"><FlockaColorRevealImage src="/images/portfolio/testimonial.png" alt="Tattoo-Arbeit aus dem Portfolio von Flocka" class="aspect-[1.25] w-full border border-bone object-cover" /></FlockaReveal>
+        </div>
+      </section>
 
-    <section id="work" class="surface-section page-shell border-b border-line py-24 md:py-36">
-      <FlockaReveal class="mb-20 grid gap-8 md:grid-cols-2">
-        <p class="eyebrow text-signal-bright">Arbeiten</p>
-        <div class="flex justify-between gap-8"><p class="surface-lead max-w-xl">Eine Auswahl von Motiven zwischen Gewicht, Kontrast, Symbol und der Frage, wie ein Bild auf dem Körper weiterlebt.</p><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="eyebrow hidden h-fit whitespace-nowrap border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright md:block">Alle Arbeiten <Icon name="lucide:arrow-up-right" size="14" /></a></div>
-      </FlockaReveal>
-      <div class="grid gap-24">
-        <article v-for="(project, index) in work" :key="project.title" class="grid gap-7 md:grid-cols-2">
-          <div class="min-h-[34rem]">
-            <p class="eyebrow text-muted">0{{ index + 1 }} / 0{{ work.length }}</p>
-            <h3 class="mt-6 max-w-md font-display text-5xl uppercase leading-[.83] tracking-[-.05em] text-bone md:text-6xl">{{ project.title }}</h3>
-            <div class="mt-8 md:sticky md:top-10">
-              <p class="max-w-sm text-sm leading-relaxed text-muted">{{ project.description }}</p>
-              <div class="mt-8 grid max-w-sm grid-cols-2 gap-y-2 text-sm text-muted"><span>Art:</span><span class="text-right text-bone">{{ project.scope }}</span><span>Richtung:</span><span class="text-right text-bone">{{ project.detail }}</span></div>
-              <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="eyebrow mt-9 inline-flex border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright">Motiv ansehen <Icon name="lucide:arrow-up-right" size="14" /></a>
-            </div>
-          </div>
-          <FlockaReveal class="self-end"><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="group block overflow-hidden bg-surface" :aria-label="`${project.title} ansehen`"><FlockaColorRevealImage :src="project.image" :alt="project.title" class="aspect-[1.18] w-full object-cover group-hover:scale-105" /></a></FlockaReveal>
-        </article>
+    <section id="work" class="surface-section page-shell border-b border-line px-5 py-24 md:px-[2vw] md:py-24">
+      <div class="section-rule"><p class="eyebrow text-signal-bright">Arbeiten</p><span class="section-rule__line" /></div>
+      <div class="mt-12 grid gap-12 md:mt-24 md:gap-24">
+        <FlockaReveal v-for="(project, index) in work" :key="project.title" :direction="index % 2 === 0 ? 'left' : 'right'">
+          <article class="work-card grid gap-12 md:min-h-[39rem] md:grid-cols-2 md:items-center md:gap-16">
+            <div class="flex h-full flex-col justify-center"><h3 class="max-w-xl font-display text-5xl uppercase leading-[.85] tracking-[-.05em] text-bone md:text-7xl">{{ project.title }}</h3><div class="mt-10 max-w-md"><p class="text-sm leading-relaxed text-muted md:text-base">{{ project.description }}</p><div class="mt-8 grid grid-cols-2 gap-y-2 text-sm text-muted"><span>Art:</span><span class="text-right text-bone">{{ project.scope }}</span><span>Richtung:</span><span class="text-right text-bone">{{ project.detail }}</span></div><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="mt-14 inline-flex items-center gap-4 border-2 border-bone px-6 py-4 text-base font-sans normal-case tracking-normal text-bone transition-colors hover:bg-bone hover:text-black">Motiv ansehen <Icon name="lucide:arrow-up-right" size="17" /></a></div></div>
+            <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="group block overflow-hidden border border-bone" :aria-label="`${project.title} ansehen`"><FlockaColorRevealImage :src="project.image" :alt="project.title" class="aspect-[1.37] w-full object-cover transition-transform duration-700 group-hover:scale-105" /></a>
+          </article>
+        </FlockaReveal>
       </div>
     </section>
 
-    <section id="services" class="surface-section page-shell border-b border-line py-24 md:py-36"><div class="mb-20 grid gap-8 md:grid-cols-[.8fr_1.2fr]"><p class="eyebrow text-signal-bright">Leistungen</p><div class="flex justify-between gap-8"><p class="surface-lead max-w-2xl">Tattoos mit klarer Richtung, ruhiger Hand und genug Raum für eine gute Idee.</p><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="eyebrow hidden h-fit border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright md:block">Leistungen ansehen <Icon name="lucide:arrow-up-right" size="14" /></a></div></div><div class="border-t border-line"><article v-for="service in services" :key="service.title" class="grid gap-4 border-b border-line py-7 md:grid-cols-[.8fr_1.2fr] md:py-9"><h3 class="font-display text-3xl uppercase leading-none tracking-[-.03em] text-bone md:text-4xl">{{ service.title }}</h3><p class="max-w-lg text-sm leading-relaxed text-muted md:text-base">{{ service.body }}</p></article></div></section>
+    <section id="services" class="surface-section page-shell border-b border-line px-5 py-24 md:px-[2vw] md:py-24"><div class="section-rule"><p class="eyebrow text-signal-bright">Leistungen</p><span class="section-rule__line" /></div><div class="mt-16 grid gap-8 md:mt-24 md:grid-cols-[.8fr_1.2fr]"><p class="surface-lead max-w-2xl">Tattoos mit klarer Richtung, ruhiger Hand und genug Raum für eine gute Idee.</p><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="eyebrow hidden h-fit border-b border-line pb-2 text-bone hover:border-signal-bright md:block">Leistungen ansehen <Icon name="lucide:arrow-up-right" size="14" /></a></div><div class="mt-16 border-t border-line md:mt-24"><article v-for="service in services" :key="service.title" class="grid gap-4 border-b border-line py-8 transition-colors hover:bg-white hover:text-black md:grid-cols-[.8fr_1.2fr] md:items-center md:py-10"><h3 class="font-display text-3xl uppercase leading-none tracking-[-.03em] text-bone md:text-5xl">{{ service.title }}</h3><p class="max-w-lg text-sm leading-relaxed text-muted transition-colors md:text-base">{{ service.body }}</p></article></div></section>
 
-    <section id="process" class="surface-section page-shell grid gap-16 border-b border-line py-24 md:grid-cols-[.8fr_1.2fr] md:py-36"><p class="eyebrow text-signal-bright">Ablauf</p><div class="grid gap-14 md:grid-cols-[.75fr_1.25fr]"><FlockaColorRevealImage src="/images/portfolio/flash-after-dark.png" alt="Detail aus dem Tattoo-Prozess von Flocka" class="aspect-[.8] w-full object-cover" /><div class="grid content-start"><article v-for="stage in process" :key="stage.number" class="grid grid-cols-[3rem_1fr] gap-5 border-b border-line py-7 first:pt-0"><p class="eyebrow text-muted">{{ stage.number }}</p><div><h3 class="font-display text-4xl uppercase leading-none text-bone"><span class="text-signal-bright">{{ stage.prefix }}</span> {{ stage.title }}</h3><p class="mt-4 max-w-md text-sm leading-relaxed text-muted">{{ stage.body }}</p></div></article></div></div></section>
+    <section id="process" class="surface-section page-shell border-b border-line px-5 py-24 md:px-[2vw] md:py-24"><div class="section-rule"><p class="eyebrow text-signal-bright">Ablauf</p><span class="section-rule__line" /></div><div class="mt-16 grid gap-14 md:mt-24 md:grid-cols-[.8fr_1.2fr] md:items-center"><FlockaColorRevealImage src="/images/portfolio/flash-after-dark.png" alt="Detail aus dem Tattoo-Prozess von Flocka" class="aspect-[.8] w-full border border-bone object-cover" /><div class="grid content-start"><article v-for="stage in process" :key="stage.number" class="grid grid-cols-[3rem_1fr] gap-5 border-b border-line py-8 first:pt-0 md:py-9"><p class="eyebrow text-muted">{{ stage.number }}</p><div><h3 class="font-display text-4xl uppercase leading-none text-bone md:text-5xl">{{ stage.title }}</h3><p class="mt-4 max-w-md text-sm leading-relaxed text-muted md:text-base">{{ stage.body }}</p></div></article></div></div></section>
 
-    <section id="testimonials" class="surface-section page-shell border-b border-line py-24 md:py-36"><div class="grid gap-12 md:grid-cols-[.8fr_1.2fr]"><p class="eyebrow text-signal-bright">Stimmen</p><div class="grid gap-10 md:grid-cols-[.7fr_1.3fr]"><div class="overflow-hidden bg-surface"><Transition name="fade" mode="out-in"><FlockaColorRevealImage :key="currentTestimonial.image" :src="currentTestimonial.image" :alt="`Portrait von ${currentTestimonial.author}`" class="aspect-[.85] w-full object-cover" /></Transition></div><div class="flex flex-col justify-between gap-10"><Transition name="fade" mode="out-in"><blockquote :key="currentTestimonial.quote" class="surface-lead">„{{ currentTestimonial.quote }}“<footer class="eyebrow mt-8 text-muted">{{ currentTestimonial.author }}</footer></blockquote></Transition><div class="flex gap-2"><button class="btn-ghost px-4 py-3" aria-label="Vorherige Stimme" @click="previousTestimonial"><Icon name="lucide:arrow-left" size="16" /></button><button class="btn-ghost px-4 py-3" aria-label="Nächste Stimme" @click="nextTestimonial"><Icon name="lucide:arrow-right" size="16" /></button></div></div></div></div></section>
+    <section id="testimonials" class="surface-section page-shell border-b border-line px-5 py-24 md:px-[2vw] md:py-24"><div class="section-rule"><p class="eyebrow text-signal-bright">Stimmen</p><span class="section-rule__line" /></div><div class="mt-16 grid gap-12 md:mt-24 md:grid-cols-[.7fr_1.3fr] md:items-center md:gap-20"><div class="flex flex-col gap-8"><div class="overflow-hidden border border-bone"><Transition name="fade" mode="out-in"><FlockaColorRevealImage :key="currentTestimonial.image" :src="currentTestimonial.image" :alt="`Portrait von ${currentTestimonial.author}`" class="aspect-[.85] w-full object-cover" /></Transition></div><div class="flex gap-2"><button class="btn-ghost size-14" aria-label="Vorherige Stimme" @click="previousTestimonial"><Icon name="lucide:arrow-left" size="16" /></button><button class="btn-ghost size-14" aria-label="Nächste Stimme" @click="nextTestimonial"><Icon name="lucide:arrow-right" size="16" /></button></div></div><div class="flex flex-col justify-center"><span class="mb-10 font-display text-8xl leading-none text-bone">“</span><Transition name="fade" mode="out-in"><blockquote :key="currentTestimonial.quote" class="font-display text-3xl leading-[1.02] tracking-[-.035em] text-bone md:text-5xl">{{ currentTestimonial.quote }}<footer class="eyebrow mt-10 text-muted">{{ currentTestimonial.author }}</footer></blockquote></Transition></div></div></section>
 
-    <section id="faq" class="surface-section page-shell grid gap-12 border-b border-line py-24 md:grid-cols-[.8fr_1.2fr] md:py-36"><div><p class="eyebrow text-signal-bright">Fragen</p></div><div><p class="surface-lead mb-16 max-w-2xl">Antworten zu Studio, Motiven und der Anfrage für deinen Termin.</p><div class="border-t border-line"><article v-for="(faq, index) in faqs" :key="faq.question" class="border-b border-line"><button class="flex w-full items-center justify-between gap-8 py-6 text-left text-base text-bone" :aria-expanded="openFaq === index" :aria-controls="`faq-answer-${index}`" @click="toggleFaq(index)"><span>{{ faq.question }}</span><span class="flex size-7 shrink-0 items-center justify-center border border-line text-signal transition-transform duration-300" :class="openFaq === index ? 'rotate-45' : ''"><Icon name="lucide:plus" size="14" /></span></button><div :id="`faq-answer-${index}`" class="grid transition-[grid-template-rows,opacity] duration-300" :class="openFaq === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"><p class="min-h-0 max-w-2xl overflow-hidden pb-6 text-sm leading-relaxed text-muted">{{ faq.answer }}</p></div></article></div></div></section>
+    <section id="faq" class="surface-section page-shell border-b border-line px-5 py-24 md:px-[2vw] md:py-24"><div class="section-rule"><p class="eyebrow text-signal-bright">Fragen</p><span class="section-rule__line" /></div><p class="surface-lead ml-auto mt-16 max-w-2xl md:mt-24">Antworten zu Studio, Motiven und der Anfrage für deinen Termin.</p><div class="faq-list mt-16 border-t border-line md:mt-24"><article v-for="(faq, index) in faqs" :key="faq.question" class="faq-item border-b border-line" :class="{ 'faq-item--open': openFaq === index }"><button class="flex w-full items-center justify-between gap-8 py-8 text-left text-base text-bone md:py-9 md:text-lg" :aria-expanded="openFaq === index" :aria-controls="`faq-answer-${index}`" @click="toggleFaq(index)"><span>{{ faq.question }}</span><span class="faq-icon flex size-8 shrink-0 items-center justify-center text-bone transition-transform duration-300" :class="{ 'rotate-45': openFaq === index }" aria-hidden="true"><Icon name="lucide:plus" size="21" /></span></button><div :id="`faq-answer-${index}`" class="grid transition-[grid-template-rows,opacity] duration-300" :class="openFaq === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"><p class="min-h-0 max-w-3xl overflow-hidden pb-8 text-sm leading-relaxed md:text-base">{{ faq.answer }}</p></div></article></div></section>
 
-    <section id="blog" class="surface-section page-shell border-b border-line py-24 md:py-36"><div class="mb-16 grid gap-8 md:grid-cols-[.8fr_1.2fr]"><p class="eyebrow text-signal-bright">Journal</p><div class="flex justify-between gap-8"><p class="surface-lead max-w-2xl">Notizen über Tattoos, visuelle Sprache, den Prozess und die kleinen Entscheidungen hinter einem guten Motiv.</p><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="eyebrow hidden h-fit border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright md:block">Alle Artikel <Icon name="lucide:arrow-up-right" size="14" /></a></div></div><div class="grid gap-10 md:grid-cols-3"><a v-for="article in articles" :key="article.title" href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="group"><div class="overflow-hidden bg-surface"><FlockaColorRevealImage :src="article.image" :alt="article.title" class="aspect-[1.2] w-full object-cover group-hover:scale-105" /></div><h3 class="mt-5 text-lg leading-tight text-bone">{{ article.title }}</h3><p class="mt-3 text-sm leading-relaxed text-muted">{{ article.body }}</p></a></div></section>
+    <section id="blog" class="surface-section page-shell border-b border-line px-5 py-24 md:px-[2vw] md:py-24"><div class="section-rule"><p class="eyebrow text-signal-bright">Journal</p><span class="section-rule__line" /></div><div class="mt-16 grid gap-8 md:mt-24 md:grid-cols-3 md:gap-6"><a v-for="article in articles" :key="article.title" href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="journal-card group block border border-bone p-3 transition-colors hover:bg-bone hover:text-black"><div class="overflow-hidden"><FlockaColorRevealImage :src="article.image" :alt="article.title" allow-multiple-on-desktop class="aspect-[1.2] w-full object-cover transition-transform duration-700 group-hover:scale-105" /></div><div class="p-3 pb-4"><h3 class="text-lg leading-tight text-bone transition-colors group-hover:text-black">{{ article.title }}</h3><p class="mt-3 text-sm leading-relaxed text-muted transition-colors group-hover:text-black">{{ article.body }}</p></div></a></div></section>
 
   </main>
 
@@ -232,19 +227,39 @@ function toggleFaq(index: number) {
 .surface-hero { z-index: 2; }
 .surface-section { position: relative; z-index: 5; scroll-margin-top: 5rem; background: #000; }
 .surface-gallery { background: #000; isolation: isolate; }
+.section-rule { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 1.25rem; }
+.section-rule__line { height: 1px; background: var(--flocka-line, #343434); }
 .surface-section:not(.surface-card):not(#work) > * { opacity: 0; transform: translateX(-48px); transition: opacity 720ms cubic-bezier(.22, 1, .36, 1), transform 720ms cubic-bezier(.22, 1, .36, 1); }
 .surface-section:not(.surface-card):not(#work) > :nth-child(even) { transform: translateX(48px); }
 .surface-section.section-reveal--visible:not(.surface-card):not(#work) > * { opacity: 1; transform: translateX(0); }
 .surface-lead { font-size: clamp(1.35rem, 2.25vw, 2.25rem); line-height: 1.08; letter-spacing: -.035em; color: var(--flocka-bone, #f2efe8); }
-.surface-card { border-radius: 48px 48px 0 0; }
+.surface-card { border-radius: 72px 72px 0 0; }
 .surface-contact { border-radius: 0 0 48px 48px; background: #000; }
 .surface-footer { background: #f2efe8; }
 .surface-footer-stage { min-height: 550px; }
+.faq-item--open { background: var(--flocka-bone, #f2efe8); color: #000; }
+.faq-list { border-color: var(--flocka-bone, #f2efe8); }
+.faq-item { border-color: var(--flocka-bone, #f2efe8); }
+.faq-item--open .faq-icon { color: #000; }
+.faq-item--open button { color: #000; }
+.faq-item--open p { color: #000; }
+.faq-item:not(.faq-item--open) button:hover { color: var(--flocka-bone, #f2efe8); }
+.journal-card:nth-child(1) { transition-delay: 0ms; }
+.journal-card:nth-child(2) { transition-delay: 90ms; }
+.journal-card:nth-child(3) { transition-delay: 180ms; }
+@media (hover: hover) {
+  #services article:hover h3,
+  #services article:hover p { color: #000; }
+}
 .fade-enter-active, .fade-leave-active { transition: opacity 360ms ease, transform 360ms ease; }
 .fade-enter-from { opacity: 0; transform: translateX(24px); }
 .fade-leave-to { opacity: 0; transform: translateX(-24px); }
 @media (prefers-reduced-motion: reduce) {
   .surface-section:not(.surface-card):not(#work) > * { opacity: 1; transform: none; transition: none; }
   .fade-enter-active, .fade-leave-active { transition-duration: 1ms; }
+}
+@media (max-width: 767px) {
+  .surface-card { border-radius: 40px 40px 0 0; }
+  .section-rule { gap: .75rem; }
 }
 </style>

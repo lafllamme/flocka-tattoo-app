@@ -27,7 +27,7 @@ export default defineConfig({
   shortcuts: {
     'page-shell': 'w-full px-[2vw]',
     'section-shell': 'page-shell py-20 md:py-28',
-    'eyebrow': 'text-[10px] text-muted tracking-[0.24em] font-mono uppercase',
+    'eyebrow': 'text-[10px] text-muted tracking-[0.16em] font-sans uppercase',
     'display-xl': 'text-[clamp(4.5rem,14vw,13rem)] leading-[0.78] tracking-[-0.08em] font-display uppercase',
     'display-lg': 'text-[clamp(3rem,7vw,7rem)] leading-[0.84] tracking-[-0.06em] font-display uppercase',
     'surface-panel': 'border border-line bg-surface',

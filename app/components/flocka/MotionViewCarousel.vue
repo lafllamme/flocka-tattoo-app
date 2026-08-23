@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useIntersectionObserver, usePreferredReducedMotion } from '@vueuse/core'
+import { useColorRevealFocus } from '../../composables/useColorRevealFocus'
 
 interface MotionViewInstance {
   destroy?: () => void
@@ -19,9 +20,11 @@ const canvas = ref<HTMLCanvasElement | null>(null)
 const gallery = ref<HTMLElement | null>(null)
 const isReady = ref(false)
 const hasError = ref(false)
-const revealed = ref(false)
+const focusId = Symbol('color-reveal-gallery')
+const { activeFocus } = useColorRevealFocus()
 const prefersReducedMotion = usePreferredReducedMotion()
 const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce')
+const revealed = computed(() => activeFocus.value === focusId)
 let instance: MotionViewInstance | undefined
 
 const imageSources = [
@@ -36,16 +39,17 @@ const imageSources = [
   'https://i.imgur.com/fih1y9w.png',
 ]
 
-const { stop: stopGalleryObserver } = useIntersectionObserver(
+useIntersectionObserver(
   gallery,
   ([entry]) => {
-    if (!entry?.isIntersecting)
-      return
+    const isFocused = Boolean(entry?.isIntersecting && (entry.intersectionRatio ?? 0) >= 0.5)
 
-    revealed.value = true
-    stopGalleryObserver()
+    if (isFocused)
+      activeFocus.value = focusId
+    else if (activeFocus.value === focusId)
+      activeFocus.value = null
   },
-  { rootMargin: '-22% 0px -22% 0px', threshold: 0.2 },
+  { rootMargin: '-25% 0px -25% 0px', threshold: [0, 0.5, 1] },
 )
 
 function loadMotionView() {
@@ -106,7 +110,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="gallery" class="motionview-frame relative overflow-hidden grayscale transition-[filter] duration-1000" :class="{ 'grayscale-0': revealed || shouldReduceMotion }">
+  <div ref="gallery" class="motionview-frame relative overflow-hidden grayscale transition-[filter] duration-[700ms] ease-out" :class="{ 'grayscale-0': revealed || shouldReduceMotion }">
     <canvas ref="canvas" class="motionview-canvas block h-auto w-full" aria-label="Karussell mit ausgewählten Arbeiten" />
     <div v-if="!isReady && !hasError" class="motionview-loading pointer-events-none absolute inset-0 grid place-items-center text-muted">
       <span class="eyebrow">Arbeiten werden geladen</span>
