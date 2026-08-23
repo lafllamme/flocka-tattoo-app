@@ -172,7 +172,7 @@ function toggleFaq(index: number) {
     <FlockaSiteHeader />
     <FlockaHeroSection />
 
-      <section id="about" class="surface-card surface-section page-shell -mt-2 border-2 border-bone px-5 py-16 md:px-[2vw] md:py-24">
+      <section id="about" class="surface-card surface-section page-shell -mt-2 border-0 border-t-2 border-t-bone px-5 py-16 md:px-[2vw] md:py-24">
         <div class="section-rule"><p class="eyebrow text-signal-bright">Über mich</p><span class="section-rule__line" /></div>
         <div class="about-layout mt-16 grid gap-16 md:mt-24 md:grid-cols-2 md:gap-x-24 md:gap-y-24">
           <FlockaReveal direction="right" class="md:col-start-2"><p class="surface-lead max-w-3xl">Ich bin Sascha, 31, Vollzeit-Tätowierer aus Köln. Als Newcomer im Quereinstieg entwickle ich gerade meine eigene Handschrift – mit klaren Linien, starken Symbolen und Farbe, wenn sie passt.</p></FlockaReveal>
@@ -233,7 +233,7 @@ function toggleFaq(index: number) {
 .surface-section:not(.surface-card):not(#work) > :nth-child(even) { transform: translateX(48px); }
 .surface-section.section-reveal--visible:not(.surface-card):not(#work) > * { opacity: 1; transform: translateX(0); }
 .surface-lead { font-size: clamp(1.35rem, 2.25vw, 2.25rem); line-height: 1.08; letter-spacing: -.035em; color: var(--flocka-bone, #f2efe8); }
-.surface-card { border-radius: 72px 72px 0 0; }
+.surface-card { border-radius: 48px 48px 0 0; }
 .surface-contact { border-radius: 0 0 48px 48px; background: #000; }
 .surface-footer { background: #f2efe8; }
 .surface-footer-stage { min-height: 550px; }
@@ -259,7 +259,7 @@ function toggleFaq(index: number) {
   .fade-enter-active, .fade-leave-active { transition-duration: 1ms; }
 }
 @media (max-width: 767px) {
-  .surface-card { border-radius: 40px 40px 0 0; }
+  .surface-card { border-radius: 36px 36px 0 0; }
   .section-rule { gap: .75rem; }
 }
 </style>
