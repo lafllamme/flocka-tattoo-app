@@ -48,41 +48,43 @@ const shouldHideHeader = computed(() => aboutSectionReachedHeader.value && !menu
 </script>
 
 <template>
-  <header class="site-header page-shell pointer-events-none fixed inset-x-0 top-0 z-50 flex min-h-12 items-center justify-between bg-transparent py-2 md:min-h-[57px] md:py-2" :class="{ 'site-header--entered': entered || shouldReduceMotion, 'site-header--leaving': shouldHideHeader }">
-    <nav class="pointer-events-auto hidden w-full items-center justify-between md:flex" aria-label="Main navigation">
-      <a href="#top" class="text-base font-semibold tracking-[-.02em] text-bone no-underline transition-colors hover:text-signal-bright">Start</a>
-      <a v-for="item in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="text-base font-semibold tracking-[-.02em] text-bone no-underline transition-colors hover:text-signal-bright">{{ item.label }}</a>
+  <header class="site-header page-shell py-2 bg-transparent flex min-h-12 pointer-events-none items-center inset-x-0 top-0 justify-between fixed z-50 md:py-2 md:min-h-[57px]" :class="{ 'site-header--entered': entered || shouldReduceMotion, 'site-header--leaving': shouldHideHeader }">
+    <nav class="w-full hidden pointer-events-auto items-center justify-between md:flex" aria-label="Main navigation">
+      <a href="#top" class="text-base text-bone tracking-[-.02em] font-semibold no-underline transition-colors hover:text-signal-bright">Start</a>
+      <a v-for="item in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="text-base text-bone tracking-[-.02em] font-semibold no-underline transition-colors hover:text-signal-bright">{{ item.label }}</a>
     </nav>
 
-    <div class="relative flex w-full items-center justify-between md:hidden">
+    <div class="flex w-full items-center justify-between relative md:hidden">
       <a href="#top" class="pointer-events-auto relative z-50" aria-label="Flocka home">
-        <span class="font-display text-xl font-semibold uppercase leading-none tracking-[-.08em] text-bone">FLOCKA</span>
+        <span class="text-xl text-bone leading-none tracking-[-.08em] font-display font-semibold uppercase">FLOCKA</span>
       </a>
 
-      <button class="pointer-events-auto relative z-50 flex size-10 items-center justify-center p-0 text-bone transition-colors hover:text-signal-bright" :aria-expanded="menuOpen" aria-controls="mobile-navigation" :aria-label="menuOpen ? 'Close navigation' : 'Open navigation'" @click="menuOpen = !menuOpen">
+      <button class="text-bone p-0 flex size-10 pointer-events-auto transition-colors items-center justify-center relative z-50 hover:text-signal-bright" :aria-expanded="menuOpen" aria-controls="mobile-navigation" :aria-label="menuOpen ? 'Close navigation' : 'Open navigation'" @click="menuOpen = !menuOpen">
         <Icon :name="menuOpen ? 'jam:close' : 'jam:menu'" size="24" />
       </button>
     </div>
-
   </header>
 
   <Transition name="menu-slide">
-    <div v-if="menuOpen" id="mobile-navigation" class="fixed inset-0 z-40 flex flex-col bg-black px-5 pb-8 pt-28 md:hidden">
-      <TransitionGroup appear name="menu-items" tag="nav" class="grid gap-5" aria-label="Mobile navigation">
+    <div v-if="menuOpen" id="mobile-navigation" class="px-5 pb-8 pt-28 bg-black flex flex-col inset-0 fixed z-40 md:hidden">
+      <TransitionGroup appear name="menu-items" tag="nav" class="gap-5 grid" aria-label="Mobile navigation">
         <a
-        v-for="(item, index) in menuItems"
-        :key="item.href"
-        :href="item.href"
-        :target="item.href.startsWith('http') ? '_blank' : undefined"
-        :rel="item.href.startsWith('http') ? 'noreferrer' : undefined"
-        class="mobile-menu-item font-sans text-4xl font-semibold leading-none tracking-[-.03em] text-bone no-underline transition-colors hover:text-signal" :style="{ '--menu-item-delay': `calc(520ms + ${index * 120}ms)` }"
-        @click="closeMenu">{{ item.label }}</a>
+          v-for="(item, index) in menuItems"
+          :key="item.href"
+          :href="item.href"
+          :target="item.href.startsWith('http') ? '_blank' : undefined"
+          :rel="item.href.startsWith('http') ? 'noreferrer' : undefined"
+          class="mobile-menu-item text-4xl text-bone leading-none tracking-[-.03em] font-sans font-semibold no-underline transition-colors hover:text-signal" :style="{ '--menu-item-delay': `calc(520ms + ${index * 120}ms)` }"
+          @click="closeMenu"
+        >{{ item.label }}</a>
       </TransitionGroup>
-      <p class="mobile-menu-footer eyebrow mt-auto text-muted">Köln · Di—Sa · 10:00—19:00</p>
+      <p class="mobile-menu-footer eyebrow text-muted mt-auto">
+        Köln · Di—Sa · 10:00—19:00
+      </p>
       <img
         src="/images/flocka_logo.png"
         alt="Flocka Tattoo"
-        class="mobile-menu-logo pointer-events-none absolute bottom-5 right-5 w-52 max-w-[55vw] select-none"
+        class="mobile-menu-logo max-w-[55vw] w-52 pointer-events-none select-none bottom-5 right-5 absolute"
       >
     </div>
   </Transition>

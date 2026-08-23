@@ -172,7 +172,7 @@ function toggleFaq(index: number) {
     <FlockaSiteHeader />
     <FlockaHeroSection />
 
-      <section id="about" class="surface-card surface-section page-shell -mt-2 border border-line px-5 py-16 md:px-[2vw] md:py-24">
+      <section id="about" class="surface-card surface-section page-shell -mt-2 border-2 border-bone px-5 py-16 md:px-[2vw] md:py-24">
         <div class="section-rule"><p class="eyebrow text-signal-bright">Über mich</p><span class="section-rule__line" /></div>
         <div class="about-layout mt-16 grid gap-16 md:mt-24 md:grid-cols-2 md:gap-x-24 md:gap-y-24">
           <FlockaReveal direction="right" class="md:col-start-2"><p class="surface-lead max-w-3xl">Ich bin Sascha, 31, Vollzeit-Tätowierer aus Köln. Als Newcomer im Quereinstieg entwickle ich gerade meine eigene Handschrift – mit klaren Linien, starken Symbolen und Farbe, wenn sie passt.</p></FlockaReveal>
