@@ -1,4 +1,34 @@
 <script setup lang="ts">
+import { usePreferredReducedMotion } from '@vueuse/core'
+import FlockaReveal from '../components/flocka/RevealOnScroll.vue'
+
+const prefersReducedMotion = usePreferredReducedMotion()
+let sectionObserver: IntersectionObserver | undefined
+
+onMounted(() => {
+  if (prefersReducedMotion.value === 'reduce')
+    return
+
+  const sections = document.querySelectorAll<HTMLElement>('.surface-section:not(.surface-card):not(#work)')
+
+  sectionObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting)
+        continue
+
+      entry.target.classList.add('section-reveal--visible')
+      sectionObserver?.unobserve(entry.target)
+    }
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 })
+
+  for (const section of sections)
+    sectionObserver.observe(section)
+})
+
+onBeforeUnmount(() => {
+  sectionObserver?.disconnect()
+})
+
 const work = [
   { title: 'RED RELIC', description: 'A custom blackwork piece built around old symbols, red ink accents and a strong vertical silhouette.', scope: 'Custom piece', detail: 'Blackwork', image: 'https://images.unsplash.com/photo-1598373182133-52452f7691ef?auto=format&fit=crop&w=1600&q=88' },
   { title: 'OPEN SKIN', description: 'An ornamental study developed from fine line structure, negative space and slow detail.', scope: 'Ornamental', detail: 'Fine line', image: 'https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?auto=format&fit=crop&w=1600&q=88' },
@@ -53,17 +83,36 @@ function toggleFaq(index: number) {
 </script>
 
 <template>
-  <main class="surface-home overflow-hidden text-bone">
+  <main class="surface-home relative flex min-h-screen flex-col overflow-clip text-bone">
     <FlockaNoiseLayer />
     <FlockaSiteHeader />
-    <FlockaHeroSection />
+    <div class="relative z-2 h-[calc(100svh-57px)]"><FlockaHeroSection /></div>
 
-    <section id="about" class="surface-section page-shell grid gap-12 border-b border-line py-24 md:grid-cols-[.8fr_1.2fr] md:py-36">
-      <p class="eyebrow text-signal-bright">About</p>
-      <div class="grid gap-20 md:grid-cols-[1.05fr_.95fr]"><p class="surface-lead">Flocka is an independent tattoo practice focused on shaping lasting marks through conversation, structure and a strong visual point of view.</p><div class="flex flex-col justify-between gap-10"><div class="space-y-7 text-sm leading-relaxed text-muted md:text-base"><p>Every piece starts with a reason. We take the time to understand the image, the placement and the energy it should carry before a line is put on skin.</p><ul class="border-t border-line pt-5 text-bone"><li class="border-b border-line py-3 text-muted">Independent practice</li><li class="border-b border-line py-3 text-muted">Custom blackwork</li><li class="border-b border-line py-3 text-muted">Ornamental direction</li><li class="py-3 text-muted">Flash archive</li></ul></div><a href="#contact" class="eyebrow w-fit border-b border-line pb-2 text-bone transition-colors hover:border-signal hover:text-signal-bright">About the studio <Icon name="lucide:arrow-up-right" size="14" /></a></div></div>
+    <section id="about" class="surface-card surface-section page-shell -mt-2 grid gap-12 border border-line py-24 md:grid-cols-[.8fr_1.2fr] md:py-36">
+      <FlockaReveal direction="left"><p class="eyebrow text-signal-bright">About</p></FlockaReveal>
+      <FlockaReveal direction="right"><div class="grid gap-20 md:grid-cols-[1.05fr_.95fr]"><p class="surface-lead">Flocka is an independent tattoo practice focused on shaping lasting marks through conversation, structure and a strong visual point of view.</p><div class="flex flex-col justify-between gap-10"><div class="space-y-7 text-sm leading-relaxed text-muted md:text-base"><p>Every piece starts with a reason. We take the time to understand the image, the placement and the energy it should carry before a line is put on skin.</p><ul class="border-t border-line pt-5 text-bone"><li class="border-b border-line py-3 text-muted">Independent practice</li><li class="border-b border-line py-3 text-muted">Custom blackwork</li><li class="border-b border-line py-3 text-muted">Ornamental direction</li><li class="py-3 text-muted">Flash archive</li></ul></div><a href="#contact" class="eyebrow w-fit border-b border-line pb-2 text-bone transition-colors hover:border-signal hover:text-signal-bright">About the studio <Icon name="lucide:arrow-up-right" size="14" /></a></div></div></FlockaReveal>
     </section>
 
-    <section id="work" class="surface-section page-shell border-b border-line py-24 md:py-36"><div class="mb-20 grid gap-8 md:grid-cols-[.8fr_1.2fr]"><p class="eyebrow text-signal-bright">Work</p><div class="flex justify-between gap-8"><p class="surface-lead max-w-2xl">A selection of tattoos exploring weight, contrast, symbol and the relationship between image and body.</p><a href="#contact" class="eyebrow hidden h-fit whitespace-nowrap border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright md:block">View all work <Icon name="lucide:arrow-up-right" size="14" /></a></div></div><div class="grid gap-24"><article v-for="(project, index) in work" :key="project.title" class="grid gap-7 md:grid-cols-[.8fr_1.2fr] md:gap-12"><div class="md:sticky md:top-28 md:self-start"><p class="eyebrow text-muted">0{{ index + 1 }} / 0{{ work.length }}</p><h3 class="mt-6 font-display text-5xl uppercase leading-[.83] tracking-[-.05em] text-bone md:text-7xl">{{ project.title }}</h3><p class="mt-7 max-w-sm text-sm leading-relaxed text-muted">{{ project.description }}</p><div class="mt-8 grid max-w-sm grid-cols-2 border-t border-line pt-3 text-[10px] font-mono uppercase tracking-[.16em] text-muted"><span>Scope:</span><span class="text-right text-bone">{{ project.scope }}</span><span class="mt-2">Details:</span><span class="mt-2 text-right text-bone">{{ project.detail }}</span></div><a href="#contact" class="eyebrow mt-9 inline-flex border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright">View project <Icon name="lucide:arrow-up-right" size="14" /></a></div><a href="#contact" class="group block overflow-hidden bg-surface" :aria-label="`View ${project.title}`"><img :src="project.image" :alt="project.title" class="aspect-[1.2] w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"></a></article></div></section>
+    <section id="work" class="surface-section page-shell border-b border-line py-24 md:py-36">
+      <FlockaReveal class="mb-20 grid gap-8 md:grid-cols-2">
+        <p class="eyebrow text-signal-bright">Work</p>
+        <div class="flex justify-between gap-8"><p class="surface-lead max-w-xl">A selection of tattoos exploring weight, contrast, symbol and the relationship between image and body.</p><a href="#contact" class="eyebrow hidden h-fit whitespace-nowrap border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright md:block">View all work <Icon name="lucide:arrow-up-right" size="14" /></a></div>
+      </FlockaReveal>
+      <div class="grid gap-24">
+        <article v-for="(project, index) in work" :key="project.title" class="grid gap-7 md:grid-cols-2">
+          <div class="min-h-[34rem]">
+            <p class="eyebrow text-muted">0{{ index + 1 }} / 0{{ work.length }}</p>
+            <h3 class="mt-6 max-w-md font-display text-5xl uppercase leading-[.83] tracking-[-.05em] text-bone md:text-6xl">{{ project.title }}</h3>
+            <div class="mt-8 md:sticky md:top-10">
+              <p class="max-w-sm text-sm leading-relaxed text-muted">{{ project.description }}</p>
+              <div class="mt-8 grid max-w-sm grid-cols-2 gap-y-2 text-sm text-muted"><span>Scope:</span><span class="text-right text-bone">{{ project.scope }}</span><span>Details:</span><span class="text-right text-bone">{{ project.detail }}</span></div>
+              <a href="#contact" class="eyebrow mt-9 inline-flex border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright">View project <Icon name="lucide:arrow-up-right" size="14" /></a>
+            </div>
+          </div>
+          <FlockaReveal class="self-end"><a href="#contact" class="group block overflow-hidden bg-surface" :aria-label="`View ${project.title}`"><img :src="project.image" :alt="project.title" class="aspect-[1.18] w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"></a></FlockaReveal>
+        </article>
+      </div>
+    </section>
 
     <section id="services" class="surface-section page-shell border-b border-line py-24 md:py-36"><div class="mb-20 grid gap-8 md:grid-cols-[.8fr_1.2fr]"><p class="eyebrow text-signal-bright">Services</p><div class="flex justify-between gap-8"><p class="surface-lead max-w-2xl">A focused tattoo practice for projects that need a clear image, a steady hand and a little more intention.</p><a href="#contact" class="eyebrow hidden h-fit border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright md:block">View services <Icon name="lucide:arrow-up-right" size="14" /></a></div></div><div class="border-t border-line"><article v-for="service in services" :key="service.title" class="grid gap-4 border-b border-line py-7 md:grid-cols-[.8fr_1.2fr] md:py-9"><h3 class="font-display text-3xl uppercase leading-none tracking-[-.03em] text-bone md:text-4xl">{{ service.title }}</h3><p class="max-w-lg text-sm leading-relaxed text-muted md:text-base">{{ service.body }}</p></article></div></section>
 
@@ -75,20 +124,27 @@ function toggleFaq(index: number) {
 
     <section id="blog" class="surface-section page-shell border-b border-line py-24 md:py-36"><div class="mb-16 grid gap-8 md:grid-cols-[.8fr_1.2fr]"><p class="eyebrow text-signal-bright">Journal</p><div class="flex justify-between gap-8"><p class="surface-lead max-w-2xl">Short notes on tattoos, visual language, process and the quiet decisions behind a lasting mark.</p><a href="#contact" class="eyebrow hidden h-fit border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright md:block">View all articles <Icon name="lucide:arrow-up-right" size="14" /></a></div></div><div class="grid gap-10 md:grid-cols-3"><a v-for="article in articles" :key="article.title" href="#contact" class="group"><div class="overflow-hidden bg-surface"><img :src="article.image" :alt="article.title" class="aspect-[1.2] w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"></div><h3 class="mt-5 text-lg leading-tight text-bone">{{ article.title }}</h3><p class="mt-3 text-sm leading-relaxed text-muted">{{ article.body }}</p></a></div></section>
 
-    <section id="contact" class="surface-contact page-shell relative z-10 min-h-[553px] border-b border-line py-24 md:py-36"><p class="eyebrow text-signal-bright">Contact</p><div class="mt-16 flex flex-col items-start gap-10 md:flex-row md:items-end md:justify-between"><h2 class="max-w-4xl font-display text-[clamp(3.5rem,9vw,8.5rem)] uppercase leading-[.78] tracking-[-.07em] text-bone">Let's talk<br>about your piece</h2><a href="mailto:hello@flocka.tattoo" class="btn-primary shrink-0">Get in touch <Icon name="lucide:arrow-up-right" size="16" /></a></div></section>
+    <section id="contact" class="surface-contact page-shell relative z-5 min-h-[553px] border-b border-line py-16 md:py-12"><p class="eyebrow text-signal-bright">Contact</p><div class="mt-12 flex flex-col items-start"><h2 class="max-w-4xl font-display text-[clamp(3.5rem,9vw,8.5rem)] font-black uppercase leading-[.78] tracking-[-.07em] text-bone">Let's talk<br>about your piece</h2><a href="mailto:hello@flocka.tattoo" class="btn-ghost mt-10 rounded-md border-2 border-bone px-5 py-3 text-base normal-case tracking-normal">Get in touch <Icon name="lucide:arrow-up-right" size="18" /></a></div></section>
 
-    <footer class="surface-footer relative z-0 -mt-24 grid min-h-[550px] gap-12 px-5 pb-12 pt-36 text-black md:grid-cols-[1fr_auto] md:px-[2vw] md:pb-16 md:pt-40"><div><a href="mailto:hello@flocka.tattoo" class="block text-3xl font-semibold tracking-[-.04em] hover:opacity-60 md:text-5xl">hello@flocka.tattoo</a><p class="mt-10 max-w-xs text-lg leading-tight">Resonates? Let’s talk. Open to custom pieces, new ideas and lasting collaborations.</p><div class="mt-10 flex gap-7"><a href="#contact" class="text-lg hover:opacity-60">Instagram</a><a href="#contact" class="text-lg hover:opacity-60">Booking</a></div></div><div class="grid grid-cols-2 gap-16 text-lg"><div><p class="mb-5 font-semibold">Navigation</p><div class="grid gap-3"><a href="#top" class="hover:opacity-60">Home</a><a href="#about" class="hover:opacity-60">About</a><a href="#work" class="hover:opacity-60">Work</a><a href="#services" class="hover:opacity-60">Services</a><a href="#blog" class="hover:opacity-60">Blog</a><a href="#contact" class="hover:opacity-60">Contact</a></div></div><div><p class="mb-5 font-semibold">Legal</p><div class="grid gap-3"><a href="#contact" class="hover:opacity-60">Privacy Policy</a><a href="#contact" class="hover:opacity-60">Terms &amp; Conditions</a></div></div></div></footer>
+    <footer class="surface-footer sticky bottom-0 z-1 order-[1002] grid min-h-[550px] gap-12 overflow-hidden px-5 pb-12 pt-18 text-black md:grid-cols-[1fr_auto] md:px-[2vw] md:pb-16 md:pt-18"><div><a href="mailto:hello@flocka.tattoo" class="block text-3xl font-semibold tracking-[-.04em] hover:opacity-60 md:text-5xl">hello@flocka.tattoo</a><p class="mt-10 max-w-xs text-lg leading-tight">Resonates? Let’s talk. Open to custom pieces, new ideas and lasting collaborations.</p><div class="mt-10 flex gap-7"><a href="#contact" class="text-lg hover:opacity-60">Instagram</a><a href="#contact" class="text-lg hover:opacity-60">Booking</a></div></div><div class="grid grid-cols-2 gap-16 text-lg"><div><p class="mb-5 font-semibold">Navigation</p><div class="grid gap-3"><a href="#top" class="hover:opacity-60">Home</a><a href="#about" class="hover:opacity-60">About</a><a href="#work" class="hover:opacity-60">Work</a><a href="#services" class="hover:opacity-60">Services</a><a href="#blog" class="hover:opacity-60">Blog</a><a href="#contact" class="hover:opacity-60">Contact</a></div></div><div><p class="mb-5 font-semibold">Legal</p><div class="grid gap-3"><a href="#contact" class="hover:opacity-60">Privacy Policy</a><a href="#contact" class="hover:opacity-60">Terms &amp; Conditions</a></div></div></div><p aria-hidden="true" class="pointer-events-none absolute bottom-[-.18em] left-[2vw] right-[2vw] font-display text-center text-[clamp(7rem,21vw,21rem)] font-black uppercase leading-[.72] tracking-[-.09em]">FLOCKA</p></footer>
   </main>
 </template>
 
 <style scoped>
 .surface-home { background: #f2efe8; }
-.surface-section { scroll-margin-top: 5rem; background: #000; }
+.surface-section { position: relative; z-index: 5; scroll-margin-top: 5rem; background: #000; }
+.surface-section:not(.surface-card):not(#work) > * { opacity: 0; transform: translateX(-48px); transition: opacity 720ms cubic-bezier(.22, 1, .36, 1), transform 720ms cubic-bezier(.22, 1, .36, 1); }
+.surface-section:not(.surface-card):not(#work) > :nth-child(even) { transform: translateX(48px); }
+.surface-section.section-reveal--visible:not(.surface-card):not(#work) > * { opacity: 1; transform: translateX(0); }
 .surface-lead { font-size: clamp(1.35rem, 2.25vw, 2.25rem); line-height: 1.08; letter-spacing: -.035em; color: var(--flocka-bone, #f2efe8); }
-.surface-contact { border-radius: 0 0 3rem 3rem; background: #000; }
+.surface-card { border-radius: 48px 48px 0 0; }
+.surface-contact { border-radius: 0 0 48px 48px; background: #000; }
 .surface-footer { background: #f2efe8; }
 .fade-enter-active, .fade-leave-active { transition: opacity 360ms ease, transform 360ms ease; }
 .fade-enter-from { opacity: 0; transform: translateX(24px); }
 .fade-leave-to { opacity: 0; transform: translateX(-24px); }
-@media (prefers-reduced-motion: reduce) { .fade-enter-active, .fade-leave-active { transition-duration: 1ms; } }
+@media (prefers-reduced-motion: reduce) {
+  .surface-section:not(.surface-card):not(#work) > * { opacity: 1; transform: none; transition: none; }
+  .fade-enter-active, .fade-leave-active { transition-duration: 1ms; }
+}
 </style>

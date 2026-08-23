@@ -32,6 +32,6 @@ export default defineConfig({
     'display-lg': 'text-[clamp(3rem,7vw,7rem)] leading-[0.84] tracking-[-0.06em] font-display uppercase',
     'surface-panel': 'border border-line bg-surface',
     'btn-primary': 'inline-flex items-center justify-center gap-3 bg-signal px-5 py-3 text-[11px] text-bone tracking-[0.16em] font-mono uppercase transition hover:bg-signal-bright focus-visible:outline-2 focus-visible:outline-signal-bright focus-visible:outline-offset-3',
-    'btn-ghost': 'inline-flex items-center justify-center gap-3 border border-line px-5 py-3 text-[11px] text-bone tracking-[0.16em] font-mono uppercase transition hover:border-signal hover:text-signal-bright focus-visible:outline-2 focus-visible:outline-signal-bright focus-visible:outline-offset-3',
+    'btn-ghost': 'inline-flex items-center justify-center gap-3 border border-bone px-5 py-3 text-[11px] text-bone tracking-[0.16em] font-mono uppercase transition duration-300 hover:bg-bone hover:text-black focus-visible:outline-2 focus-visible:outline-signal-bright focus-visible:outline-offset-3',
   },
 })
