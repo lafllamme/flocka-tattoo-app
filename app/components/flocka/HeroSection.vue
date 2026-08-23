@@ -12,7 +12,7 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
       <div class="hero-content-group">
         <div class="gap-8 grid md:grid-cols-[.95fr_1.05fr]">
           <div class="max-w-md" :class="shouldReduceMotion ? '' : 'hero-copy-enter'">
-            <p class="eyebrow mb-5 text-signal-bright">Vollzeit-Tätowierer · Köln</p>
+            <p class="eyebrow mb-5 text-signal-bright text-lg md:text-xl">Tätowierer · Köln</p>
             <p class="text-xl text-bone leading-[1.12] tracking-[-.03em] md:text-2xl">
               Ich bin Sascha, 31, Vollzeit-Tätowierer aus Köln. Als Newcomer im Quereinstieg entwickle ich gerade meine eigene Handschrift – mit klaren Linien, starken Symbolen und Farbe, wenn sie passt.
             </p>

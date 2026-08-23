@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useIntersectionObserver, usePreferredReducedMotion } from '@vueuse/core'
+
 interface MotionViewInstance {
   destroy?: () => void
 }
@@ -14,8 +16,12 @@ declare global {
 }
 
 const canvas = ref<HTMLCanvasElement | null>(null)
+const gallery = ref<HTMLElement | null>(null)
 const isReady = ref(false)
 const hasError = ref(false)
+const revealed = ref(false)
+const prefersReducedMotion = usePreferredReducedMotion()
+const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce')
 let instance: MotionViewInstance | undefined
 
 const imageSources = [
@@ -29,6 +35,18 @@ const imageSources = [
   'https://i.imgur.com/mfIjpuO.png',
   'https://i.imgur.com/fih1y9w.png',
 ]
+
+const { stop: stopGalleryObserver } = useIntersectionObserver(
+  gallery,
+  ([entry]) => {
+    if (!entry?.isIntersecting)
+      return
+
+    revealed.value = true
+    stopGalleryObserver()
+  },
+  { rootMargin: '-22% 0px -22% 0px', threshold: 0.2 },
+)
 
 function loadMotionView() {
   return new Promise<void>((resolve, reject) => {
@@ -88,7 +106,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="motionview-frame relative overflow-hidden">
+  <div ref="gallery" class="motionview-frame relative overflow-hidden grayscale transition-[filter] duration-1000" :class="{ 'grayscale-0': revealed || shouldReduceMotion }">
     <canvas ref="canvas" class="motionview-canvas block h-auto w-full" aria-label="Karussell mit ausgewählten Arbeiten" />
     <div v-if="!isReady && !hasError" class="motionview-loading pointer-events-none absolute inset-0 grid place-items-center text-muted">
       <span class="eyebrow">Arbeiten werden geladen</span>

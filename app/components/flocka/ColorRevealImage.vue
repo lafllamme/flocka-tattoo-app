@@ -14,7 +14,7 @@ const { stop } = useIntersectionObserver(
     revealed.value = true
     stop()
   },
-  { rootMargin: '-12% 0px -12% 0px', threshold: 0.15 },
+  { rootMargin: '-22% 0px -22% 0px', threshold: 0.2 },
 )
 </script>
 

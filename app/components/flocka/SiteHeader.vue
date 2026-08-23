@@ -13,7 +13,7 @@ const menuItems = [
   { label: 'Über mich', href: '#about' },
   { label: 'Arbeiten', href: '#work' },
   { label: 'Leistungen', href: '#services' },
-  { label: 'Kontakt', href: '#contact' },
+  { label: 'Kontakt', href: 'https://www.instagram.com/flockatattoo/' },
 ]
 
 function closeMenu() {
@@ -70,7 +70,7 @@ watch(scrollY, (current) => {
         <img src="/images/flocka_logo.png" alt="Flocka Tattoo" class="size-16 object-contain">
       </a>
 
-      <a href="#contact" class="text-sm text-bone transition-colors hover:text-signal-bright">Kontakt</a>
+      <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="text-sm text-bone transition-colors hover:text-signal-bright">Kontakt</a>
     </div>
 
   </header>
