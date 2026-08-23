@@ -54,8 +54,7 @@ The page uses staged entry, section reveals, media scale/parallax, overlay navig
 
 ## Assets
 
-- `/public/images/flocka-tattoo-logo-clean.png`: circular emblem
-- `/public/images/flocka-tattoo-logo-header.png`: foreground header mark
+- `/public/images/flocka_logo.png`: transparent Flocka Tattoo master logo for header and brand moments
 
 ## Routes
 

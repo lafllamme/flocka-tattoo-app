@@ -18,8 +18,7 @@
 
 ## Asset ownership
 
-- `public/images/flocka-tattoo-logo-header.png`: transparent header mark.
-- `public/images/flocka-tattoo-logo-clean.png`: circular emblem for hero or footer moments.
+- `public/images/flocka_logo.png`: transparent master logo for header and brand moments.
 - New photography belongs in `public/images/work/` with descriptive filenames and alt text.
 
 ## Build sequence
