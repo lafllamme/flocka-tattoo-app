@@ -53,7 +53,7 @@ function toggleFaq(index: number) {
 </script>
 
 <template>
-  <main class="surface-home overflow-hidden bg-black text-bone">
+  <main class="surface-home overflow-hidden text-bone">
     <FlockaNoiseLayer />
     <FlockaSiteHeader />
     <FlockaHeroSection />
@@ -75,16 +75,17 @@ function toggleFaq(index: number) {
 
     <section id="blog" class="surface-section page-shell border-b border-line py-24 md:py-36"><div class="mb-16 grid gap-8 md:grid-cols-[.8fr_1.2fr]"><p class="eyebrow text-signal-bright">Journal</p><div class="flex justify-between gap-8"><p class="surface-lead max-w-2xl">Short notes on tattoos, visual language, process and the quiet decisions behind a lasting mark.</p><a href="#contact" class="eyebrow hidden h-fit border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright md:block">View all articles <Icon name="lucide:arrow-up-right" size="14" /></a></div></div><div class="grid gap-10 md:grid-cols-3"><a v-for="article in articles" :key="article.title" href="#contact" class="group"><div class="overflow-hidden bg-surface"><img :src="article.image" :alt="article.title" class="aspect-[1.2] w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"></div><h3 class="mt-5 text-lg leading-tight text-bone">{{ article.title }}</h3><p class="mt-3 text-sm leading-relaxed text-muted">{{ article.body }}</p></a></div></section>
 
-    <section id="contact" class="surface-contact page-shell border-b border-line py-24 md:py-36"><p class="eyebrow text-signal-bright">Contact</p><div class="mt-16 flex flex-col items-start gap-10 md:flex-row md:items-end md:justify-between"><h2 class="max-w-4xl font-display text-[clamp(3.5rem,9vw,8.5rem)] uppercase leading-[.78] tracking-[-.07em] text-bone">Let's talk<br>about your piece</h2><a href="mailto:hello@flocka.tattoo" class="btn-primary shrink-0">Get in touch <Icon name="lucide:arrow-up-right" size="16" /></a></div></section>
+    <section id="contact" class="surface-contact page-shell relative z-10 min-h-[553px] border-b border-line py-24 md:py-36"><p class="eyebrow text-signal-bright">Contact</p><div class="mt-16 flex flex-col items-start gap-10 md:flex-row md:items-end md:justify-between"><h2 class="max-w-4xl font-display text-[clamp(3.5rem,9vw,8.5rem)] uppercase leading-[.78] tracking-[-.07em] text-bone">Let's talk<br>about your piece</h2><a href="mailto:hello@flocka.tattoo" class="btn-primary shrink-0">Get in touch <Icon name="lucide:arrow-up-right" size="16" /></a></div></section>
 
-    <footer class="surface-footer grid gap-12 px-5 py-12 text-black md:grid-cols-[1fr_auto] md:px-14 md:py-16"><div><a href="mailto:hello@flocka.tattoo" class="block text-3xl font-semibold tracking-[-.04em] hover:opacity-60 md:text-5xl">hello@flocka.tattoo</a><p class="mt-10 max-w-xs text-lg leading-tight">Resonates? Let’s talk. Open to custom pieces, new ideas and lasting collaborations.</p><div class="mt-10 flex gap-7"><a href="#contact" class="text-lg hover:opacity-60">Instagram</a><a href="#contact" class="text-lg hover:opacity-60">Booking</a></div></div><div class="grid grid-cols-2 gap-16 text-lg"><div><p class="mb-5 font-semibold">Navigation</p><div class="grid gap-3"><a href="#top" class="hover:opacity-60">Home</a><a href="#about" class="hover:opacity-60">About</a><a href="#work" class="hover:opacity-60">Work</a><a href="#services" class="hover:opacity-60">Services</a><a href="#blog" class="hover:opacity-60">Blog</a><a href="#contact" class="hover:opacity-60">Contact</a></div></div><div><p class="mb-5 font-semibold">Legal</p><div class="grid gap-3"><a href="#contact" class="hover:opacity-60">Privacy Policy</a><a href="#contact" class="hover:opacity-60">Terms &amp; Conditions</a></div></div></div></footer>
+    <footer class="surface-footer relative z-0 -mt-24 grid min-h-[550px] gap-12 px-5 pb-12 pt-36 text-black md:grid-cols-[1fr_auto] md:px-[2vw] md:pb-16 md:pt-40"><div><a href="mailto:hello@flocka.tattoo" class="block text-3xl font-semibold tracking-[-.04em] hover:opacity-60 md:text-5xl">hello@flocka.tattoo</a><p class="mt-10 max-w-xs text-lg leading-tight">Resonates? Let’s talk. Open to custom pieces, new ideas and lasting collaborations.</p><div class="mt-10 flex gap-7"><a href="#contact" class="text-lg hover:opacity-60">Instagram</a><a href="#contact" class="text-lg hover:opacity-60">Booking</a></div></div><div class="grid grid-cols-2 gap-16 text-lg"><div><p class="mb-5 font-semibold">Navigation</p><div class="grid gap-3"><a href="#top" class="hover:opacity-60">Home</a><a href="#about" class="hover:opacity-60">About</a><a href="#work" class="hover:opacity-60">Work</a><a href="#services" class="hover:opacity-60">Services</a><a href="#blog" class="hover:opacity-60">Blog</a><a href="#contact" class="hover:opacity-60">Contact</a></div></div><div><p class="mb-5 font-semibold">Legal</p><div class="grid gap-3"><a href="#contact" class="hover:opacity-60">Privacy Policy</a><a href="#contact" class="hover:opacity-60">Terms &amp; Conditions</a></div></div></div></footer>
   </main>
 </template>
 
 <style scoped>
-.surface-section { scroll-margin-top: 5rem; }
+.surface-home { background: #f2efe8; }
+.surface-section { scroll-margin-top: 5rem; background: #000; }
 .surface-lead { font-size: clamp(1.35rem, 2.25vw, 2.25rem); line-height: 1.08; letter-spacing: -.035em; color: var(--flocka-bone, #f2efe8); }
-.surface-contact { border-radius: 0 0 2rem 2rem; }
+.surface-contact { border-radius: 0 0 3rem 3rem; background: #000; }
 .surface-footer { background: #f2efe8; }
 .fade-enter-active, .fade-leave-active { transition: opacity 360ms ease, transform 360ms ease; }
 .fade-enter-from { opacity: 0; transform: translateX(24px); }

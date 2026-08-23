@@ -28,7 +28,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <header class="page-shell sticky top-0 z-40 flex min-h-14 items-center justify-between border-b border-line bg-ink/90 py-3 backdrop-blur-md transition-colors md:min-h-[57px] md:py-2" :class="y > 12 ? 'bg-ink' : ''">
+  <header class="page-shell sticky top-0 z-40 flex min-h-14 items-center justify-between border-b border-line bg-black py-3 transition-colors md:min-h-[57px] md:py-2">
     <nav class="hidden w-full items-center justify-between md:flex" aria-label="Main navigation">
       <a href="#top" class="text-sm text-bone transition-colors hover:text-signal-bright">Home</a>
       <a v-for="item in menuItems" :key="item.href" :href="item.href" class="text-sm text-bone transition-colors hover:text-signal-bright">{{ item.label }}</a>
@@ -41,7 +41,7 @@ onBeforeUnmount(() => {
   </header>
 
   <Transition name="menu-fade">
-    <div v-if="menuOpen" id="mobile-navigation" class="fixed inset-0 z-40 flex flex-col bg-ink px-5 pb-8 pt-28 md:hidden">
+    <div v-if="menuOpen" id="mobile-navigation" class="fixed inset-0 z-40 flex flex-col bg-black px-5 pb-8 pt-28 md:hidden">
       <nav class="grid gap-5" aria-label="Mobile navigation">
         <a v-for="(item, index) in menuItems" :key="item.href" :href="item.href" class="font-display text-5xl uppercase leading-none text-bone transition-colors hover:text-signal" :style="{ transitionDelay: `${index * 45}ms` }" @click="closeMenu">{{ item.label }}</a>
       </nav>
