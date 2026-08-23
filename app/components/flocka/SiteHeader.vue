@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { usePreferredReducedMotion, useWindowScroll } from '@vueuse/core'
+import { useMediaQuery, usePreferredReducedMotion, useWindowScroll } from '@vueuse/core'
 
 const menuOpen = ref(false)
 const entered = ref(false)
 const prefersReducedMotion = usePreferredReducedMotion()
 const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce')
+const isDesktop = useMediaQuery('(min-width: 768px)')
+const aboutSectionReachedHeader = ref(false)
 const { y: scrollY } = useWindowScroll()
-const lastScrollY = ref(0)
-const isHidden = ref(false)
 
 const menuItems = [
   { label: 'Über mich', href: '#about' },
@@ -30,43 +30,36 @@ onBeforeUnmount(() => {
     document.body.style.overflow = ''
 })
 
+function updateHeaderVisibility() {
+  if (!import.meta.client)
+    return
+
+  aboutSectionReachedHeader.value = Boolean(isDesktop.value && scrollY.value > 1)
+}
+
 onMounted(() => {
   entered.value = true
-  lastScrollY.value = scrollY.value
+  updateHeaderVisibility()
 })
 
-watch(scrollY, (current) => {
-  if (shouldReduceMotion.value) {
-    isHidden.value = false
-    lastScrollY.value = current
-    return
-  }
+watch([scrollY, isDesktop], updateHeaderVisibility)
 
-  const delta = current - lastScrollY.value
-  if (current <= 64)
-    isHidden.value = false
-  else if (delta > 8)
-    isHidden.value = true
-  else if (delta < -8)
-    isHidden.value = false
-
-  lastScrollY.value = current
-})
+const shouldHideHeader = computed(() => aboutSectionReachedHeader.value && !menuOpen.value && !shouldReduceMotion.value)
 </script>
 
 <template>
-  <header class="site-header page-shell fixed inset-x-0 top-0 z-50 flex min-h-12 items-center justify-between bg-black py-2 md:min-h-[57px] md:py-2" :class="{ 'site-header--entered': entered || shouldReduceMotion, 'site-header--leaving': isHidden && !menuOpen }">
-    <nav class="hidden w-full items-center justify-between md:flex" aria-label="Main navigation">
+  <header class="site-header page-shell pointer-events-none fixed inset-x-0 top-0 z-50 flex min-h-12 items-center justify-between bg-transparent py-2 md:min-h-[57px] md:py-2" :class="{ 'site-header--entered': entered || shouldReduceMotion, 'site-header--leaving': shouldHideHeader }">
+    <nav class="pointer-events-auto hidden w-full items-center justify-between md:flex" aria-label="Main navigation">
       <a href="#top" class="text-base font-semibold tracking-[-.02em] text-bone no-underline transition-colors hover:text-signal-bright">Start</a>
       <a v-for="item in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="text-base font-semibold tracking-[-.02em] text-bone no-underline transition-colors hover:text-signal-bright">{{ item.label }}</a>
     </nav>
 
     <div class="relative flex w-full items-center justify-between md:hidden">
-      <a href="#top" class="relative z-50" aria-label="Flocka home">
+      <a href="#top" class="pointer-events-auto relative z-50" aria-label="Flocka home">
         <span class="font-display text-xl font-semibold uppercase leading-none tracking-[-.08em] text-bone">FLOCKA</span>
       </a>
 
-      <button class="relative z-50 flex size-10 items-center justify-center p-0 text-bone transition-colors hover:text-signal-bright" :aria-expanded="menuOpen" aria-controls="mobile-navigation" :aria-label="menuOpen ? 'Close navigation' : 'Open navigation'" @click="menuOpen = !menuOpen">
+      <button class="pointer-events-auto relative z-50 flex size-10 items-center justify-center p-0 text-bone transition-colors hover:text-signal-bright" :aria-expanded="menuOpen" aria-controls="mobile-navigation" :aria-label="menuOpen ? 'Close navigation' : 'Open navigation'" @click="menuOpen = !menuOpen">
         <Icon :name="menuOpen ? 'jam:close' : 'jam:menu'" size="24" />
       </button>
     </div>
