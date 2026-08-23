@@ -1,0 +1,11 @@
+@import '@unocss/reset/tailwind.css';
+
+:root { color-scheme: dark; }
+html { background: #090909; scroll-behavior: smooth; }
+body { margin: 0; background: #090909; color: #f2efe8; font-family: Arial, Helvetica, sans-serif; }
+::selection { background: #c92c2c; color: #f2efe8; }
+button, a, input, textarea { font: inherit; }
+button { cursor: pointer; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
