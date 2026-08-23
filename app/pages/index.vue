@@ -60,9 +60,9 @@ const faqs = [
   { question: 'How can I start a booking?', answer: 'Use the booking form below with your idea, placement, approximate size and a few reference images.' },
 ]
 const articles = [
-  { title: 'A tattoo starts before the stencil', body: 'Why the first conversation matters as much as the final line.', image: 'https://i.imgur.com/fih1y9w.png' },
-  { title: 'Blackwork as visual language', body: 'On contrast, weight and making a mark that stays readable.', image: 'https://i.imgur.com/mfIjpuO.png' },
-  { title: 'The quiet discipline of aftercare', body: 'A short guide to giving fresh work the time it needs to settle.', image: 'https://i.imgur.com/IgUNTwt.png' },
+  { title: 'A tattoo starts before the stencil', body: 'Why the first conversation matters as much as the final line.', image: 'https://i.imgur.com/egkTZJd.gif' },
+  { title: 'Blackwork as visual language', body: 'On contrast, weight and making a mark that stays readable.', image: 'https://i.imgur.com/TGdtgDL.gif' },
+  { title: 'The quiet discipline of aftercare', body: 'A short guide to giving fresh work the time it needs to settle.', image: 'https://i.imgur.com/SjHANWz.gif' },
 ]
 
 const testimonialIndex = ref(0)
