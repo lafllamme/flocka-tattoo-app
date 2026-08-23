@@ -1,10 +1,20 @@
 # Flocka Tattoo Design System
 
-Version: 0.1 · dark-first foundation
+Version: 0.2 · SURFACE-inspired Flocka foundation
+
+## Concept index
+
+- [Foundation](docs/design-system/foundation.md)
+- [Page architecture](docs/design-system/page-architecture.md)
+- [Motion system](docs/design-system/motion.md)
+- [Content model](docs/design-system/content.md)
+- [Implementation contract](docs/design-system/implementation.md)
 
 ## Direction
 
-Flocka is a tattoo studio identity built around black structure, bone-white copy and a single earned signal red. The system should feel tactile, editorial and made for ink—not like a generic dark SaaS interface.
+Flocka follows the visual grammar of the SURFACE reference: a high-contrast editorial page, oversized display type, compact fixed navigation, full-bleed section moments, overlay menus and carefully staged scroll transitions. SURFACE is the layout and motion reference; Flocka owns the content, imagery, logo and tattoo vocabulary.
+
+The current color direction stays black, white and red. Red is the single brand signal and replaces SURFACE's bright red without introducing additional accent colors.
 
 ## Color tokens
 
@@ -40,7 +50,7 @@ Font files can be introduced later without changing component contracts.
 
 ## Motion and interaction
 
-The initial demo uses VueUse `useSwipe` for touch navigation in the portfolio carousel. Any future motion must respect `prefers-reduced-motion` and should support keyboard focus and direct controls.
+The page uses staged entry, section reveals, media scale/parallax, overlay navigation transitions, hover image changes, accordion expansion and horizontal project movement. The interaction contract is documented in [motion.md](docs/design-system/motion.md). All motion must respect `prefers-reduced-motion` and support keyboard focus and direct controls.
 
 ## Assets
 
@@ -51,3 +61,7 @@ The initial demo uses VueUse `useSwipe` for touch navigation in the portfolio ca
 
 - `/`: Flocka demo landing page
 - `/design-system`: token and typography reference
+
+## Content status
+
+The page concepts use polished demo content for Flocka Tattoo. Studio address, email, booking availability, social handles and final artist biography remain replaceable content inputs until real details are provided.
