@@ -61,9 +61,17 @@ watch(scrollY, (current) => {
       <a v-for="item in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="text-sm text-bone transition-colors hover:text-signal-bright">{{ item.label }}</a>
     </nav>
 
-    <button class="relative z-50 flex size-10 items-center justify-center border border-line text-bone transition-colors hover:border-signal-bright hover:text-signal-bright md:hidden" :aria-expanded="menuOpen" aria-controls="mobile-navigation" :aria-label="menuOpen ? 'Close navigation' : 'Open navigation'" @click="menuOpen = !menuOpen">
-      <Icon :name="menuOpen ? 'lucide:x' : 'lucide:menu'" size="20" />
-    </button>
+    <div class="relative flex w-full items-center justify-between md:hidden">
+      <button class="relative z-50 flex size-10 items-center justify-center border border-line text-bone transition-colors hover:border-signal-bright hover:text-signal-bright" :aria-expanded="menuOpen" aria-controls="mobile-navigation" :aria-label="menuOpen ? 'Close navigation' : 'Open navigation'" @click="menuOpen = !menuOpen">
+        <Icon :name="menuOpen ? 'lucide:x' : 'lucide:menu'" size="20" />
+      </button>
+
+      <a href="#top" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" aria-label="Flocka home">
+        <img src="/images/flocka_logo.png" alt="Flocka Tattoo" class="size-16 object-contain">
+      </a>
+
+      <a href="mailto:flockatattoo@proton.me" class="text-sm text-bone transition-colors hover:text-signal-bright">Contact</a>
+    </div>
 
   </header>
 

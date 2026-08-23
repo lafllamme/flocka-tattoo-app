@@ -8,7 +8,7 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 
 <template>
   <section id="top" class="surface-hero bg-black h-[100svh] relative z-2 sticky top-0 overflow-hidden isolate">
-    <div class="page-shell pb-0 pt-10 h-full relative overflow-hidden">
+    <div class="hero-shell page-shell pb-0 pt-10 h-full relative overflow-hidden">
       <div class="hero-content-group">
         <div class="gap-8 grid md:grid-cols-[.95fr_1.05fr]">
           <div class="max-w-md" :class="shouldReduceMotion ? '' : 'hero-copy-enter'">
@@ -45,6 +45,9 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 .hero-image-enter { animation: hero-image-in 1100ms cubic-bezier(.22, 1, .36, 1) 240ms both; }
 .hero-status-enter { animation: hero-status-in 620ms cubic-bezier(.22, 1, .36, 1) 420ms both; }
 .hero-content-group { position: relative; }
+@media (max-width: 767px) {
+  .hero-shell { padding-top: calc(2.5rem + 65px); }
+}
 @media (min-width: 768px) and (min-height: 700px) {
   .hero-content-group { transform: translateY(100px); }
 }
