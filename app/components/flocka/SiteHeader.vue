@@ -55,7 +55,7 @@ watch(scrollY, (current) => {
 </script>
 
 <template>
-  <header class="site-header page-shell fixed inset-x-0 top-0 z-30 flex min-h-12 items-center justify-between bg-black py-2 md:min-h-[57px] md:py-2" :class="{ 'site-header--entered': entered || shouldReduceMotion, 'site-header--leaving': isHidden }">
+  <header class="site-header page-shell fixed inset-x-0 top-0 z-50 flex min-h-12 items-center justify-between bg-black py-2 md:min-h-[57px] md:py-2" :class="{ 'site-header--entered': entered || shouldReduceMotion, 'site-header--leaving': isHidden && !menuOpen }">
     <nav class="hidden w-full items-center justify-between md:flex" aria-label="Main navigation">
       <a href="#top" class="text-base font-semibold tracking-[-.02em] text-bone no-underline transition-colors hover:text-signal-bright">Start</a>
       <a v-for="item in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="text-base font-semibold tracking-[-.02em] text-bone no-underline transition-colors hover:text-signal-bright">{{ item.label }}</a>
@@ -73,7 +73,7 @@ watch(scrollY, (current) => {
 
   </header>
 
-  <Transition name="menu-fade">
+  <Transition name="menu-slide">
     <div v-if="menuOpen" id="mobile-navigation" class="fixed inset-0 z-40 flex flex-col bg-black px-5 pb-8 pt-28 md:hidden">
       <nav class="grid gap-5" aria-label="Mobile navigation">
         <a v-for="(item, index) in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="font-sans text-4xl font-semibold leading-none tracking-[-.03em] text-bone no-underline transition-colors hover:text-signal" :style="{ transitionDelay: `${index * 45}ms` }" @click="closeMenu">{{ item.label }}</a>
@@ -84,14 +84,15 @@ watch(scrollY, (current) => {
 </template>
 
 <style scoped>
-.menu-fade-enter-active,
-.menu-fade-leave-active {
-  transition: opacity 280ms ease;
+.menu-slide-enter-active,
+.menu-slide-leave-active {
+  transition: transform 260ms cubic-bezier(.22, 1, .36, 1);
+  will-change: transform;
 }
 
-.menu-fade-enter-from,
-.menu-fade-leave-to {
-  opacity: 0;
+.menu-slide-enter-from,
+.menu-slide-leave-to {
+  transform: translateY(-100%);
 }
 
 .site-header {
@@ -109,6 +110,8 @@ watch(scrollY, (current) => {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-header { transition: none; }
+  .site-header,
+  .menu-slide-enter-active,
+  .menu-slide-leave-active { transition: none; }
 }
 </style>
