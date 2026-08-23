@@ -7,7 +7,7 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 </script>
 
 <template>
-  <section id="top" class="surface-hero bg-black h-[100svh] relative z-2 sticky top-0 overflow-hidden isolate">
+  <section id="top" class="surface-hero bg-black h-[100svh] relative z-0 sticky top-0 flex-none overflow-hidden">
     <div class="hero-shell page-shell pb-0 pt-10 h-full relative overflow-hidden">
       <div class="hero-content-group">
         <div class="gap-8 grid md:grid-cols-[.95fr_1.05fr]">
