@@ -89,12 +89,12 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="motionview-frame relative overflow-hidden">
-    <canvas ref="canvas" class="motionview-canvas block h-auto w-full" aria-label="Selected works carousel" />
+    <canvas ref="canvas" class="motionview-canvas block h-auto w-full" aria-label="Karussell mit ausgewählten Arbeiten" />
     <div v-if="!isReady && !hasError" class="motionview-loading pointer-events-none absolute inset-0 grid place-items-center text-muted">
-      <span class="eyebrow">Loading selected works</span>
+      <span class="eyebrow">Arbeiten werden geladen</span>
     </div>
     <div v-if="hasError" class="grid gap-5 p-5 md:grid-cols-3">
-      <img v-for="(image, index) in imageSources" :key="image" :src="image" :alt="`Selected work ${index + 1}`" class="aspect-[1.2] w-full object-cover grayscale" loading="lazy">
+      <img v-for="(image, index) in imageSources" :key="image" :src="image" :alt="`Ausgewählte Arbeit ${index + 1}`" class="aspect-[1.2] w-full object-cover grayscale" loading="lazy">
     </div>
   </div>
 </template>

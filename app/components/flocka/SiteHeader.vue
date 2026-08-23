@@ -10,10 +10,10 @@ const lastScrollY = ref(0)
 const isHidden = ref(false)
 
 const menuItems = [
-  { label: 'About', href: '#about' },
-  { label: 'Work', href: '#work' },
-  { label: 'Services', href: '#services' },
-  { label: 'Contact', href: 'https://www.instagram.com/flockatattoo/' },
+  { label: 'Über mich', href: '#about' },
+  { label: 'Arbeiten', href: '#work' },
+  { label: 'Leistungen', href: '#services' },
+  { label: 'Kontakt', href: '#contact' },
 ]
 
 function closeMenu() {
@@ -57,7 +57,7 @@ watch(scrollY, (current) => {
 <template>
   <header class="site-header page-shell fixed inset-x-0 top-0 z-30 flex min-h-14 items-center justify-between border-b border-line bg-black py-3 md:min-h-[57px] md:py-2" :class="{ 'site-header--entered': entered || shouldReduceMotion, 'site-header--leaving': isHidden }">
     <nav class="hidden w-full items-center justify-between md:flex" aria-label="Main navigation">
-      <a href="#top" class="text-sm text-bone transition-colors hover:text-signal-bright">Home</a>
+      <a href="#top" class="text-sm text-bone transition-colors hover:text-signal-bright">Start</a>
       <a v-for="item in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="text-sm text-bone transition-colors hover:text-signal-bright">{{ item.label }}</a>
     </nav>
 
@@ -70,7 +70,7 @@ watch(scrollY, (current) => {
         <img src="/images/flocka_logo.png" alt="Flocka Tattoo" class="size-16 object-contain">
       </a>
 
-      <a href="mailto:flockatattoo@proton.me" class="text-sm text-bone transition-colors hover:text-signal-bright">Contact</a>
+      <a href="#contact" class="text-sm text-bone transition-colors hover:text-signal-bright">Kontakt</a>
     </div>
 
   </header>
@@ -80,7 +80,7 @@ watch(scrollY, (current) => {
       <nav class="grid gap-5" aria-label="Mobile navigation">
         <a v-for="(item, index) in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="font-display text-5xl uppercase leading-none text-bone transition-colors hover:text-signal" :style="{ transitionDelay: `${index * 45}ms` }" @click="closeMenu">{{ item.label }}</a>
       </nav>
-      <p class="eyebrow mt-auto text-muted">Cologne · Tue—Sat · 10:00—19:00</p>
+      <p class="eyebrow mt-auto text-muted">Köln · Di—Sa · 10:00—19:00</p>
     </div>
   </Transition>
 </template>

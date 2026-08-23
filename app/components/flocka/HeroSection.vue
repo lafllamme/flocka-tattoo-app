@@ -12,11 +12,11 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
       <div class="hero-content-group">
         <div class="gap-8 grid md:grid-cols-[.95fr_1.05fr]">
           <div class="max-w-md" :class="shouldReduceMotion ? '' : 'hero-copy-enter'">
-            <p class="eyebrow mb-5 text-signal-bright">Custom Tattoo Artist · Köln</p>
+            <p class="eyebrow mb-5 text-signal-bright">Vollzeit-Tätowierer · Köln</p>
             <p class="text-xl text-bone leading-[1.12] tracking-[-.03em] md:text-2xl">
-              Sascha Schlüter, bekannt als Flocka, entwickelt individuelle Tattoos mit Linie, Symbol und Struktur.
+              Ich bin Sascha, 31, Vollzeit-Tätowierer aus Köln. Als Newcomer im Quereinstieg entwickle ich gerade meine eigene Handschrift – mit klaren Linien, starken Symbolen und Farbe, wenn sie passt.
             </p>
-            <a href="#work" class="group text-base text-bone mt-7 px-5 py-3 border-2 border-bone rounded-md inline-flex gap-4 transition-colors items-center hover:text-black hover:bg-bone">View selected work <Icon name="lucide:arrow-down-right" size="18" class="transition-transform group-hover:translate-x-1 group-hover:translate-y-1" /></a>
+            <a href="#work" class="group text-base text-bone mt-7 px-5 py-3 border-2 border-bone rounded-md inline-flex gap-4 transition-colors items-center hover:text-black hover:bg-bone">Arbeiten ansehen <Icon name="lucide:arrow-down-right" size="18" class="transition-transform group-hover:translate-x-1 group-hover:translate-y-1" /></a>
           </div>
           <div class="relative md:w-[94%] md:justify-self-end">
             <div class="bg-blood opacity-70 inset-0 absolute blur-3xl -z-10" />
@@ -26,9 +26,9 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 
         <div class="text-sm text-bone leading-none flex gap-6 items-center relative z-10 -mt-[18px] md:w-[48%] md:justify-between" :class="shouldReduceMotion ? '' : 'hero-status-enter'">
           <p class="flex gap-3 items-center">
-            <span class="rounded-full bg-[#75C45A] size-2" /> Available for Work
+            <span class="rounded-full bg-[#75C45A] size-2" /> Offen für neue Arbeiten
           </p><p class="gap-2 hidden items-center md:flex">
-            <Icon name="lucide:map-pin" size="18" /> Based in Cologne
+            <Icon name="lucide:map-pin" size="18" /> Aus Köln
           </p>
         </div>
       </div>
