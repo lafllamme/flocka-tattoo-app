@@ -6,7 +6,7 @@ const prefersReducedMotion = usePreferredReducedMotion()
 
 <template>
   <section id="top" class="relative isolate h-[calc(100svh-57px)] overflow-hidden rounded-b-[2rem] border-b border-line bg-black">
-    <div class="page-shell relative grid h-full grid-rows-[auto_1fr_auto] gap-8 overflow-hidden pb-0 pt-14 md:pt-16">
+    <div class="page-shell relative grid h-full grid-rows-[auto_1fr] gap-8 overflow-hidden pb-0 pt-14 md:pt-16">
       <div class="grid gap-8 md:grid-cols-[.95fr_1.05fr]">
         <div class="max-w-md" :class="prefersReducedMotion ? '' : 'hero-copy-enter'">
           <p class="text-xl leading-[1.12] tracking-[-.03em] text-bone md:text-2xl">Flocka is an independent tattoo practice focused on shaping visual language through line, symbol and structure.</p>
@@ -14,13 +14,13 @@ const prefersReducedMotion = usePreferredReducedMotion()
         </div>
         <div class="relative md:justify-self-end md:w-[94%]">
           <div class="absolute inset-0 -z-10 bg-blood blur-3xl opacity-70" />
-          <img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef?auto=format&fit=crop&w=1600&q=88" alt="Tattoo detail in a dark studio" class="aspect-[1.55] w-full border-2 border-bone object-cover grayscale" :class="prefersReducedMotion ? '' : 'hero-image-enter'">
+          <img src="/images/flocka-hero.jpg" alt="Flocka Tattoo studio portrait" class="aspect-[1.55] w-full border-2 border-bone object-cover grayscale" :class="prefersReducedMotion ? '' : 'hero-image-enter'">
         </div>
       </div>
 
-      <div class="flex items-end justify-between gap-6 self-end pb-4 text-lg text-bone md:pb-6"><p class="flex items-center gap-4"><span class="size-3 rounded-full bg-signal-bright" /> Available for bookings</p><p class="hidden items-center gap-3 md:flex"><Icon name="lucide:map-pin" size="22" /> Based in Berlin</p></div>
+      <div class="absolute bottom-[42%] left-[2vw] right-[2vw] z-10 flex items-end justify-between gap-6 text-lg text-bone"><p class="flex items-center gap-4"><span class="size-3 rounded-full bg-signal-bright" /> Available for bookings</p><p class="hidden items-center gap-3 md:flex"><Icon name="lucide:map-pin" size="22" /> Based in Cologne</p></div>
 
-      <h1 class="w-max whitespace-nowrap font-display text-[clamp(6rem,23vw,22rem)] uppercase leading-[.72] tracking-[-.095em] text-bone" :class="prefersReducedMotion ? '' : 'hero-wordmark-enter'">FLOCKA</h1>
+      <h1 class="absolute bottom-[-.02em] left-[2vw] z-0 w-max whitespace-nowrap font-display text-[clamp(6rem,23vw,22rem)] font-black uppercase leading-[.72] tracking-[-.075em] text-bone" :class="prefersReducedMotion ? '' : 'hero-wordmark-enter'">FLOCKA</h1>
     </div>
   </section>
 </template>

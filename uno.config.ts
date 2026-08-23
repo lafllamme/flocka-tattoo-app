@@ -19,13 +19,13 @@ export default defineConfig({
       surface: '#151313',
     },
     font: {
-      display: 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif',
-      body: 'Arial, Helvetica, sans-serif',
+      display: '"Inter Display", Inter, Arial, sans-serif',
+      body: 'Inter, Arial, sans-serif',
       mono: '"Courier New", monospace',
     },
   },
   shortcuts: {
-    'page-shell': 'mx-auto max-w-[1440px] px-5 md:px-10 lg:px-14',
+    'page-shell': 'w-full px-[2vw]',
     'section-shell': 'page-shell py-20 md:py-28',
     'eyebrow': 'text-[10px] text-muted tracking-[0.24em] font-mono uppercase',
     'display-xl': 'text-[clamp(4.5rem,14vw,13rem)] leading-[0.78] tracking-[-0.08em] font-display uppercase',

@@ -16,7 +16,7 @@ The SURFACE homepage becomes one continuous Flocka landing page. The order and v
 8. **FAQ** — accordion for booking, pricing, preparation, healing and custom work.
 9. **Journal** — three editorial cards for care, process and studio notes.
 10. **Contact** — oversized `LET'S MAKE IT PERMANENT` CTA and booking entry.
-11. **Footer** — `FLOCKA TATTOO`, Berlin placeholder, Instagram, contact and legal links.
+11. **Footer** — `FLOCKA TATTOO`, Cologne placeholder, Instagram, contact and legal links.
 
 ## Shared component boundaries
 

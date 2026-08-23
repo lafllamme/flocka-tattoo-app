@@ -8,7 +8,7 @@ Short, direct and tactile. Avoid agency jargon. Talk about ideas, skin, marks, p
 
 ### Hero
 
-- Eyebrow: `CUSTOM TATTOO STUDIO / BERLIN`
+- Eyebrow: `CUSTOM TATTOO STUDIO / COLOGNE`
 - Headline: `FLOCKA`
 - Supporting line: `Tattoo work with old-school soul, sharp composition and a point of view.`
 - Primary action: `BOOK A SESSION`

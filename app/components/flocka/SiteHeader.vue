@@ -45,7 +45,7 @@ onBeforeUnmount(() => {
       <nav class="grid gap-5" aria-label="Mobile navigation">
         <a v-for="(item, index) in menuItems" :key="item.href" :href="item.href" class="font-display text-5xl uppercase leading-none text-bone transition-colors hover:text-signal" :style="{ transitionDelay: `${index * 45}ms` }" @click="closeMenu">{{ item.label }}</a>
       </nav>
-      <p class="eyebrow mt-auto text-muted">Berlin · Tue—Sat · 10:00—19:00</p>
+      <p class="eyebrow mt-auto text-muted">Cologne · Tue—Sat · 10:00—19:00</p>
     </div>
   </Transition>
 </template>

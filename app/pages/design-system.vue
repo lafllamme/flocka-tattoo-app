@@ -57,7 +57,7 @@ const tokens = [
           <p class="eyebrow">
             meta / monospace
           </p><p class="text-sm tracking-[0.2em] font-mono mt-3">
-            BLACKWORK / BERLIN / 2025
+            BLACKWORK / COLOGNE / 2025
           </p>
         </div>
       </div>

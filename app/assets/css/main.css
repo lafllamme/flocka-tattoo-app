@@ -1,8 +1,9 @@
 @import '@unocss/reset/tailwind.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
 
 :root { color-scheme: dark; }
 html { background: #090909; scroll-behavior: smooth; }
-body { margin: 0; background: #090909; color: #f2efe8; font-family: Arial, Helvetica, sans-serif; }
+body { margin: 0; background: #090909; color: #f2efe8; font-family: Inter, Arial, sans-serif; }
 ::selection { background: #c92c2c; color: #f2efe8; }
 button, a, input, textarea { font: inherit; }
 button { cursor: pointer; }
