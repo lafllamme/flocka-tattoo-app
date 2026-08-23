@@ -5,64 +5,31 @@ const prefersReducedMotion = usePreferredReducedMotion()
 </script>
 
 <template>
-  <section id="top" class="relative isolate min-h-[calc(100svh-57px)] overflow-hidden border-b border-line bg-black md:sticky md:top-[57px] md:z-10 md:min-h-[calc(100svh-57px)]">
-    <div class="page-shell relative flex min-h-[calc(100svh-57px)] flex-col justify-between pb-7 pt-10 md:pb-10 md:pt-16">
-      <div class="flex items-start justify-between gap-8" :class="prefersReducedMotion ? '' : 'hero-copy-enter'">
-        <p class="eyebrow max-w-48 text-signal-bright">Custom tattoo artist · Berlin</p>
-        <p class="eyebrow hidden max-w-40 text-right text-muted md:block">Blackwork, symbols<br>and custom pieces.</p>
-      </div>
-
-      <div class="relative z-10 flex items-end justify-between gap-5">
-        <div>
-          <p class="eyebrow mb-5 text-muted">01 / Flocka Tattoo</p>
-          <h1 class="font-display text-[clamp(5rem,18vw,15.5rem)] uppercase leading-[0.73] tracking-[-0.09em] text-bone" :class="prefersReducedMotion ? '' : 'hero-wordmark-enter'">
-            Flocka
-          </h1>
+  <section id="top" class="relative isolate h-[calc(100svh-57px)] overflow-hidden rounded-b-[2rem] border-b border-line bg-black">
+    <div class="page-shell relative grid h-full grid-rows-[auto_1fr_auto] gap-8 overflow-hidden pb-0 pt-14 md:pt-16">
+      <div class="grid gap-8 md:grid-cols-[.95fr_1.05fr]">
+        <div class="max-w-md" :class="prefersReducedMotion ? '' : 'hero-copy-enter'">
+          <p class="text-xl leading-[1.12] tracking-[-.03em] text-bone md:text-2xl">Flocka is an independent tattoo practice focused on shaping visual language through line, symbol and structure.</p>
+          <a href="#work" class="group mt-8 inline-flex items-center gap-5 border border-bone px-7 py-4 text-lg text-bone transition-colors hover:bg-bone hover:text-black">View selected work <Icon name="lucide:arrow-down-right" size="20" class="transition-transform group-hover:translate-x-1 group-hover:translate-y-1" /></a>
         </div>
-        <a href="#work" class="group mb-1 hidden items-center gap-3 border-b border-line pb-2 text-[10px] font-mono uppercase tracking-[0.18em] text-bone transition-colors hover:border-signal hover:text-signal-bright sm:flex">
-          View the work
-          <Icon name="lucide:arrow-down-right" size="15" class="transition-transform group-hover:translate-x-1 group-hover:translate-y-1" />
-        </a>
+        <div class="relative md:justify-self-end md:w-[94%]">
+          <div class="absolute inset-0 -z-10 bg-blood blur-3xl opacity-70" />
+          <img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef?auto=format&fit=crop&w=1600&q=88" alt="Tattoo detail in a dark studio" class="aspect-[1.55] w-full border-2 border-bone object-cover grayscale" :class="prefersReducedMotion ? '' : 'hero-image-enter'">
+        </div>
       </div>
 
-      <div class="pointer-events-none absolute inset-x-0 bottom-0 top-0 -z-0 overflow-hidden">
-        <div class="absolute bottom-[-12%] right-[-12%] h-[75vw] max-h-[38rem] w-[75vw] max-w-[38rem] rounded-full bg-blood blur-3xl opacity-80" />
-        <img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef?auto=format&fit=crop&w=1200&q=88" alt="Tattoo detail in a dark studio" class="absolute bottom-[-8%] right-[-8%] h-[78%] w-[58%] object-cover opacity-35 mix-blend-screen grayscale" :class="prefersReducedMotion ? '' : 'hero-image-enter'">
-      </div>
+      <div class="flex items-end justify-between gap-6 self-end pb-4 text-lg text-bone md:pb-6"><p class="flex items-center gap-4"><span class="size-3 rounded-full bg-signal-bright" /> Available for bookings</p><p class="hidden items-center gap-3 md:flex"><Icon name="lucide:map-pin" size="22" /> Based in Berlin</p></div>
 
-      <div class="relative z-10 flex items-end justify-between gap-6">
-        <p class="max-w-xs text-sm leading-relaxed text-muted md:text-base">Old-school soul, heavy blackwork and custom pieces made to belong only to you.</p>
-        <span class="eyebrow text-right text-signal-bright">Made in the dark.<br>Kept forever.</span>
-      </div>
+      <h1 class="w-max whitespace-nowrap font-display text-[clamp(6rem,23vw,22rem)] uppercase leading-[.72] tracking-[-.095em] text-bone" :class="prefersReducedMotion ? '' : 'hero-wordmark-enter'">FLOCKA</h1>
     </div>
   </section>
 </template>
 
 <style scoped>
-.hero-copy-enter {
-  animation: hero-copy-in 720ms cubic-bezier(.22, 1, .36, 1) both;
-}
-
-.hero-wordmark-enter {
-  animation: hero-wordmark-in 1100ms cubic-bezier(.22, 1, .36, 1) 120ms both;
-}
-
-.hero-image-enter {
-  animation: hero-image-in 1100ms cubic-bezier(.22, 1, .36, 1) 240ms both;
-}
-
-@keyframes hero-copy-in {
-  from { opacity: 0; transform: translateY(-18px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes hero-wordmark-in {
-  from { opacity: 0; transform: translateY(40px); clip-path: inset(100% 0 0); }
-  to { opacity: 1; transform: translateY(0); clip-path: inset(0); }
-}
-
-@keyframes hero-image-in {
-  from { opacity: 0; transform: scale(1.08) rotate(-4deg); }
-  to { opacity: .35; transform: scale(1) rotate(0); }
-}
+.hero-copy-enter { animation: hero-copy-in 720ms cubic-bezier(.22, 1, .36, 1) both; }
+.hero-wordmark-enter { animation: hero-wordmark-in 1100ms cubic-bezier(.22, 1, .36, 1) 120ms both; }
+.hero-image-enter { animation: hero-image-in 1100ms cubic-bezier(.22, 1, .36, 1) 240ms both; }
+@keyframes hero-copy-in { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes hero-wordmark-in { from { opacity: 0; transform: translateY(40px); clip-path: inset(100% 0 0); } to { opacity: 1; transform: translateY(0); clip-path: inset(0); } }
+@keyframes hero-image-in { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: scale(1); } }
 </style>

@@ -7,9 +7,9 @@ const { y } = useWindowScroll()
 const menuItems = [
   { label: 'About', href: '#about' },
   { label: 'Work', href: '#work' },
-  { label: 'Styles', href: '#styles' },
-  { label: 'Process', href: '#process' },
-  { label: 'Book', href: '#book' },
+  { label: 'Services', href: '#services' },
+  { label: 'Blog', href: '#blog' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 function closeMenu() {
@@ -29,12 +29,9 @@ onBeforeUnmount(() => {
 
 <template>
   <header class="page-shell sticky top-0 z-40 flex min-h-14 items-center justify-between border-b border-line bg-ink/90 py-3 backdrop-blur-md transition-colors md:min-h-[57px] md:py-2" :class="y > 12 ? 'bg-ink' : ''">
-    <NuxtLink to="/#top" aria-label="Flocka Tattoo home" class="block w-28 md:w-40">
-      <img src="/images/flocka_logo.png" alt="Flocka Tattoo" class="h-9 w-40 object-contain object-left">
-    </NuxtLink>
-
-    <nav class="hidden items-center gap-7 md:flex" aria-label="Main navigation">
-      <a v-for="item in menuItems" :key="item.href" :href="item.href" class="eyebrow text-bone transition-colors hover:text-signal-bright">{{ item.label }}</a>
+    <nav class="hidden w-full items-center justify-between md:flex" aria-label="Main navigation">
+      <a href="#top" class="text-sm text-bone transition-colors hover:text-signal-bright">Home</a>
+      <a v-for="item in menuItems" :key="item.href" :href="item.href" class="text-sm text-bone transition-colors hover:text-signal-bright">{{ item.label }}</a>
     </nav>
 
     <button class="relative z-50 flex size-10 items-center justify-center border border-line text-bone transition-colors hover:border-signal-bright hover:text-signal-bright md:hidden" :aria-expanded="menuOpen" aria-controls="mobile-navigation" :aria-label="menuOpen ? 'Close navigation' : 'Open navigation'" @click="menuOpen = !menuOpen">
