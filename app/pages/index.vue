@@ -2,6 +2,7 @@
 import { usePreferredReducedMotion } from '@vueuse/core'
 import FlockaColorRevealImage from '../components/flocka/ColorRevealImage.vue'
 import FlockaReveal from '../components/flocka/RevealOnScroll.vue'
+import MotionViewCarousel from '../components/flocka/MotionViewCarousel.vue'
 
 const prefersReducedMotion = usePreferredReducedMotion()
 let sectionObserver: IntersectionObserver | undefined
@@ -209,6 +210,14 @@ function toggleFaq(index: number) {
 
   </main>
 
+    <section id="selected-works" class="surface-gallery page-shell relative z-5 border-b border-line py-28 md:py-44">
+      <div class="mb-14 grid gap-8 md:grid-cols-[.8fr_1.2fr] md:items-end md:mb-20">
+        <p class="eyebrow text-signal-bright">Selected Works</p>
+        <p class="surface-lead max-w-2xl">A moving archive of marks, symbols and pieces made to settle into the body.</p>
+      </div>
+      <MotionViewCarousel />
+    </section>
+
     <section id="contact" class="surface-contact page-shell relative z-5 min-h-[553px] border-b border-line py-16 md:py-12"><p class="eyebrow text-signal-bright">Contact</p><div class="mt-12 flex flex-col items-start"><h2 class="max-w-4xl font-display text-[clamp(3.5rem,9vw,8.5rem)] font-black uppercase leading-[.78] tracking-[-.07em] text-bone">Let's talk<br>about your piece</h2><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="btn-ghost mt-10 rounded-md border-2 border-bone px-5 py-3 text-base normal-case tracking-normal">Get in touch <Icon name="lucide:arrow-up-right" size="18" /></a></div></section>
 
   <div class="surface-footer-stage sticky bottom-0 z-1">
@@ -222,6 +231,7 @@ function toggleFaq(index: number) {
 .surface-home { position: relative; z-index: 2; background: transparent; }
 .surface-hero { z-index: 0; }
 .surface-section { position: relative; z-index: 5; scroll-margin-top: 5rem; background: #000; }
+.surface-gallery { background: #000; isolation: isolate; }
 .surface-section:not(.surface-card):not(#work) > * { opacity: 0; transform: translateX(-48px); transition: opacity 720ms cubic-bezier(.22, 1, .36, 1), transform 720ms cubic-bezier(.22, 1, .36, 1); }
 .surface-section:not(.surface-card):not(#work) > :nth-child(even) { transform: translateX(48px); }
 .surface-section.section-reveal--visible:not(.surface-card):not(#work) > * { opacity: 1; transform: translateX(0); }
