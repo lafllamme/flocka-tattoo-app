@@ -4,9 +4,14 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   modules: ['@unocss/nuxt', '@nuxt/icon', '@nuxt/a11y'],
   typescript: { strict: true, typeCheck: true },
+  runtimeConfig: {
+    public: {
+      siteUrl: '',
+    },
+  },
   app: {
     head: {
-      titleTemplate: '%s · Flocka Tattoo',
+      titleTemplate: '%s',
       meta: [{ name: 'theme-color', content: '#090909' }],
     },
   },

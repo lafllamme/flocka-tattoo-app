@@ -12,8 +12,9 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
       <div class="hero-content-group">
         <div class="gap-8 grid md:grid-cols-[.95fr_1.05fr]">
           <div class="max-w-md" :class="shouldReduceMotion ? '' : 'hero-copy-enter'">
+            <p class="eyebrow mb-5 text-signal-bright">Custom Tattoo Artist · Köln</p>
             <p class="text-xl text-bone leading-[1.12] tracking-[-.03em] md:text-2xl">
-              Flocka is an independent tattoo practice focused on shaping visual language through line, symbol and structure.
+              Sascha Schlüter, bekannt als Flocka, entwickelt individuelle Tattoos mit Linie, Symbol und Struktur.
             </p>
             <a href="#work" class="group text-base text-bone mt-7 px-5 py-3 border-2 border-bone rounded-md inline-flex gap-4 transition-colors items-center hover:text-black hover:bg-bone">View selected work <Icon name="lucide:arrow-down-right" size="18" class="transition-transform group-hover:translate-x-1 group-hover:translate-y-1" /></a>
           </div>

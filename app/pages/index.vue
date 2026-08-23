@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usePreferredReducedMotion } from '@vueuse/core'
-import FlockaReveal from '../components/flocka/RevealOnScroll.vue'
 import FlockaColorRevealImage from '../components/flocka/ColorRevealImage.vue'
+import FlockaReveal from '../components/flocka/RevealOnScroll.vue'
 
 const prefersReducedMotion = usePreferredReducedMotion()
 let sectionObserver: IntersectionObserver | undefined
@@ -66,6 +66,87 @@ const articles = [
   { title: 'The quiet discipline of aftercare', body: 'A short guide to giving fresh work the time it needs to settle.', image: 'https://i.imgur.com/SjHANWz.gif' },
 ]
 
+const runtimeConfig = useRuntimeConfig()
+const requestUrl = useRequestURL()
+const siteUrl = runtimeConfig.public.siteUrl || requestUrl.origin
+const pageTitle = 'Flocka Tattoo Köln · Sascha Schlüter'
+const pageDescription = 'Flocka Tattoo von Sascha Schlüter in Köln: Custom Tattoos, Blackwork, Ornamental, Fine Line und Flash. Jetzt unverbindlich anfragen.'
+const ogImage = `${siteUrl}/images/og-flocka-tattoo.png`
+const instagramUrl = 'https://www.instagram.com/flockatattoo/'
+/* eslint-disable style/quote-props */
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'TattooParlor',
+      '@id': `${siteUrl}/#tattoo-parlor`,
+      name: 'Flocka Tattoo',
+      alternateName: 'Flocka Tattoo by Sascha Schlüter',
+      description: pageDescription,
+      url: siteUrl,
+      image: ogImage,
+      email: 'flockatattoo@proton.me',
+      sameAs: [instagramUrl],
+      areaServed: { '@type': 'City', name: 'Köln' },
+      founder: { '@id': `${siteUrl}/#artist` },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Tattoo services',
+        itemListElement: ['Custom Tattoos', 'Blackwork', 'Ornamental Tattoos', 'Fine Line Tattoos', 'Flash Tattoos', 'Cover-ups'].map(name => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name },
+        })),
+      },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}/#artist`,
+      name: 'Sascha Schlüter',
+      alternateName: 'Flocka',
+      jobTitle: 'Tattoo Artist',
+      url: siteUrl,
+      sameAs: [instagramUrl],
+      worksFor: { '@id': `${siteUrl}/#tattoo-parlor` },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${siteUrl}/#faq`,
+      mainEntity: faqs.map(faq => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
+    },
+  ],
+}
+/* eslint-enable style/quote-props */
+
+useHead({
+  title: pageTitle,
+  htmlAttrs: { lang: 'de' },
+  link: [{ rel: 'canonical', href: siteUrl }],
+  meta: [
+    { name: 'description', content: pageDescription },
+    { name: 'author', content: 'Sascha Schlüter · Flocka Tattoo' },
+    { name: 'robots', content: 'index, follow, max-image-preview:large' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'de_DE' },
+    { property: 'og:site_name', content: 'Flocka Tattoo' },
+    { property: 'og:title', content: pageTitle },
+    { property: 'og:description', content: pageDescription },
+    { property: 'og:url', content: siteUrl },
+    { property: 'og:image', content: ogImage },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:image:alt', content: 'Flocka Tattoo · Sascha Schlüter · Tattoo Artist in Köln' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: pageTitle },
+    { name: 'twitter:description', content: pageDescription },
+    { name: 'twitter:image', content: ogImage },
+  ],
+  script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(structuredData) }],
+})
+
 const testimonialIndex = ref(0)
 const openFaq = ref<number | null>(null)
 const currentTestimonial = computed(() => testimonials[testimonialIndex.value] ?? testimonials[0]!)
@@ -90,9 +171,9 @@ function toggleFaq(index: number) {
     <FlockaSiteHeader />
     <FlockaHeroSection />
 
-    <section id="about" class="surface-card surface-section page-shell -mt-2 grid gap-12 border border-line py-24 md:grid-cols-[.8fr_1.2fr] md:py-36">
+      <section id="about" class="surface-card surface-section page-shell -mt-2 grid gap-12 border border-line py-24 md:grid-cols-[.8fr_1.2fr] md:py-36">
       <FlockaReveal direction="left"><p class="eyebrow text-signal-bright">About</p></FlockaReveal>
-      <FlockaReveal direction="right"><div class="grid gap-20 md:grid-cols-[1.05fr_.95fr]"><p class="surface-lead">Flocka is an independent tattoo practice focused on shaping lasting marks through conversation, structure and a strong visual point of view.</p><div class="flex flex-col justify-between gap-10"><div class="space-y-7 text-sm leading-relaxed text-muted md:text-base"><p>Every piece starts with a reason. We take the time to understand the image, the placement and the energy it should carry before a line is put on skin.</p><ul class="border-t border-line pt-5 text-bone"><li class="border-b border-line py-3 text-muted">Independent practice</li><li class="border-b border-line py-3 text-muted">Custom blackwork</li><li class="border-b border-line py-3 text-muted">Ornamental direction</li><li class="py-3 text-muted">Flash archive</li></ul></div><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="eyebrow w-fit border-b border-line pb-2 text-bone transition-colors hover:border-signal hover:text-signal-bright">About the studio <Icon name="lucide:arrow-up-right" size="14" /></a></div></div></FlockaReveal>
+      <FlockaReveal direction="right"><div class="grid gap-20 md:grid-cols-[1.05fr_.95fr]"><p class="surface-lead">Flocka Tattoo is the independent tattoo practice of Sascha Schlüter in Köln, focused on lasting marks through conversation, structure and a strong visual point of view.</p><div class="flex flex-col justify-between gap-10"><div class="space-y-7 text-sm leading-relaxed text-muted md:text-base"><p>Every piece starts with a reason. We take the time to understand the image, the placement and the energy it should carry before a line is put on skin.</p><ul class="border-t border-line pt-5 text-bone"><li class="border-b border-line py-3 text-muted">Independent practice</li><li class="border-b border-line py-3 text-muted">Custom blackwork</li><li class="border-b border-line py-3 text-muted">Ornamental direction</li><li class="py-3 text-muted">Flash archive</li></ul></div><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="eyebrow w-fit border-b border-line pb-2 text-bone transition-colors hover:border-signal hover:text-signal-bright">About the studio <Icon name="lucide:arrow-up-right" size="14" /></a></div></div></FlockaReveal>
     </section>
 
     <section id="work" class="surface-section page-shell border-b border-line py-24 md:py-36">
