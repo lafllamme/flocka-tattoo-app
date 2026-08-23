@@ -84,10 +84,10 @@ function toggleFaq(index: number) {
 
 <template>
   <div class="surface-page relative min-h-screen">
-  <main class="surface-home relative z-2 flex min-h-screen flex-col text-bone">
+  <main class="surface-home relative z-2 flex min-h-screen flex-col overflow-clip text-bone">
     <FlockaNoiseLayer />
     <FlockaSiteHeader />
-    <div class="relative z-2 h-[calc(100svh-57px)]"><FlockaHeroSection /></div>
+    <FlockaHeroSection />
 
     <section id="about" class="surface-card surface-section page-shell -mt-2 grid gap-12 border border-line py-24 md:grid-cols-[.8fr_1.2fr] md:py-36">
       <FlockaReveal direction="left"><p class="eyebrow text-signal-bright">About</p></FlockaReveal>
@@ -136,7 +136,7 @@ function toggleFaq(index: number) {
 </template>
 
 <style scoped>
-.surface-page { background: #f2efe8; }
+.surface-page { overflow-x: clip; background: #000; }
 .surface-home { background: transparent; }
 .surface-section { position: relative; z-index: 5; scroll-margin-top: 5rem; background: #000; }
 .surface-section:not(.surface-card):not(#work) > * { opacity: 0; transform: translateX(-48px); transition: opacity 720ms cubic-bezier(.22, 1, .36, 1), transform 720ms cubic-bezier(.22, 1, .36, 1); }

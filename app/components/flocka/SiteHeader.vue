@@ -67,8 +67,6 @@ watch(scrollY, (current) => {
 
   </header>
 
-  <div aria-hidden="true" class="min-h-14 bg-black md:min-h-[57px]" />
-
   <Transition name="menu-fade">
     <div v-if="menuOpen" id="mobile-navigation" class="fixed inset-0 z-40 flex flex-col bg-black px-5 pb-8 pt-28 md:hidden">
       <nav class="grid gap-5" aria-label="Mobile navigation">
