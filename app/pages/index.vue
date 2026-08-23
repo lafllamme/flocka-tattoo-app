@@ -137,7 +137,7 @@ function toggleFaq(index: number) {
 </template>
 
 <style scoped>
-.surface-page { overflow-x: clip; background: #000; }
+.surface-page { overflow-x: clip; background: #f2efe8; }
 .surface-home { background: transparent; }
 .surface-section { position: relative; z-index: 5; scroll-margin-top: 5rem; background: #000; }
 .surface-section:not(.surface-card):not(#work) > * { opacity: 0; transform: translateX(-48px); transition: opacity 720ms cubic-bezier(.22, 1, .36, 1), transform 720ms cubic-bezier(.22, 1, .36, 1); }
