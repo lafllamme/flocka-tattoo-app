@@ -32,9 +32,9 @@ onBeforeUnmount(() => {
 })
 
 const work = [
-  { title: 'ROTES RELIKT', description: 'Ein grafisches Blackwork-Motiv aus alten Zeichen, klaren Kanten und roten Akzenten.', scope: 'Einzelstück', detail: 'Schwarz-Rot', image: '/images/portfolio/red-relic.png' },
-  { title: 'OFFENE HAUT', description: 'Ornamentik mit feinen Linien, bewussten Zwischenräumen und einem ruhigen Rhythmus.', scope: 'Ornamentik', detail: 'Fine Line', image: '/images/portfolio/open-skin.png' },
-  { title: 'FLASH NACH NACHT', description: 'Direkte Motive für alle, die ein klares Bild wollen – ohne langes Drumherum.', scope: 'Flash-Serie', detail: 'Spontantermine', image: '/images/portfolio/process.png' },
+  { title: 'CYBERLISM', description: 'Spitze Formen, organische Linien und ein Zeichen zwischen digitaler Ästhetik und dunkler Symbolik.', scope: 'Cyber Sigilism', detail: 'Schwarz-Rot', image: '/images/portfolio/red-relic.png' },
+  { title: 'MINIMALISM', description: 'Ein reduziertes Zeichen aus feinen Linien, bewusst offen gelassen und leicht über die Haut geführt.', scope: 'Fine Line', detail: 'Ornamental', image: '/images/portfolio/open-skin.png' },
+  { title: 'LETTERING', description: 'Kräftige Buchstaben, harte Kontraste und ein Schriftzug mit eigener Haltung.', scope: 'Blackletter', detail: 'Schwarz-Rot', image: '/images/portfolio/process.png' },
 ]
 const services = [
   { title: 'INDIVIDUELLE TATTOOS', body: 'Von der ersten Idee bis zur letzten Linie: Wir entwickeln dein Motiv gemeinsam und passend zu dir.' },
@@ -189,7 +189,7 @@ function toggleFaq(index: number) {
             <h3 class="mt-6 max-w-md font-display text-5xl uppercase leading-[.83] tracking-[-.05em] text-bone md:text-6xl">{{ project.title }}</h3>
             <div class="mt-8 md:sticky md:top-10">
               <p class="max-w-sm text-sm leading-relaxed text-muted">{{ project.description }}</p>
-              <div class="mt-8 grid max-w-sm grid-cols-2 gap-y-2 text-sm text-muted"><span>Art:</span><span class="text-right text-bone">{{ project.scope }}</span><span>Stil:</span><span class="text-right text-bone">{{ project.detail }}</span></div>
+              <div class="mt-8 grid max-w-sm grid-cols-2 gap-y-2 text-sm text-muted"><span>Art:</span><span class="text-right text-bone">{{ project.scope }}</span><span>Richtung:</span><span class="text-right text-bone">{{ project.detail }}</span></div>
               <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="eyebrow mt-9 inline-flex border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright">Motiv ansehen <Icon name="lucide:arrow-up-right" size="14" /></a>
             </div>
           </div>
