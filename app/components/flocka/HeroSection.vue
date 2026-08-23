@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { usePreferredReducedMotion } from '@vueuse/core'
+import FlockaColorRevealImage from './ColorRevealImage.vue'
 
 const prefersReducedMotion = usePreferredReducedMotion()
 const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce')
@@ -18,7 +19,7 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
           </div>
           <div class="relative md:w-[94%] md:justify-self-end">
             <div class="bg-blood opacity-70 inset-0 absolute blur-3xl -z-10" />
-            <img src="/images/flocka-hero.jpg" alt="Flocka Tattoo studio portrait" class="border-2 border-bone w-full aspect-[2.3] object-cover object-top grayscale" :class="shouldReduceMotion ? '' : 'hero-image-enter'">
+            <FlockaColorRevealImage src="/images/flocka-hero.jpg" alt="Flocka Tattoo studio portrait" class="border-2 border-bone w-full aspect-[2.3] object-cover object-top" :class="shouldReduceMotion ? '' : 'hero-image-enter'" />
           </div>
         </div>
 
