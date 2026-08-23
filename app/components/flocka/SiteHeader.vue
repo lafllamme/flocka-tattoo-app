@@ -6,6 +6,8 @@ const entered = ref(false)
 const prefersReducedMotion = usePreferredReducedMotion()
 const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce')
 const { y: scrollY } = useWindowScroll()
+const lastScrollY = ref(0)
+const isHidden = ref(false)
 
 const menuItems = [
   { label: 'About', href: '#about' },
@@ -30,11 +32,30 @@ onBeforeUnmount(() => {
 
 onMounted(() => {
   entered.value = true
+  lastScrollY.value = scrollY.value
+})
+
+watch(scrollY, (current) => {
+  if (shouldReduceMotion.value) {
+    isHidden.value = false
+    lastScrollY.value = current
+    return
+  }
+
+  const delta = current - lastScrollY.value
+  if (current <= 64)
+    isHidden.value = false
+  else if (delta > 8)
+    isHidden.value = true
+  else if (delta < -8)
+    isHidden.value = false
+
+  lastScrollY.value = current
 })
 </script>
 
 <template>
-  <header class="site-header page-shell fixed inset-x-0 top-0 z-30 flex min-h-14 items-center justify-between border-b border-line bg-black py-3 md:min-h-[57px] md:py-2" :class="{ 'site-header--entered': entered || shouldReduceMotion, 'site-header--leaving': scrollY > 64 }">
+  <header class="site-header page-shell fixed inset-x-0 top-0 z-30 flex min-h-14 items-center justify-between border-b border-line bg-black py-3 md:min-h-[57px] md:py-2" :class="{ 'site-header--entered': entered || shouldReduceMotion, 'site-header--leaving': isHidden }">
     <nav class="hidden w-full items-center justify-between md:flex" aria-label="Main navigation">
       <a href="#top" class="text-sm text-bone transition-colors hover:text-signal-bright">Home</a>
       <a v-for="item in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="text-sm text-bone transition-colors hover:text-signal-bright">{{ item.label }}</a>

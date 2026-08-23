@@ -6,7 +6,7 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 </script>
 
 <template>
-  <section id="top" class="bg-black h-[calc(100svh-57px)] relative z-2 overflow-hidden isolate md:top-0 md:sticky">
+  <section id="top" class="surface-hero bg-black h-[calc(100svh-57px)] relative z-2 sticky top-0 overflow-hidden isolate">
     <div class="page-shell pb-0 pt-10 h-full relative overflow-hidden">
       <div class="hero-content-group">
         <div class="gap-8 grid md:grid-cols-[.95fr_1.05fr]">
@@ -44,6 +44,7 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 .hero-image-enter { animation: hero-image-in 1100ms cubic-bezier(.22, 1, .36, 1) 240ms both; }
 .hero-status-enter { animation: hero-status-in 620ms cubic-bezier(.22, 1, .36, 1) 420ms both; }
 .hero-content-group { position: relative; }
+.surface-hero { border-radius: 0 0 48px 48px; }
 @media (min-width: 768px) and (min-height: 700px) {
   .hero-content-group { transform: translateY(100px); }
 }

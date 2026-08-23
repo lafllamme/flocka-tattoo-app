@@ -83,7 +83,8 @@ function toggleFaq(index: number) {
 </script>
 
 <template>
-  <main class="surface-home relative flex min-h-screen flex-col overflow-clip text-bone">
+  <div class="surface-page relative min-h-screen">
+  <main class="surface-home relative z-2 flex min-h-screen flex-col text-bone">
     <FlockaNoiseLayer />
     <FlockaSiteHeader />
     <div class="relative z-2 h-[calc(100svh-57px)]"><FlockaHeroSection /></div>
@@ -126,12 +127,17 @@ function toggleFaq(index: number) {
 
     <section id="contact" class="surface-contact page-shell relative z-5 min-h-[553px] border-b border-line py-16 md:py-12"><p class="eyebrow text-signal-bright">Contact</p><div class="mt-12 flex flex-col items-start"><h2 class="max-w-4xl font-display text-[clamp(3.5rem,9vw,8.5rem)] font-black uppercase leading-[.78] tracking-[-.07em] text-bone">Let's talk<br>about your piece</h2><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="btn-ghost mt-10 rounded-md border-2 border-bone px-5 py-3 text-base normal-case tracking-normal">Get in touch <Icon name="lucide:arrow-up-right" size="18" /></a></div></section>
 
-    <footer class="surface-footer sticky bottom-0 z-1 order-[1002] grid min-h-[550px] gap-12 overflow-hidden px-5 pb-12 pt-18 text-black md:grid-cols-[1fr_auto] md:px-[2vw] md:pb-16 md:pt-18"><div><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="block text-3xl font-semibold tracking-[-.04em] hover:opacity-60 md:text-5xl">hello@flocka.tattoo</a><p class="mt-10 max-w-xs text-lg leading-tight">Resonates? Let’s talk. Open to custom pieces, new ideas and lasting collaborations.</p><div class="mt-10 flex gap-7"><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="text-lg hover:opacity-60">Instagram</a><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="text-lg hover:opacity-60">Booking</a></div></div><div class="grid grid-cols-2 gap-16 text-lg"><div><p class="mb-5 font-semibold">Navigation</p><div class="grid gap-3"><a href="#top" class="hover:opacity-60">Home</a><a href="#about" class="hover:opacity-60">About</a><a href="#work" class="hover:opacity-60">Work</a><a href="#services" class="hover:opacity-60">Services</a><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="hover:opacity-60">Contact</a></div></div><div><p class="mb-5 font-semibold">Legal</p><div class="grid gap-3"><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="hover:opacity-60">Privacy Policy</a><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="hover:opacity-60">Terms &amp; Conditions</a></div></div></div><p aria-hidden="true" class="pointer-events-none absolute bottom-[-.18em] left-[2vw] right-[2vw] font-display text-center text-[clamp(7rem,21vw,21rem)] font-black uppercase leading-[.72] tracking-[-.09em]">FLOCKA</p></footer>
   </main>
+
+  <div class="surface-footer-stage sticky bottom-0 z-1">
+    <footer class="surface-footer relative grid min-h-[550px] gap-12 overflow-hidden px-5 pb-12 pt-18 text-black md:grid-cols-[1fr_auto] md:px-[2vw] md:pb-16 md:pt-18"><div><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="block text-3xl font-semibold tracking-[-.04em] hover:opacity-60 md:text-5xl">hello@flocka.tattoo</a><p class="mt-10 max-w-xs text-lg leading-tight">Resonates? Let’s talk. Open to custom pieces, new ideas and lasting collaborations.</p><div class="mt-10 flex gap-7"><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="text-lg hover:opacity-60">Instagram</a><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="text-lg hover:opacity-60">Booking</a></div></div><div class="grid grid-cols-2 gap-16 text-lg"><div><p class="mb-5 font-semibold">Navigation</p><div class="grid gap-3"><a href="#top" class="hover:opacity-60">Home</a><a href="#about" class="hover:opacity-60">About</a><a href="#work" class="hover:opacity-60">Work</a><a href="#services" class="hover:opacity-60">Services</a><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="hover:opacity-60">Contact</a></div></div><div><p class="mb-5 font-semibold">Legal</p><div class="grid gap-3"><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="hover:opacity-60">Privacy Policy</a><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="hover:opacity-60">Terms &amp; Conditions</a></div></div></div><p aria-hidden="true" class="pointer-events-none absolute bottom-[-.18em] left-[2vw] right-[2vw] font-display text-center text-[clamp(7rem,21vw,21rem)] font-black uppercase leading-[.72] tracking-[-.09em]">FLOCKA</p></footer>
+  </div>
+  </div>
 </template>
 
 <style scoped>
-.surface-home { background: #f2efe8; }
+.surface-page { background: #f2efe8; }
+.surface-home { background: transparent; }
 .surface-section { position: relative; z-index: 5; scroll-margin-top: 5rem; background: #000; }
 .surface-section:not(.surface-card):not(#work) > * { opacity: 0; transform: translateX(-48px); transition: opacity 720ms cubic-bezier(.22, 1, .36, 1), transform 720ms cubic-bezier(.22, 1, .36, 1); }
 .surface-section:not(.surface-card):not(#work) > :nth-child(even) { transform: translateX(48px); }
@@ -140,6 +146,7 @@ function toggleFaq(index: number) {
 .surface-card { border-radius: 48px 48px 0 0; }
 .surface-contact { border-radius: 0 0 48px 48px; background: #000; }
 .surface-footer { background: #f2efe8; }
+.surface-footer-stage { min-height: 550px; }
 .fade-enter-active, .fade-leave-active { transition: opacity 360ms ease, transform 360ms ease; }
 .fade-enter-from { opacity: 0; transform: translateX(24px); }
 .fade-leave-to { opacity: 0; transform: translateX(-24px); }
