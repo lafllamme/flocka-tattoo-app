@@ -30,9 +30,9 @@ onBeforeUnmount(() => {
 })
 
 const work = [
-  { title: 'RED RELIC', description: 'A custom blackwork piece built around old symbols, red ink accents and a strong vertical silhouette.', scope: 'Custom piece', detail: 'Blackwork', image: 'https://images.unsplash.com/photo-1598373182133-52452f7691ef?auto=format&fit=crop&w=1600&q=88' },
-  { title: 'OPEN SKIN', description: 'An ornamental study developed from fine line structure, negative space and slow detail.', scope: 'Ornamental', detail: 'Fine line', image: 'https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?auto=format&fit=crop&w=1600&q=88' },
-  { title: 'FLASH AFTER DARK', description: 'A direct flash series for people who want a clear image, a sharp mark and no second guessing.', scope: 'Flash series', detail: 'Walk-in ready', image: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1600&q=88' },
+  { title: 'RED RELIC', description: 'A custom blackwork piece built around old symbols, red ink accents and a strong vertical silhouette.', scope: 'Custom piece', detail: 'Blackwork', image: '/images/portfolio/red-relic.png' },
+  { title: 'OPEN SKIN', description: 'An ornamental study developed from fine line structure, negative space and slow detail.', scope: 'Ornamental', detail: 'Fine line', image: '/images/portfolio/open-skin.png' },
+  { title: 'FLASH AFTER DARK', description: 'A direct flash series for people who want a clear image, a sharp mark and no second guessing.', scope: 'Flash series', detail: 'Walk-in ready', image: '/images/portfolio/process.png' },
 ]
 const services = [
   { title: 'CUSTOM TATTOOS', body: 'From the first sketch to the final line, every custom piece is shaped around your story, body and idea.' },
@@ -47,9 +47,9 @@ const process = [
   { number: '04', title: 'AFTERCARE', body: 'You leave with clear aftercare, honest advice and a piece made to settle into your life.' },
 ]
 const testimonials = [
-  { quote: 'The whole process felt focused and personal. The idea got sharper with every conversation and the tattoo came out stronger than I imagined.', author: 'Mara K.', image: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85' },
-  { quote: 'Flocka understood the reference immediately and turned it into something that feels like it was always meant to be on me.', author: 'Jonas R.', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85' },
-  { quote: 'Calm studio, clear direction, beautiful linework. I came in for one small flash and already know what the next piece will be.', author: 'Lea M.', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85' },
+  { quote: 'The whole process felt focused and personal. The idea got sharper with every conversation and the tattoo came out stronger than I imagined.', author: 'Mara K.', image: '/images/portfolio/archive.png' },
+  { quote: 'Flocka understood the reference immediately and turned it into something that feels like it was always meant to be on me.', author: 'Jonas R.', image: '/images/portfolio/archive.png' },
+  { quote: 'Calm studio, clear direction, beautiful linework. I came in for one small flash and already know what the next piece will be.', author: 'Lea M.', image: '/images/portfolio/archive.png' },
 ]
 const faqs = [
   { question: 'What kind of tattoos does Flocka make?', answer: 'Custom blackwork, ornamental pieces, red-accented designs and selected flash. The best starting point is your idea, not a fixed category.' },
@@ -60,9 +60,9 @@ const faqs = [
   { question: 'How can I start a booking?', answer: 'Use the booking form below with your idea, placement, approximate size and a few reference images.' },
 ]
 const articles = [
-  { title: 'A tattoo starts before the stencil', body: 'Why the first conversation matters as much as the final line.', image: 'https://images.unsplash.com/photo-1542727365-19732a80dcfd?auto=format&fit=crop&w=1200&q=85' },
-  { title: 'Blackwork as visual language', body: 'On contrast, weight and making a mark that stays readable.', image: 'https://images.unsplash.com/photo-1590246814883-57c511e9f298?auto=format&fit=crop&w=1200&q=85' },
-  { title: 'The quiet discipline of aftercare', body: 'A short guide to giving fresh work the time it needs to settle.', image: 'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?auto=format&fit=crop&w=1200&q=85' },
+  { title: 'A tattoo starts before the stencil', body: 'Why the first conversation matters as much as the final line.', image: '/images/portfolio/testimonial.png' },
+  { title: 'Blackwork as visual language', body: 'On contrast, weight and making a mark that stays readable.', image: '/images/portfolio/testimonial.png' },
+  { title: 'The quiet discipline of aftercare', body: 'A short guide to giving fresh work the time it needs to settle.', image: '/images/portfolio/testimonial.png' },
 ]
 
 const testimonialIndex = ref(0)
@@ -116,7 +116,7 @@ function toggleFaq(index: number) {
 
     <section id="services" class="surface-section page-shell border-b border-line py-24 md:py-36"><div class="mb-20 grid gap-8 md:grid-cols-[.8fr_1.2fr]"><p class="eyebrow text-signal-bright">Services</p><div class="flex justify-between gap-8"><p class="surface-lead max-w-2xl">A focused tattoo practice for projects that need a clear image, a steady hand and a little more intention.</p><a href="#contact" class="eyebrow hidden h-fit border-b border-line pb-2 text-bone hover:border-signal hover:text-signal-bright md:block">View services <Icon name="lucide:arrow-up-right" size="14" /></a></div></div><div class="border-t border-line"><article v-for="service in services" :key="service.title" class="grid gap-4 border-b border-line py-7 md:grid-cols-[.8fr_1.2fr] md:py-9"><h3 class="font-display text-3xl uppercase leading-none tracking-[-.03em] text-bone md:text-4xl">{{ service.title }}</h3><p class="max-w-lg text-sm leading-relaxed text-muted md:text-base">{{ service.body }}</p></article></div></section>
 
-    <section id="process" class="surface-section page-shell grid gap-16 border-b border-line py-24 md:grid-cols-[.8fr_1.2fr] md:py-36"><p class="eyebrow text-signal-bright">Process</p><div class="grid gap-14 md:grid-cols-[.75fr_1.25fr]"><img src="https://images.unsplash.com/photo-1542596594-649edbc13630?auto=format&fit=crop&w=1000&q=85" alt="Close-up detail of a tattoo artist working with a tattoo machine" class="aspect-[.8] w-full object-cover grayscale"><div class="grid content-start"><article v-for="stage in process" :key="stage.number" class="grid grid-cols-[3rem_1fr] gap-5 border-b border-line py-7 first:pt-0"><p class="eyebrow text-muted">{{ stage.number }}</p><div><h3 class="font-display text-4xl uppercase leading-none text-bone">{{ stage.title }}</h3><p class="mt-4 max-w-md text-sm leading-relaxed text-muted">{{ stage.body }}</p></div></article></div></div></section>
+    <section id="process" class="surface-section page-shell grid gap-16 border-b border-line py-24 md:grid-cols-[.8fr_1.2fr] md:py-36"><p class="eyebrow text-signal-bright">Process</p><div class="grid gap-14 md:grid-cols-[.75fr_1.25fr]"><img src="/images/portfolio/flash-after-dark.png" alt="Close-up detail from the Flocka tattoo process" class="aspect-[.8] w-full object-cover grayscale"><div class="grid content-start"><article v-for="stage in process" :key="stage.number" class="grid grid-cols-[3rem_1fr] gap-5 border-b border-line py-7 first:pt-0"><p class="eyebrow text-muted">{{ stage.number }}</p><div><h3 class="font-display text-4xl uppercase leading-none text-bone">{{ stage.title }}</h3><p class="mt-4 max-w-md text-sm leading-relaxed text-muted">{{ stage.body }}</p></div></article></div></div></section>
 
     <section id="testimonials" class="surface-section page-shell border-b border-line py-24 md:py-36"><div class="grid gap-12 md:grid-cols-[.8fr_1.2fr]"><p class="eyebrow text-signal-bright">Testimonials</p><div class="grid gap-10 md:grid-cols-[.7fr_1.3fr]"><div class="overflow-hidden bg-surface"><Transition name="fade" mode="out-in"><img :key="currentTestimonial.image" :src="currentTestimonial.image" :alt="`Portrait of ${currentTestimonial.author}`" class="aspect-[.85] w-full object-cover grayscale"></Transition></div><div class="flex flex-col justify-between gap-10"><Transition name="fade" mode="out-in"><blockquote :key="currentTestimonial.quote" class="surface-lead">“{{ currentTestimonial.quote }}”<footer class="eyebrow mt-8 text-muted">{{ currentTestimonial.author }}</footer></blockquote></Transition><div class="flex gap-2"><button class="btn-ghost px-4 py-3" aria-label="Previous testimonial" @click="previousTestimonial"><Icon name="lucide:arrow-left" size="16" /></button><button class="btn-ghost px-4 py-3" aria-label="Next testimonial" @click="nextTestimonial"><Icon name="lucide:arrow-right" size="16" /></button></div></div></div></div></section>
 

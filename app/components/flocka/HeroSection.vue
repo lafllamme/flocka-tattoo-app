@@ -7,7 +7,7 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 
 <template>
   <section id="top" class="relative isolate z-2 h-[calc(100svh-57px)] overflow-hidden bg-black md:sticky md:top-0">
-    <div class="page-shell relative h-full overflow-hidden pb-0 pt-14">
+    <div class="page-shell relative h-full overflow-hidden pb-0 pt-10">
       <div class="grid gap-8 md:grid-cols-[.95fr_1.05fr]">
         <div class="max-w-md" :class="shouldReduceMotion ? '' : 'hero-copy-enter'">
           <p class="text-xl leading-[1.12] tracking-[-.03em] text-bone md:text-2xl">Flocka is an independent tattoo practice focused on shaping visual language through line, symbol and structure.</p>
