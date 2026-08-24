@@ -158,7 +158,7 @@ onMounted(() => {
 .site-header {
   transform: translateY(-150px);
   transition: transform 600ms cubic-bezier(.32, .72, 0, 1);
-  transition-delay: 760ms;
+  transition-delay: 200ms;
   will-change: transform;
 }
 
