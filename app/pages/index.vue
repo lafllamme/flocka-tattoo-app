@@ -167,15 +167,52 @@ useHead({
 })
 
 const testimonialIndex = ref(0)
+const testimonialDirection = ref<'next' | 'previous'>('next')
+const testimonialTrackOffset = ref(1)
+const testimonialTransitionEnabled = ref(true)
+const testimonialTransitioning = ref(false)
 const openFaq = ref<number | null>(null)
-const currentTestimonial = computed(() => testimonials[testimonialIndex.value] ?? testimonials[0]!)
+const testimonialCopyIndex = ref(0)
+const currentTestimonial = computed(() => testimonials[testimonialCopyIndex.value]!)
+const testimonialVisible = computed(() => {
+  const previousIndex = (testimonialIndex.value - 1 + testimonials.length) % testimonials.length
+  const nextIndex = (testimonialIndex.value + 1) % testimonials.length
 
-function nextTestimonial() {
-  testimonialIndex.value = (testimonialIndex.value + 1) % testimonials.length
+  return [testimonials[previousIndex]!, testimonials[testimonialIndex.value]!, testimonials[nextIndex]!]
+})
+const testimonialTrackStyle = computed(() => ({
+  transform: `translateY(-${testimonialTrackOffset.value * 33.333333}%)`,
+  transition: testimonialTransitionEnabled.value ? 'transform 720ms cubic-bezier(.22, 1, .36, 1)' : 'none',
+}))
+
+function moveTestimonial(direction: 'next' | 'previous') {
+  if (testimonialTransitioning.value)
+    return
+
+  testimonialDirection.value = direction
+  testimonialCopyIndex.value = direction === 'next'
+    ? (testimonialCopyIndex.value + 1) % testimonials.length
+    : (testimonialCopyIndex.value - 1 + testimonials.length) % testimonials.length
+  testimonialTransitioning.value = true
+  testimonialTrackOffset.value = direction === 'next' ? 2 : 0
 }
 
-function previousTestimonial() {
-  testimonialIndex.value = (testimonialIndex.value - 1 + testimonials.length) % testimonials.length
+function handleTestimonialTransitionEnd(event: TransitionEvent) {
+  if (event.propertyName !== 'transform' || !testimonialTransitioning.value)
+    return
+
+  testimonialIndex.value = testimonialDirection.value === 'next'
+    ? (testimonialIndex.value + 1) % testimonials.length
+    : (testimonialIndex.value - 1 + testimonials.length) % testimonials.length
+  testimonialTransitionEnabled.value = false
+  testimonialTrackOffset.value = 1
+
+  nextTick(() => {
+    requestAnimationFrame(() => {
+      testimonialTransitionEnabled.value = true
+      testimonialTransitioning.value = false
+    })
+  })
 }
 
 function toggleFaq(index: number) {
@@ -217,7 +254,36 @@ function toggleFaq(index: number) {
 
     <section id="process" class="surface-section page-shell border-b border-line px-5 py-24 md:px-[2vw] md:py-24"><div class="section-rule"><p class="section-label text-signal-bright">Ablauf</p><span class="section-rule__line" /></div><div class="mt-16 grid gap-14 md:mt-24 md:grid-cols-[.8fr_1.2fr] md:items-center"><FlockaColorRevealImage src="https://i.ibb.co/fY15ZQvQ/flash-after-dark.webp" alt="Detail aus dem Tattoo-Prozess von Flocka" class="aspect-[.8] w-full border border-bone object-cover" /><div class="grid content-start"><article v-for="stage in process" :key="stage.number" class="grid grid-cols-[3rem_1fr] gap-5 border-b border-line py-8 first:pt-0 md:py-9"><p class="eyebrow text-muted">{{ stage.number }}</p><div><h3 class="font-display text-4xl uppercase leading-none text-bone md:text-5xl">{{ stage.title }}</h3><p class="mt-4 max-w-md text-sm leading-relaxed text-muted md:text-base">{{ stage.body }}</p></div></article></div></div></section>
 
-    <section id="testimonials" class="surface-section page-shell border-b border-line px-5 py-24 md:px-[2vw] md:py-24"><div class="section-rule"><p class="section-label text-signal-bright">Stimmen</p><span class="section-rule__line" /></div><div class="mt-16 grid gap-12 md:mt-24 md:grid-cols-[.7fr_1.3fr] md:items-center md:gap-20"><div class="flex flex-col gap-8"><div class="overflow-hidden border border-bone"><Transition name="fade" mode="out-in"><FlockaColorRevealImage :key="currentTestimonial.image" :src="currentTestimonial.image" :alt="`Portrait von ${currentTestimonial.author}`" class="aspect-[.85] w-full object-cover" /></Transition></div><div class="flex gap-2"><button class="btn-ghost size-14" aria-label="Vorherige Stimme" @click="previousTestimonial"><Icon name="lucide:arrow-left" size="16" /></button><button class="btn-ghost size-14" aria-label="Nächste Stimme" @click="nextTestimonial"><Icon name="lucide:arrow-right" size="16" /></button></div></div><div class="flex flex-col justify-center"><span class="mb-10 font-display text-8xl leading-none text-bone">“</span><Transition name="fade" mode="out-in"><blockquote :key="currentTestimonial.quote" class="font-display text-3xl leading-[1.02] tracking-[-.035em] text-bone md:text-5xl">{{ currentTestimonial.quote }}<footer class="eyebrow mt-10 text-muted">{{ currentTestimonial.author }}</footer></blockquote></Transition></div></div></section>
+    <section id="testimonials" class="surface-section page-shell border-b border-line px-5 py-24 md:px-[2vw] md:py-24">
+      <div class="section-rule"><p class="section-label text-signal-bright">Reviews</p><span class="section-rule__line" /></div>
+      <div class="mt-16 grid min-w-0 gap-12 md:mt-24 lg:grid-cols-[.7fr_1.3fr] lg:items-center lg:gap-24">
+        <div class="min-w-0 flex flex-col gap-8 lg:items-start">
+          <div class="testimonial-media-viewport relative aspect-[.87] w-full overflow-hidden border border-bone lg:w-[min(100%,34rem)]">
+            <div class="testimonial-track flex h-full flex-col" :style="testimonialTrackStyle" @transitionend="handleTestimonialTransitionEnd">
+              <div v-for="testimonial in testimonialVisible" :key="`image-${testimonial.author}`" class="testimonial-slide h-full">
+                <FlockaColorRevealImage :src="testimonial.image" :alt="`Tattoo-Arbeit aus dem Portfolio von Flocka für ${testimonial.author}`" class="size-full object-cover" />
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button class="testimonial-arrow" :disabled="testimonialTransitioning" aria-label="Vorheriges Review" @click="moveTestimonial('previous')"><Icon name="lucide:arrow-left" size="30" /></button>
+            <button class="testimonial-arrow" :disabled="testimonialTransitioning" aria-label="Nächstes Review" @click="moveTestimonial('next')"><Icon name="lucide:arrow-right" size="30" /></button>
+          </div>
+        </div>
+        <div class="min-w-0 flex flex-col justify-center">
+          <svg class="testimonial-quote-mark mb-10" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M 1 0 L 7 0 C 7.552 0 8 0.448 8 1 L 8 9.5 C 8 10.052 7.552 10.5 7 10.5 L 4.5 10.5 C 4.224 10.5 4 10.724 4 11 L 4 12 C 4 13.105 4.895 14 6 14 L 7 14 C 7.552 14 8 14.448 8 15 L 8 17 C 8 17.552 7.552 18 7 18 L 6 18 C 2.686 18 0 15.314 0 12 L 0 1 C 0 0.448 0.448 0 1 0 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(14 3)" />
+            <path d="M 1 0 L 7 0 C 7.552 0 8 0.448 8 1 L 8 9.5 C 8 10.052 7.552 10.5 7 10.5 L 4.5 10.5 C 4.224 10.5 4 10.724 4 11 L 4 12 C 4 13.105 4.895 14 6 14 L 7 14 C 7.552 14 8 14.448 8 15 L 8 17 C 8 17.552 7.552 18 7 18 L 6 18 C 2.686 18 0 15.314 0 12 L 0 1 C 0 0.448 0.448 0 1 0 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(2 3)" />
+          </svg>
+          <div class="testimonial-copy-viewport relative min-w-0 max-w-full overflow-hidden" aria-live="polite">
+            <blockquote class="flex min-w-0 max-w-full flex-col justify-center break-words font-display text-[clamp(2rem,3.25vw,4rem)] font-semibold leading-[.98] tracking-[-.045em] text-bone">
+              <span>{{ currentTestimonial.quote }}</span>
+              <footer class="eyebrow mt-10 text-muted">{{ currentTestimonial.author }}</footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section id="faq" class="surface-section page-shell border-b border-line px-5 py-24 md:px-[2vw] md:py-24"><div class="section-rule"><p class="section-label text-signal-bright">Fragen</p><span class="section-rule__line" /></div><p class="surface-lead ml-auto mt-16 max-w-2xl md:mt-24">Antworten zu Studio, Motiven und der Anfrage für deinen Termin.</p><div class="faq-list mt-16 border-t border-line md:mt-24"><article v-for="(faq, index) in faqs" :key="faq.question" class="faq-item border-b border-line" :class="{ 'faq-item--open': openFaq === index }"><button class="flex w-full items-center justify-between gap-8 py-8 text-left text-base text-bone md:py-9 md:text-lg" :aria-expanded="openFaq === index" :aria-controls="`faq-answer-${index}`" @click="toggleFaq(index)"><span>{{ faq.question }}</span><span class="faq-icon flex size-8 shrink-0 items-center justify-center text-bone transition-transform duration-300" :class="{ 'rotate-45': openFaq === index }" aria-hidden="true"><Icon name="lucide:plus" size="21" /></span></button><div :id="`faq-answer-${index}`" class="grid transition-[grid-template-rows,opacity] duration-300" :class="openFaq === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"><p class="min-h-0 max-w-3xl overflow-hidden pb-8 text-sm leading-relaxed md:text-base">{{ faq.answer }}</p></div></article></div></section>
 
@@ -259,6 +325,16 @@ function toggleFaq(index: number) {
 .surface-contact { overflow-x: clip; border-radius: 0 0 48px 48px; background: #000; }
 .surface-footer { background: #f2efe8; }
 .surface-footer-stage { min-height: 550px; }
+.testimonial-track { width: 100%; height: 300%; will-change: transform; }
+.testimonial-slide { flex: 0 0 33.333333%; width: 100%; min-width: 0; min-height: 0; }
+.testimonial-copy-viewport { min-height: 18rem; }
+.testimonial-quote-mark { display: block; width: clamp(4.75rem, 7vw, 7rem); height: clamp(4rem, 7vw, 6rem); overflow: visible; color: var(--flocka-bone, #f2efe8); }
+.testimonial-arrow { display: inline-flex; width: 2.75rem; height: 2.75rem; align-items: center; justify-content: center; border: 2px solid var(--flocka-bone, #f2efe8); color: var(--flocka-bone, #f2efe8); transition: background-color 220ms ease, color 220ms ease, opacity 220ms ease; }
+.testimonial-arrow :deep(svg) { width: 30px; height: 30px; stroke-width: 3.2; }
+.testimonial-arrow:hover:not(:disabled) { background: var(--flocka-bone, #f2efe8); color: #000; }
+.testimonial-arrow:disabled { cursor: wait; opacity: .5; }
+@media (prefers-reduced-motion: reduce) {
+}
 .faq-item--open { background: var(--flocka-bone, #f2efe8); color: #000; }
 .faq-list { border-color: var(--flocka-bone, #f2efe8); }
 .faq-item { border-color: var(--flocka-bone, #f2efe8); }
