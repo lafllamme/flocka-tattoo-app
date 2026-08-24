@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { useMediaQuery, usePreferredReducedMotion, useWindowScroll } from '@vueuse/core'
+import { usePreferredReducedMotion } from '@vueuse/core'
 
 const menuOpen = ref(false)
 const entered = ref(false)
 const prefersReducedMotion = usePreferredReducedMotion()
 const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce')
-const isDesktop = useMediaQuery('(min-width: 768px)')
-const aboutSectionReachedHeader = ref(false)
-const { y: scrollY } = useWindowScroll()
 
 const menuItems = [
   { label: 'Über mich', href: '#about' },
@@ -30,25 +27,14 @@ onBeforeUnmount(() => {
     document.body.style.overflow = ''
 })
 
-function updateHeaderVisibility() {
-  if (!import.meta.client)
-    return
-
-  aboutSectionReachedHeader.value = Boolean(isDesktop.value && scrollY.value > 1)
-}
-
 onMounted(() => {
   entered.value = true
-  updateHeaderVisibility()
 })
 
-watch([scrollY, isDesktop], updateHeaderVisibility)
-
-const shouldHideHeader = computed(() => aboutSectionReachedHeader.value && !menuOpen.value && !shouldReduceMotion.value)
 </script>
 
 <template>
-  <header class="site-header page-shell py-2 bg-transparent flex min-h-12 pointer-events-none items-center inset-x-0 top-0 justify-between fixed z-50 md:py-2 md:min-h-[57px]" :class="{ 'site-header--entered': entered || shouldReduceMotion, 'site-header--leaving': shouldHideHeader }">
+  <header class="site-header page-shell py-2 bg-transparent flex min-h-12 pointer-events-none items-center inset-x-0 top-0 justify-between fixed z-50 md:absolute md:py-2 md:min-h-[57px]" :class="{ 'site-header--entered': entered || shouldReduceMotion }">
     <nav class="w-full hidden pointer-events-auto items-center justify-between md:flex" aria-label="Main navigation">
       <a href="#top" class="text-base text-bone tracking-[-.02em] font-semibold no-underline transition-colors hover:text-signal-bright">Start</a>
       <a v-for="item in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="text-base text-bone tracking-[-.02em] font-semibold no-underline transition-colors hover:text-signal-bright">{{ item.label }}</a>
@@ -172,18 +158,12 @@ const shouldHideHeader = computed(() => aboutSectionReachedHeader.value && !menu
 .site-header {
   transform: translateY(-150px);
   transition: transform 600ms cubic-bezier(.32, .72, 0, 1);
-  transition-delay: 200ms;
+  transition-delay: 760ms;
   will-change: transform;
 }
 
-.site-header--leaving { transition-delay: 0ms; }
-
 .site-header--entered {
   transform: translateY(0);
-}
-
-.site-header--leaving {
-  transform: translateY(-150px);
 }
 
 @media (prefers-reduced-motion: reduce) {
