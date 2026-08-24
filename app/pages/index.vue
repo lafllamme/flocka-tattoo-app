@@ -49,9 +49,10 @@ const process = [
   { number: '04', title: 'PFLEGE', body: 'Du bekommst klare Hinweise für die Heilung und ehrliche Tipps, damit dein Tattoo gut ankommt.' },
 ]
 const testimonials = [
-  { quote: 'Der Prozess war persönlich und konzentriert. Mit jedem Gespräch wurde die Idee klarer – und das Tattoo stärker, als ich es mir vorgestellt hatte.', author: 'Mara K.', image: 'https://i.ibb.co/gZCPtLVP/archive.webp' },
-  { quote: 'Sascha hat meine Referenz sofort verstanden und daraus etwas gemacht, das sich anfühlt, als wäre es immer für mich gedacht gewesen.', author: 'Jonas R.', image: 'https://i.ibb.co/gZCPtLVP/archive.webp' },
-  { quote: 'Ruhiges Studio, klare Richtung, schöne Linien. Ich kam für einen kleinen Flash und weiß jetzt schon, was als Nächstes kommt.', author: 'Lea M.', image: 'https://i.ibb.co/gZCPtLVP/archive.webp' },
+  { quote: 'Ich war am Anfang total unsicher mit meiner Idee. Flocka hat mir geholfen, daraus etwas Eigenes zu machen, ohne dass es sich irgendwann fremd angefühlt hat.', author: 'Josefine T.', image: 'https://i.ibb.co/gZCPtLVP/archive.webp' },
+  { quote: 'Ich hatte nur ein paar Referenzen und wusste selbst noch nicht genau, wo es hingehen soll. Am Ende war das Tattoo viel persönlicher, als ich es mir vorgestellt hatte.', author: 'Cem S.', image: 'https://i.ibb.co/nqRpJX6w/process.webp' },
+  { quote: 'Die Session war super entspannt. Ich habe mich direkt wohlgefühlt und bin mit einem Tattoo nach Hause gegangen, das wirklich zu mir passt.', author: 'Luisa W.', image: 'https://i.ibb.co/ZpBjSyJj/open-skin.webp' },
+  { quote: 'Ich wollte eigentlich nur ein kleines Motiv und war dann überrascht, wie viel aus der Idee geworden ist. Flocka hat genau die richtige Richtung gefunden.', author: 'Tobi F.', image: 'https://i.ibb.co/ZR69H2cv/red-relic.webp' },
 ]
 const faqs = [
   { question: 'Welche Tattoos macht Flocka?', answer: 'Individuelle Tattoos, Blackwork, Ornamentik, Schwarz-Rot, ausgewählte Farben und Flash. Am besten starten wir mit deiner Idee – nicht mit einer festen Schublade.' },
@@ -190,7 +191,7 @@ function toggleFaq(index: number) {
     <div class="surface-hero-stack">
       <FlockaHeroSection />
 
-      <section id="about" class="surface-card surface-section page-shell -mt-2 border-0 border-t-2 border-t-bone px-5 py-16 md:px-[2vw] md:py-24">
+      <section id="about" class="surface-card surface-section page-shell border-0 border-t-2 border-t-bone px-5 py-16 md:px-[2vw] md:py-24">
         <div class="section-rule"><p class="section-label text-signal-bright">Über mich</p><span class="section-rule__line" /></div>
         <div class="about-layout mt-16 grid gap-16 md:mt-24 md:grid-cols-2 md:gap-x-24 md:gap-y-24">
           <FlockaReveal direction="right" class="md:col-start-2"><p class="surface-lead max-w-3xl">Ich bin Sascha, 31, Vollzeit-Tätowierer aus Köln. Als Newcomer im Quereinstieg entwickle ich gerade meine eigene Handschrift – mit klaren Linien, starken Symbolen und Farbe, wenn sie passt.</p></FlockaReveal>
@@ -243,7 +244,7 @@ function toggleFaq(index: number) {
 <style scoped>
 .surface-page { background: #f2efe8; }
 .surface-home { position: relative; z-index: 2; background: #000; }
-.surface-hero-stack { position: relative; isolation: isolate; }
+.surface-hero-stack { position: relative; isolation: isolate; overflow-anchor: none; }
 .surface-hero { z-index: 2; }
 .surface-section { position: relative; z-index: 5; overflow-x: clip; scroll-margin-top: 5rem; background: #000; }
 .surface-gallery { overflow-x: clip; background: #000; isolation: isolate; }
@@ -254,7 +255,7 @@ function toggleFaq(index: number) {
 .surface-section:not(.surface-card):not(#work) > :nth-child(even) { transform: translateX(48px); }
 .surface-section.section-reveal--visible:not(.surface-card):not(#work) > * { opacity: 1; transform: translateX(0); }
 .surface-lead { font-size: clamp(1.35rem, 2.25vw, 2.25rem); line-height: 1.08; letter-spacing: -.035em; color: var(--flocka-bone, #f2efe8); }
-.surface-card { border-radius: 48px 48px 0 0; }
+.surface-card { border-radius: 48px 48px 0 0; overflow-anchor: none; }
 .surface-contact { overflow-x: clip; border-radius: 0 0 48px 48px; background: #000; }
 .surface-footer { background: #f2efe8; }
 .surface-footer-stage { min-height: 550px; }
