@@ -3,6 +3,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   modules: ['@unocss/nuxt', '@nuxt/icon', '@nuxt/a11y'],
+  icon: {
+    fallbackToApi: false,
+    serverBundle: {
+      collections: ['jam', 'lucide'],
+    },
+  },
   typescript: { strict: true, typeCheck: true },
   runtimeConfig: {
     public: {

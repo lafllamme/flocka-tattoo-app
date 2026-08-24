@@ -21,11 +21,10 @@ onBeforeUnmount(() => {
   if (import.meta.client)
     document.body.style.overflow = ''
 })
-
 </script>
 
 <template>
-  <header class="site-header page-shell py-2 bg-transparent flex min-h-12 pointer-events-none items-center inset-x-0 top-0 justify-between fixed z-50 md:absolute md:py-2 md:min-h-[57px]">
+  <header class="site-header page-shell py-2 bg-transparent flex min-h-12 pointer-events-none items-center inset-x-0 top-0 justify-between fixed z-50 md:py-2 md:min-h-[57px] md:absolute">
     <nav class="w-full hidden pointer-events-auto items-center justify-between md:flex" aria-label="Main navigation">
       <a href="#top" class="text-base text-bone tracking-[-.02em] font-semibold no-underline transition-colors hover:text-signal-bright">Start</a>
       <a v-for="item in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="text-base text-bone tracking-[-.02em] font-semibold no-underline transition-colors hover:text-signal-bright">{{ item.label }}</a>
@@ -147,7 +146,7 @@ onBeforeUnmount(() => {
 }
 
 .site-header {
-  animation: site-header-in 520ms cubic-bezier(.23, 1, .32, 1) 400ms both;
+  animation: site-header-in 600ms cubic-bezier(.23, 1, .32, 1) 220ms both;
   will-change: transform;
 }
 

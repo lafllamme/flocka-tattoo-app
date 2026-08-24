@@ -1,16 +1,28 @@
 <script setup lang="ts">
+import type { CSSProperties } from 'vue'
 import { useIntersectionObserver, usePreferredReducedMotion } from '@vueuse/core'
 
 const props = withDefaults(defineProps<{
   direction?: 'up' | 'left' | 'right'
+  delay?: number
+  duration?: number
+  distance?: number
 }>(), {
   direction: 'up',
+  delay: 0,
+  duration: 560,
+  distance: 64,
 })
 
 const revealed = ref(false)
 const target = ref<HTMLElement | null>(null)
 const prefersReducedMotion = usePreferredReducedMotion()
 const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce')
+const revealStyle = computed(() => ({
+  '--reveal-delay': `${props.delay}ms`,
+  '--reveal-duration': `${props.duration}ms`,
+  '--reveal-distance': `${props.distance}px`,
+}) as CSSProperties)
 
 const { stop } = useIntersectionObserver(
   target,
@@ -26,7 +38,7 @@ const { stop } = useIntersectionObserver(
 </script>
 
 <template>
-  <div ref="target" class="reveal" :class="[`reveal--${props.direction}`, { 'reveal--visible': revealed || shouldReduceMotion }]">
+  <div ref="target" class="reveal" :style="revealStyle" :class="[`reveal--${props.direction}`, { 'reveal--visible': revealed || shouldReduceMotion }]">
     <slot />
   </div>
 </template>
@@ -34,16 +46,17 @@ const { stop } = useIntersectionObserver(
 <style scoped>
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 620ms cubic-bezier(.22, 1, .36, 1), transform 620ms cubic-bezier(.22, 1, .36, 1);
+  transform: translate3d(0, var(--reveal-distance), 0);
+  transition: opacity var(--reveal-duration) cubic-bezier(.23, 1, .32, 1) var(--reveal-delay), transform var(--reveal-duration) cubic-bezier(.23, 1, .32, 1) var(--reveal-delay);
+  will-change: opacity, transform;
 }
 
-.reveal--left { transform: translateX(-48px); }
-.reveal--right { transform: translateX(48px); }
+.reveal--left { transform: translate3d(calc(var(--reveal-distance) * -1), 0, 0); }
+.reveal--right { transform: translate3d(var(--reveal-distance), 0, 0); }
 
 .reveal--visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
