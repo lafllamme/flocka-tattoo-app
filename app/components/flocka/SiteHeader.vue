@@ -60,6 +60,8 @@ onBeforeUnmount(() => {
       <img
         src="https://i.ibb.co/HLDFtYk8/flocka-logo.webp"
         alt="Flocka Tattoo"
+        loading="lazy"
+        decoding="async"
         class="mobile-menu-logo max-w-[55vw] w-52 pointer-events-none select-none bottom-5 right-5 absolute"
       >
     </div>

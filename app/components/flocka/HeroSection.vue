@@ -26,7 +26,7 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
           </div>
           <div class="relative md:row-span-2 md:col-start-2 md:row-start-1 md:w-[94%] md:justify-self-end">
             <div class="bg-blood opacity-70 inset-0 absolute blur-3xl -z-10" />
-            <FlockaColorRevealImage src="https://i.ibb.co/v6qYfKDX/flocka-hero.webp" alt="Flocka Tattoo studio portrait" class="border-2 border-bone w-full aspect-[.9] object-cover object-top md:aspect-[2.3]" :class="shouldReduceMotion ? '' : 'hero-image-enter'" />
+            <FlockaColorRevealImage src="https://i.ibb.co/v6qYfKDX/flocka-hero.webp" alt="Flocka Tattoo studio portrait" loading="eager" fetchpriority="high" decoding="async" class="border-2 border-bone w-full aspect-[.9] object-cover object-top md:aspect-[2.3]" :class="shouldReduceMotion ? '' : 'hero-image-enter'" />
           </div>
         </div>
       </div>

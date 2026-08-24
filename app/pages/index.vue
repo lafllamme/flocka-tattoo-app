@@ -446,7 +446,7 @@ function toggleFaq(index: number) {
             </h2><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="btn-ghost text-base tracking-normal mt-10 px-5 py-3 border-2 border-bone rounded-md normal-case">Anfrage senden <Icon name="lucide:arrow-up-right" size="18" /></a>
           </div>
         </FlockaReveal><FlockaReveal direction="right" :distance="96">
-          <img src="https://i.ibb.co/HLDFtYk8/flocka-logo.webp" alt="Flocka Tattoo Logo" class="mx-auto mt-4 w-48 object-contain md:mx-0 md:mt-0 md:max-w-[22rem] md:w-full md:justify-self-end">
+          <img src="https://i.ibb.co/HLDFtYk8/flocka-logo.webp" alt="Flocka Tattoo Logo" loading="lazy" decoding="async" class="mx-auto mt-4 w-48 object-contain md:mx-0 md:mt-0 md:max-w-[22rem] md:w-full md:justify-self-end">
         </FlockaReveal>
       </div>
     </section>
@@ -532,7 +532,7 @@ function toggleFaq(index: number) {
 }
 .faq-list { border-color: var(--flocka-bone, #f2efe8); }
 .faq-item { border-color: var(--flocka-bone, #f2efe8); padding-inline: 0; transition: background-color 320ms cubic-bezier(.23, 1, .32, 1), color 320ms cubic-bezier(.23, 1, .32, 1), padding-inline 320ms cubic-bezier(.23, 1, .32, 1); }
-.faq-trigger { min-height: 5.25rem; padding-block: 1.25rem; font-weight: 600; color: var(--flocka-bone, #f2efe8); transition: color 240ms ease; }
+.faq-trigger { min-height: 5.25rem; padding-block: 1.25rem; font-weight: 500; letter-spacing: -.015em; color: var(--flocka-bone, #f2efe8); transition: color 240ms ease; }
 .faq-question, .faq-icon { transition: transform 360ms cubic-bezier(.23, 1, .32, 1), color 240ms ease; }
 .faq-item:not(.faq-item--open):hover .faq-question { transform: translateX(.5rem); }
 .faq-item:not(.faq-item--open):hover .faq-icon { transform: translateX(-.5rem); }
@@ -540,6 +540,9 @@ function toggleFaq(index: number) {
 .faq-item--open .faq-icon { color: #000; }
 .faq-item--open .faq-trigger { color: #000; }
 .faq-item--open p { color: #000; }
+@media (min-width: 768px) {
+  .faq-trigger { font-weight: 600; letter-spacing: normal; }
+}
 .faq-answer { overflow: hidden; }
 .faq-answer p { padding-bottom: 1.5rem; }
 @media (hover: hover) {

@@ -57,6 +57,8 @@ onBeforeUnmount(unregister)
 <template>
   <img
     ref="target"
+    loading="lazy"
+    decoding="async"
     v-bind="$attrs"
     class="color-reveal-image grayscale"
     :class="{ 'grayscale-0': revealed || prefersReducedMotion === 'reduce' }"

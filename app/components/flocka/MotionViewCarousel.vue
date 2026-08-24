@@ -26,17 +26,16 @@ const prefersReducedMotion = usePreferredReducedMotion()
 const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce')
 const revealed = computed(() => activeFocus.value === focusId)
 let instance: MotionViewInstance | undefined
+let loadStarted = false
 
 const imageSources = [
-  'https://i.imgur.com/egkTZJd.gif',
-  'https://i.imgur.com/SjHANWz.gif',
-  'https://i.imgur.com/TGdtgDL.gif',
   'https://i.imgur.com/XPg3rri.jpeg',
-  'https://i.imgur.com/q51vagy.png',
-  'https://i.imgur.com/6dDbcJx.png',
-  'https://i.imgur.com/IgUNTwt.png',
-  'https://i.imgur.com/mfIjpuO.png',
-  'https://i.imgur.com/fih1y9w.png',
+  'https://i.ibb.co/CsmC686z/testimonial.webp',
+  'https://i.ibb.co/nqRpJX6w/process.webp',
+  'https://i.ibb.co/fY15ZQvQ/flash-after-dark.webp',
+  'https://i.ibb.co/ZpBjSyJj/open-skin.webp',
+  'https://i.ibb.co/ZR69H2cv/red-relic.webp',
+  'https://i.ibb.co/gZCPtLVP/archive.webp',
 ]
 
 useIntersectionObserver(
@@ -76,7 +75,12 @@ function loadMotionView() {
   })
 }
 
-onMounted(async () => {
+async function mountMotionView() {
+  if (loadStarted)
+    return
+
+  loadStarted = true
+
   try {
     await loadMotionView()
     if (!canvas.value || !window.MotionView)
@@ -102,7 +106,16 @@ onMounted(async () => {
   catch {
     hasError.value = true
   }
-})
+}
+
+useIntersectionObserver(
+  gallery,
+  ([entry]) => {
+    if (entry?.isIntersecting)
+      void mountMotionView()
+  },
+  { rootMargin: '300px 0px', threshold: 0 },
+)
 
 onBeforeUnmount(() => {
   instance?.destroy?.()
