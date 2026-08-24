@@ -267,7 +267,7 @@ function toggleFaq(index: number) {
               </div>
             </FlockaReveal>
             <FlockaReveal :direction="index % 2 === 0 ? 'right' : 'left'" :delay="index * 90 + 60">
-              <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="group border border-bone block overflow-hidden" :aria-label="`${project.title} ansehen`"><FlockaColorRevealImage :src="project.image" :alt="project.alt" class="w-full aspect-[1.37] transition-transform duration-700 object-cover group-hover:scale-105" /></a>
+              <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="zoom-frame border border-bone block overflow-hidden" :aria-label="`${project.title} ansehen`"><FlockaColorRevealImage :src="project.image" :alt="project.alt" class="image-zoom w-full aspect-[1.37] object-cover" /></a>
             </FlockaReveal>
           </article>
         </div>
@@ -407,9 +407,9 @@ function toggleFaq(index: number) {
               Journal
             </p><span class="section-rule__line" />
           </div>
-        </FlockaReveal><div class="mt-16 gap-8 grid md:mt-24 md:gap-6 md:grid-cols-3">
+        </FlockaReveal><div class="journal-grid mt-16 gap-8 grid md:mt-24 md:gap-6 md:grid-cols-3">
           <FlockaReveal v-for="(article, index) in articles" :key="article.title" direction="up" :delay="index * 90">
-            <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="journal-card group p-3 border border-bone block transition-colors hover:text-black hover:bg-bone"><div class="overflow-hidden"><FlockaColorRevealImage :src="article.image" :alt="article.title" allow-multiple-on-desktop class="w-full aspect-[1.2] transition-transform duration-700 object-cover group-hover:scale-105" /></div><div class="p-3 pb-4"><h3 class="text-lg text-bone leading-tight transition-colors group-hover:text-black">{{ article.title }}</h3><p class="text-sm text-muted leading-relaxed mt-3 transition-colors group-hover:text-black">{{ article.body }}</p></div></a>
+            <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="journal-card zoom-frame group p-3 border border-bone block transition-colors hover:text-black hover:bg-bone"><div class="journal-card__media overflow-hidden"><FlockaColorRevealImage :src="article.image" :alt="article.title" allow-multiple-on-desktop class="image-zoom w-full aspect-[1.2] object-cover" /></div><div class="journal-card__body p-3 pb-4"><h3 class="text-lg text-bone leading-tight transition-colors group-hover:text-black">{{ article.title }}</h3><p class="text-sm text-muted leading-relaxed mt-3 transition-colors group-hover:text-black">{{ article.body }}</p></div></a>
           </FlockaReveal>
         </div>
       </section>
@@ -496,6 +496,19 @@ function toggleFaq(index: number) {
 .section-label { margin: 0; color: var(--flocka-signal-bright, #e33434); font-family: Inter, Arial, sans-serif; font-size: clamp(.72rem, .8vw, .9rem); font-weight: 600; letter-spacing: .12em; line-height: 1; text-transform: none; white-space: nowrap; }
 .section-rule__line { height: 2px; background: #fff; }
 .section-motion-label { display: block; }
+.journal-grid { align-items: stretch; }
+.journal-card { height: 100%; display: flex; flex-direction: column; }
+.journal-card__media { flex: none; }
+.journal-card__body { flex: 1; min-height: 8.25rem; }
+.zoom-frame { overflow: hidden; }
+.zoom-frame :deep(.image-zoom) { transform: scale(1); transition: transform 700ms cubic-bezier(.23, 1, .32, 1); will-change: transform; }
+@media (hover: hover) {
+  .zoom-frame:hover :deep(.image-zoom) { transform: scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zoom-frame :deep(.image-zoom),
+  .zoom-frame:hover :deep(.image-zoom) { transform: none; transition: none; }
+}
 .surface-lead { font-size: clamp(1.35rem, 2.25vw, 2.25rem); line-height: 1.08; letter-spacing: -.035em; color: var(--flocka-bone, #f2efe8); }
 .surface-card {
   border-radius: 48px 48px 0 0;

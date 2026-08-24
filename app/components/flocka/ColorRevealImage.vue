@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useIntersectionObserver, useMediaQuery, usePreferredReducedMotion } from '@vueuse/core'
-import { useColorRevealFocus } from '../../composables/useColorRevealFocus'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useColorRevealFocus } from '../../composables/useColorRevealFocus'
 
 const props = defineProps<{
   allowMultipleOnDesktop?: boolean
@@ -66,12 +66,20 @@ onBeforeUnmount(unregister)
 <style scoped>
 .color-reveal-image {
   transition: filter 800ms cubic-bezier(.22, 1, .36, 1), transform 700ms cubic-bezier(.4, 0, .2, 1) !important;
-  will-change: filter;
+  will-change: filter, transform;
+}
+
+.color-reveal-image.image-zoom {
+  transform: scale(1);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .color-reveal-image {
     transition: none !important;
+  }
+
+  .color-reveal-image.image-zoom {
+    transform: none;
   }
 }
 </style>
