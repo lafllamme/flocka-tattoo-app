@@ -171,9 +171,12 @@ const shouldHideHeader = computed(() => aboutSectionReachedHeader.value && !menu
 
 .site-header {
   transform: translateY(-100%);
-  transition: transform 560ms cubic-bezier(.22, 1, .36, 1);
+  transition: transform 600ms cubic-bezier(.32, .72, 0, 1);
+  transition-delay: 200ms;
   will-change: transform;
 }
+
+.site-header--leaving { transition-delay: 0ms; }
 
 .site-header--entered {
   transform: translateY(0);

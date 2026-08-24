@@ -40,10 +40,10 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 </template>
 
 <style scoped>
-.hero-copy-enter { animation: hero-copy-in 720ms cubic-bezier(.22, 1, .36, 1) both; }
-.hero-wordmark-enter { animation: hero-wordmark-in 1100ms cubic-bezier(.22, 1, .36, 1) 120ms both; }
-.hero-image-enter { animation: hero-image-in 1100ms cubic-bezier(.22, 1, .36, 1) 240ms both; }
-.hero-status-enter { animation: hero-status-in 620ms cubic-bezier(.22, 1, .36, 1) 420ms both; }
+.hero-copy-enter { animation: hero-copy-in 620ms cubic-bezier(.32, .72, 0, 1) 200ms both; }
+.hero-wordmark-enter { animation: hero-wordmark-in 620ms cubic-bezier(.32, .72, 0, 1) 200ms both; }
+.hero-image-enter { animation: hero-image-in 620ms cubic-bezier(.32, .72, 0, 1) 200ms both; }
+.hero-status-enter { animation: hero-status-in 500ms cubic-bezier(.32, .72, 0, 1) 400ms both; }
 .hero-content-group { position: relative; }
 .status-dot { position: relative; flex: none; }
 .status-dot::after { content: ''; position: absolute; inset: -4px; border: 1px solid rgb(117 196 90 / 65%); border-radius: 9999px; animation: status-pulse 2.2s ease-out infinite; }
@@ -56,8 +56,8 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
   .hero-content-group { transform: translateY(100px); }
 }
 @keyframes hero-copy-in { from { opacity: 0; transform: translateX(-56px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes hero-wordmark-in { from { opacity: 0; } to { opacity: 1; } }
-@keyframes hero-image-in { from { opacity: 0; transform: translateX(64px) scale(1.03); } to { opacity: 1; transform: translateX(0) scale(1); } }
+@keyframes hero-wordmark-in { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes hero-image-in { from { opacity: 0; transform: translateX(64px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes hero-status-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes status-pulse { 0% { opacity: .7; transform: scale(.8); } 70%, 100% { opacity: 0; transform: scale(2.2); } }
 @media (prefers-reduced-motion: reduce) {
