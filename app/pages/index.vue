@@ -276,22 +276,24 @@ function toggleFaq(index: number) {
       <section id="services" class="surface-section page-shell px-5 py-24 border-b border-line md:px-[2vw] md:py-24">
         <FlockaReveal direction="left" class="section-motion-label">
           <div class="section-rule">
-            <p class="section-label text-signal-bright">
-              Leistungen
+            <p class="section-label text-bone">
+              Services
             </p><span class="section-rule__line" />
           </div>
-        </FlockaReveal><div class="mt-16 gap-8 grid md:mt-24 md:grid-cols-[.8fr_1.2fr]">
-          <FlockaReveal direction="right" :distance="96">
-            <p class="surface-lead max-w-2xl">
-              Tattoos mit klarer Richtung, ruhiger Hand und genug Raum für eine gute Idee.
-            </p>
-          </FlockaReveal><FlockaReveal direction="right" :delay="80">
-            <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="eyebrow text-bone pb-2 border-b border-line h-fit hidden hover:border-signal-bright md:block">Leistungen ansehen <Icon name="lucide:arrow-up-right" size="14" /></a>
-          </FlockaReveal>
-        </div><div class="mt-16 border-t border-line md:mt-24">
+        </FlockaReveal><div class="mt-16 grid md:mt-24 md:gap-6 md:grid-cols-[1.35fr_.65fr]">
+          <div class="md:col-start-2">
+            <FlockaReveal direction="right" :distance="96">
+              <p class="surface-lead max-w-xl">
+                Tattoos mit klarer Richtung, ruhiger Hand und genug Raum für eine gute Idee.
+              </p>
+            </FlockaReveal><FlockaReveal direction="right" :delay="80">
+              <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="services-cta text-bone tracking-[.04em] font-semibold mt-8 px-5 py-3 border-2 border-bone inline-flex gap-4 h-fit w-fit normal-case transition-colors items-center hover:text-black hover:bg-bone">Meine Leistungen <Icon name="lucide:arrow-down-right" size="18" /></a>
+            </FlockaReveal>
+          </div>
+        </div><div class="services-list mt-16 border-t border-line md:mt-24">
           <FlockaReveal v-for="(service, index) in services" :key="service.title" direction="up" :delay="index * 80">
-            <article class="py-8 border-b border-line gap-4 grid transition-colors hover:text-black md:py-10 hover:bg-white md:grid-cols-[.8fr_1.2fr] md:items-center">
-              <h3 class="text-3xl text-bone leading-none tracking-[-.03em] font-display uppercase md:text-5xl">
+            <article class="service-row py-6 border-b border-line gap-6 grid transition-colors hover:text-black md:py-7 hover:bg-white md:grid-cols-[1.35fr_.65fr] md:items-center">
+              <h3 class="text-3xl text-bone leading-none tracking-[-.045em] font-black font-display uppercase md:text-5xl">
                 {{ service.title }}
               </h3><p class="text-sm text-muted leading-relaxed max-w-lg transition-colors md:text-base">
                 {{ service.body }}
@@ -309,17 +311,17 @@ function toggleFaq(index: number) {
             </p><span class="section-rule__line" />
           </div>
         </FlockaReveal><div class="mt-16 gap-14 grid md:mt-24 md:grid-cols-[.8fr_1.2fr] md:items-center">
-          <FlockaReveal direction="right" :distance="96">
-            <FlockaColorRevealImage src="https://i.ibb.co/fY15ZQvQ/flash-after-dark.webp" alt="Detail aus dem Tattoo-Prozess von Flocka" class="border border-bone w-full aspect-[.8] object-cover" />
-          </FlockaReveal><div class="grid content-start">
+          <FlockaReveal direction="right" :distance="96" class="order-2 md:order-1">
+            <FlockaColorRevealImage src="https://i.ibb.co/fY15ZQvQ/flash-after-dark.webp" alt="Detail aus dem Tattoo-Prozess von Flocka" class="border border-bone w-full aspect-[1.3] object-cover md:aspect-[1.25]" />
+          </FlockaReveal><div class="process-list grid content-start order-1 md:order-2">
             <FlockaReveal v-for="(stage, index) in process" :key="stage.number" direction="up" :delay="index * 80">
-              <article class="py-8 border-b border-line gap-5 grid grid-cols-[3rem_1fr] md:py-9 first:pt-0">
-                <p class="eyebrow text-muted">
+              <article class="process-step py-7 gap-5 grid grid-cols-[3rem_1fr] md:py-8 first:pt-0 md:gap-8 md:grid-cols-[4rem_1fr]">
+                <p class="process-step__number eyebrow text-muted md:pt-2">
                   {{ stage.number }}
                 </p><div>
-                  <h3 class="text-4xl text-bone leading-none font-display uppercase md:text-5xl">
+                  <h3 class="process-step__title text-5xl text-bone leading-none tracking-[-.05em] font-black font-display uppercase md:text-7xl">
                     {{ stage.title }}
-                  </h3><p class="text-sm text-muted leading-relaxed mt-4 max-w-md md:text-base">
+                  </h3><p class="process-step__description text-sm text-muted leading-[1.35] mt-6 max-w-xl md:text-xl">
                     {{ stage.body }}
                   </p>
                 </div>
