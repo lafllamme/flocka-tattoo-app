@@ -170,7 +170,8 @@ function toggleFaq(index: number) {
   <main class="surface-home relative flex min-h-screen flex-col text-bone">
     <FlockaNoiseLayer />
     <FlockaSiteHeader />
-    <FlockaHeroSection />
+    <div class="surface-hero-stack">
+      <FlockaHeroSection />
 
       <section id="about" class="surface-card surface-section page-shell -mt-2 border-0 border-t-2 border-t-bone px-5 py-16 md:px-[2vw] md:py-24">
         <div class="section-rule"><p class="section-label text-signal-bright">Über mich</p><span class="section-rule__line" /></div>
@@ -180,6 +181,7 @@ function toggleFaq(index: number) {
           <FlockaReveal direction="right" class="md:col-start-2 md:row-start-2"><FlockaColorRevealImage src="/images/portfolio/testimonial.png" alt="Tattoo-Arbeit aus dem Portfolio von Flocka" class="aspect-[1.25] w-full border border-bone object-cover" /></FlockaReveal>
         </div>
       </section>
+    </div>
 
     <section id="work" class="surface-section page-shell border-b border-line px-5 py-24 md:px-[2vw] md:py-24">
       <div class="section-rule"><p class="section-label text-signal-bright">Arbeiten</p><span class="section-rule__line" /></div>
@@ -222,8 +224,9 @@ function toggleFaq(index: number) {
 </template>
 
 <style scoped>
-.surface-page { overflow-x: clip; background: #f2efe8; }
-.surface-home { position: relative; background: transparent; }
+.surface-page { background: #f2efe8; }
+.surface-home { position: relative; z-index: 2; background: #000; }
+.surface-hero-stack { position: relative; isolation: isolate; }
 .surface-hero { z-index: 2; }
 .surface-section { position: relative; z-index: 5; scroll-margin-top: 5rem; background: #000; }
 .surface-gallery { background: #000; isolation: isolate; }
