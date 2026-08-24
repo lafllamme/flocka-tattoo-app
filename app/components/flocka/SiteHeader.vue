@@ -147,7 +147,7 @@ onBeforeUnmount(() => {
 }
 
 .site-header {
-  animation: site-header-in 600ms cubic-bezier(.23, 1, .32, 1) 430ms both;
+  animation: site-header-in 520ms cubic-bezier(.23, 1, .32, 1) 400ms both;
   will-change: transform;
 }
 

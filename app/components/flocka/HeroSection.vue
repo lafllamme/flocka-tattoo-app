@@ -17,7 +17,7 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
             </p>
             <a href="#work" class="group mt-4 inline-flex items-center gap-2 rounded-none border border-bone px-3 py-2 text-xs font-medium text-bone transition-colors hover:bg-bone hover:text-black md:mt-7 md:gap-4 md:border-2 md:px-5 md:py-3 md:text-base">Arbeiten ansehen <Icon name="lucide:arrow-down-right" size="16" class="transition-transform group-hover:translate-x-1 group-hover:translate-y-1 md:size-[18px]" /></a>
           </div>
-          <div class="hero-status flex w-full items-center justify-between gap-4 text-xs leading-none text-bone relative z-10 mt-4 md:col-start-1 md:row-start-2 md:mt-0 md:w-[48%] md:self-end md:gap-6 md:text-sm" :class="shouldReduceMotion ? '' : 'hero-status-enter'">
+          <div class="hero-status flex w-full items-center justify-between gap-4 text-xs leading-none text-bone relative z-10 mt-4 md:col-start-1 md:row-start-2 md:mt-0 md:self-end md:gap-6 md:text-sm" :class="shouldReduceMotion ? '' : 'hero-status-enter'">
             <p class="flex items-center gap-2 whitespace-nowrap">
               <span class="status-dot size-2 rounded-full bg-[#75C45A]" /> Available for Work
             </p><p class="flex items-center gap-1.5 whitespace-nowrap">
@@ -40,10 +40,10 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 </template>
 
 <style scoped>
-.hero-copy-enter { animation: hero-copy-in 560ms cubic-bezier(.23, 1, .32, 1) 200ms both; }
-.hero-wordmark-enter { animation: hero-wordmark-in 600ms cubic-bezier(.23, 1, .32, 1) 430ms both; }
-.hero-image-enter { animation: hero-image-in 560ms cubic-bezier(.23, 1, .32, 1) 200ms both; }
-.hero-status-enter { animation: hero-status-in 560ms cubic-bezier(.23, 1, .32, 1) 200ms both; }
+.hero-copy-enter { animation: hero-copy-in 520ms cubic-bezier(.23, 1, .32, 1) 180ms both; }
+.hero-wordmark-enter { animation: hero-wordmark-in 520ms cubic-bezier(.23, 1, .32, 1) 340ms both; }
+.hero-image-enter { animation: hero-image-in 520ms cubic-bezier(.23, 1, .32, 1) 180ms both; }
+.hero-status-enter { animation: hero-status-in 520ms cubic-bezier(.23, 1, .32, 1) 180ms both; }
 .hero-content-group { position: relative; }
 .status-dot { position: relative; flex: none; }
 .status-dot::after { content: ''; position: absolute; inset: -4px; border: 1px solid rgb(117 196 90 / 65%); border-radius: 9999px; animation: status-pulse 2.2s ease-out infinite; }
@@ -58,7 +58,7 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 @keyframes hero-copy-in { from { opacity: 0; transform: translateX(-120px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes hero-wordmark-in { from { opacity: 0; transform: translateY(150px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes hero-image-in { from { opacity: 0; transform: translateX(120px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes hero-status-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes hero-status-in { from { opacity: 0; transform: translateX(-120px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes status-pulse { 0% { opacity: .7; transform: scale(.8); } 70%, 100% { opacity: 0; transform: scale(2.2); } }
 @media (prefers-reduced-motion: reduce) {
   .status-dot::after { animation: none; }
