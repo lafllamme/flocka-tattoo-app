@@ -55,9 +55,9 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 @media (min-width: 768px) and (min-height: 700px) {
   .hero-content-group { transform: translateY(100px); }
 }
-@keyframes hero-copy-in { from { opacity: 0; transform: translateX(-56px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes hero-copy-in { from { opacity: 0; transform: translateX(-96px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes hero-wordmark-in { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes hero-image-in { from { opacity: 0; transform: translateX(64px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes hero-image-in { from { opacity: 0; transform: translateX(96px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes hero-status-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes status-pulse { 0% { opacity: .7; transform: scale(.8); } 70%, 100% { opacity: 0; transform: scale(2.2); } }
 @media (prefers-reduced-motion: reduce) {

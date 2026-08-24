@@ -170,7 +170,7 @@ const shouldHideHeader = computed(() => aboutSectionReachedHeader.value && !menu
 }
 
 .site-header {
-  transform: translateY(-100%);
+  transform: translateY(-150px);
   transition: transform 600ms cubic-bezier(.32, .72, 0, 1);
   transition-delay: 200ms;
   will-change: transform;
@@ -183,7 +183,7 @@ const shouldHideHeader = computed(() => aboutSectionReachedHeader.value && !menu
 }
 
 .site-header--leaving {
-  transform: translateY(-100%);
+  transform: translateY(-150px);
 }
 
 @media (prefers-reduced-motion: reduce) {
