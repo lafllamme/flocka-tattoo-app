@@ -321,7 +321,13 @@ function toggleFaq(index: number) {
 .surface-section:not(.surface-card):not(#work) > :nth-child(even) { transform: translateX(48px); }
 .surface-section.section-reveal--visible:not(.surface-card):not(#work) > * { opacity: 1; transform: translateX(0); }
 .surface-lead { font-size: clamp(1.35rem, 2.25vw, 2.25rem); line-height: 1.08; letter-spacing: -.035em; color: var(--flocka-bone, #f2efe8); }
-.surface-card { border-radius: 48px 48px 0 0; overflow-anchor: none; }
+.surface-card {
+  border-radius: 48px 48px 0 0;
+  overflow-anchor: none;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
 .surface-contact { overflow-x: clip; border-radius: 0 0 48px 48px; background: #000; }
 .surface-footer { background: #f2efe8; }
 .surface-footer-stage { min-height: 550px; }
