@@ -26,7 +26,7 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
           </div>
           <div class="relative md:col-start-2 md:row-span-2 md:row-start-1 md:w-[94%] md:justify-self-end">
             <div class="bg-blood opacity-70 inset-0 absolute blur-3xl -z-10" />
-            <FlockaColorRevealImage src="/images/flocka-hero.jpg" alt="Flocka Tattoo studio portrait" class="aspect-[.9] w-full border-2 border-bone object-cover object-top md:aspect-[1.9]" :class="shouldReduceMotion ? '' : 'hero-image-enter'" />
+            <FlockaColorRevealImage src="https://i.ibb.co/v6qYfKDX/flocka-hero.webp" alt="Flocka Tattoo studio portrait" class="aspect-[.9] w-full border-2 border-bone object-cover object-top md:aspect-[1.9]" :class="shouldReduceMotion ? '' : 'hero-image-enter'" />
           </div>
         </div>
 
@@ -40,10 +40,10 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 </template>
 
 <style scoped>
-.hero-copy-enter { animation: hero-copy-in 700ms cubic-bezier(.23, 1, .32, 1) 200ms both; }
-.hero-wordmark-enter { animation: hero-wordmark-in 700ms cubic-bezier(.23, 1, .32, 1) 440ms both; }
-.hero-image-enter { animation: hero-image-in 700ms cubic-bezier(.23, 1, .32, 1) 200ms both; }
-.hero-status-enter { animation: hero-status-in 700ms cubic-bezier(.23, 1, .32, 1) 200ms both; }
+.hero-copy-enter { animation: hero-copy-in 560ms cubic-bezier(.23, 1, .32, 1) 200ms both; }
+.hero-wordmark-enter { animation: hero-wordmark-in 600ms cubic-bezier(.23, 1, .32, 1) 430ms both; }
+.hero-image-enter { animation: hero-image-in 560ms cubic-bezier(.23, 1, .32, 1) 200ms both; }
+.hero-status-enter { animation: hero-status-in 560ms cubic-bezier(.23, 1, .32, 1) 200ms both; }
 .hero-content-group { position: relative; }
 .status-dot { position: relative; flex: none; }
 .status-dot::after { content: ''; position: absolute; inset: -4px; border: 1px solid rgb(117 196 90 / 65%); border-radius: 9999px; animation: status-pulse 2.2s ease-out infinite; }

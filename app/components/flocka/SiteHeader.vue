@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { usePreferredReducedMotion } from '@vueuse/core'
-
 const menuOpen = ref(false)
-const entered = ref(false)
-const prefersReducedMotion = usePreferredReducedMotion()
-const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce')
 
 const menuItems = [
   { label: 'Über mich', href: '#about' },
@@ -27,14 +22,10 @@ onBeforeUnmount(() => {
     document.body.style.overflow = ''
 })
 
-onMounted(() => {
-  entered.value = true
-})
-
 </script>
 
 <template>
-  <header class="site-header page-shell py-2 bg-transparent flex min-h-12 pointer-events-none items-center inset-x-0 top-0 justify-between fixed z-50 md:absolute md:py-2 md:min-h-[57px]" :class="{ 'site-header--entered': entered || shouldReduceMotion }">
+  <header class="site-header page-shell py-2 bg-transparent flex min-h-12 pointer-events-none items-center inset-x-0 top-0 justify-between fixed z-50 md:absolute md:py-2 md:min-h-[57px]">
     <nav class="w-full hidden pointer-events-auto items-center justify-between md:flex" aria-label="Main navigation">
       <a href="#top" class="text-base text-bone tracking-[-.02em] font-semibold no-underline transition-colors hover:text-signal-bright">Start</a>
       <a v-for="item in menuItems" :key="item.href" :href="item.href" :target="item.href.startsWith('http') ? '_blank' : undefined" :rel="item.href.startsWith('http') ? 'noreferrer' : undefined" class="text-base text-bone tracking-[-.02em] font-semibold no-underline transition-colors hover:text-signal-bright">{{ item.label }}</a>
@@ -68,7 +59,7 @@ onMounted(() => {
         Köln · Di—Sa · 10:00—19:00
       </p>
       <img
-        src="/images/flocka_logo.png"
+        src="https://i.ibb.co/HLDFtYk8/flocka-logo.webp"
         alt="Flocka Tattoo"
         class="mobile-menu-logo max-w-[55vw] w-52 pointer-events-none select-none bottom-5 right-5 absolute"
       >
@@ -156,14 +147,13 @@ onMounted(() => {
 }
 
 .site-header {
-  transform: translateY(-150px);
-  transition: transform 600ms cubic-bezier(.32, .72, 0, 1);
-  transition-delay: 200ms;
+  animation: site-header-in 600ms cubic-bezier(.23, 1, .32, 1) 430ms both;
   will-change: transform;
 }
 
-.site-header--entered {
-  transform: translateY(0);
+@keyframes site-header-in {
+  from { opacity: .001; transform: translateY(-150px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -178,6 +168,8 @@ onMounted(() => {
   .menu-slide-leave-active .mobile-menu-logo {
     transition: none;
   }
+
+  .site-header { animation: none; opacity: 1; transform: none; }
 
   .mobile-menu-footer,
   .mobile-menu-logo {
