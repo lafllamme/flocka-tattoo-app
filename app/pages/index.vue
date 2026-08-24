@@ -228,8 +228,8 @@ function toggleFaq(index: number) {
 .surface-home { position: relative; z-index: 2; background: #000; }
 .surface-hero-stack { position: relative; isolation: isolate; }
 .surface-hero { z-index: 2; }
-.surface-section { position: relative; z-index: 5; scroll-margin-top: 5rem; background: #000; }
-.surface-gallery { background: #000; isolation: isolate; }
+.surface-section { position: relative; z-index: 5; overflow-x: clip; scroll-margin-top: 5rem; background: #000; }
+.surface-gallery { overflow-x: clip; background: #000; isolation: isolate; }
 .section-rule { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 1.25rem; }
 .section-label { margin: 0; color: var(--flocka-signal-bright, #e33434); font-family: Inter, Arial, sans-serif; font-size: clamp(.72rem, .8vw, .9rem); font-weight: 600; letter-spacing: .12em; line-height: 1; text-transform: none; white-space: nowrap; }
 .section-rule__line { height: 2px; background: #fff; }
@@ -238,7 +238,7 @@ function toggleFaq(index: number) {
 .surface-section.section-reveal--visible:not(.surface-card):not(#work) > * { opacity: 1; transform: translateX(0); }
 .surface-lead { font-size: clamp(1.35rem, 2.25vw, 2.25rem); line-height: 1.08; letter-spacing: -.035em; color: var(--flocka-bone, #f2efe8); }
 .surface-card { border-radius: 48px 48px 0 0; }
-.surface-contact { border-radius: 0 0 48px 48px; background: #000; }
+.surface-contact { overflow-x: clip; border-radius: 0 0 48px 48px; background: #000; }
 .surface-footer { background: #f2efe8; }
 .surface-footer-stage { min-height: 550px; }
 .faq-item--open { background: var(--flocka-bone, #f2efe8); color: #000; }
