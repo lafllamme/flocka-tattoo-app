@@ -72,7 +72,7 @@ const requestUrl = useRequestURL()
 const siteUrl = (runtimeConfig.public.siteUrl || requestUrl.origin).replace(/\/$/, '')
 const pageTitle = 'Flocka Tattoo Köln · Sascha Schlüter'
 const pageDescription = 'Flocka Tattoo von Sascha Schlüter in Köln: individuelle Tattoos, Blackwork, Fine Line, Schwarz-Rot, Farbe, Ornamentik und Flash. Jetzt unverbindlich anfragen.'
-const ogImage = `${siteUrl}/images/og-flocka-tattoo.png`
+const ogImage = 'https://i.imgur.com/vWC2lY8.png'
 const logoImage = `${siteUrl}/images/flocka_logo.png`
 const instagramUrl = 'https://www.instagram.com/flockatattoo/'
 /* eslint-disable style/quote-props */
