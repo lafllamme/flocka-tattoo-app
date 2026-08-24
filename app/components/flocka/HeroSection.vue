@@ -52,6 +52,11 @@ const shouldReduceMotion = computed(() => prefersReducedMotion.value === 'reduce
 .status-dot { position: relative; flex: none; }
 .status-dot::after { content: ''; position: absolute; inset: -4px; border: 1px solid rgb(117 196 90 / 65%); border-radius: 9999px; animation: status-pulse 2.2s ease-out infinite; }
 @media (max-width: 767px) {
+  .surface-hero {
+    height: auto;
+    min-height: max(620px, 100svh);
+    box-sizing: border-box;
+  }
   .hero-shell { padding-top: 8.5rem; }
   .hero-content-group { margin-top: 1rem; }
   .hero-shell > h1 { top: 4rem; bottom: auto; font-size: clamp(3.3rem, 18vw, 7rem); }
