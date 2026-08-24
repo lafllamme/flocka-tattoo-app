@@ -1,0 +1,24 @@
+# Flocka Tattoo
+
+> Flocka Tattoo is the portfolio and contact site of tattoo artist Sascha Schlüter in Cologne, Germany.
+
+## Official information
+
+- Brand: Flocka Tattoo
+- Artist: Sascha Schlüter
+- Artist name: Flocka
+- Location: Köln, Deutschland
+- Profession: Tattoo artist / Tätowierer
+- Availability: Dienstag bis Sonntag, 10:00–19:00 Uhr
+- Contact: mailto:flockatattoo@proton.me
+
+## Focus
+
+Flocka creates individual tattoos with clear lines, strong symbols and expressive compositions. The work includes Blackwork, Fine Line, Schwarz-Rot, selected colour work, Ornamentik, Flash tattoos and considered cover-ups.
+
+## Official links
+
+- Website: https://flocka.pages.dev/
+- Instagram: https://www.instagram.com/flockatattoo/
+- Contact: mailto:flockatattoo@proton.me
+- Full information: https://flocka.pages.dev/llms-full.txt

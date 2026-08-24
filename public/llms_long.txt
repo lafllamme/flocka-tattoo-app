@@ -1,0 +1,3 @@
+# Flocka Tattoo — extended information
+
+See the canonical extended profile at https://flocka.pages.dev/llms-full.txt.

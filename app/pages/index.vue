@@ -32,9 +32,9 @@ onBeforeUnmount(() => {
 })
 
 const work = [
-  { title: 'CYBERLISM', description: 'Spitze Formen, organische Linien und ein Zeichen zwischen digitaler Ästhetik und dunkler Symbolik.', scope: 'Cyber Sigilism', detail: 'Schwarz-Rot', image: 'https://i.ibb.co/ZR69H2cv/red-relic.webp' },
-  { title: 'MINIMALISM', description: 'Ein reduziertes Zeichen aus feinen Linien, bewusst offen gelassen und leicht über die Haut geführt.', scope: 'Fine Line', detail: 'Ornamental', image: 'https://i.ibb.co/ZpBjSyJj/open-skin.webp' },
-  { title: 'LETTERING', description: 'Kräftige Buchstaben, harte Kontraste und ein Schriftzug mit eigener Haltung.', scope: 'Blackletter', detail: 'Schwarz-Rot', image: 'https://i.ibb.co/nqRpJX6w/process.webp' },
+  { title: 'CYBERLISM', description: 'Spitze Formen, organische Linien und ein Zeichen zwischen digitaler Ästhetik und dunkler Symbolik.', scope: 'Cyber Sigilism', detail: 'Schwarz-Rot', image: 'https://i.ibb.co/ZR69H2cv/red-relic.webp', alt: 'Schwarz-rotes Cyber-Sigilism-Tattoo aus dem Portfolio von Flocka Tattoo' },
+  { title: 'MINIMALISM', description: 'Ein reduziertes Zeichen aus feinen Linien, bewusst offen gelassen und leicht über die Haut geführt.', scope: 'Fine Line', detail: 'Ornamental', image: 'https://i.ibb.co/ZpBjSyJj/open-skin.webp', alt: 'Ornamentales Fine-Line-Tattoo aus dem Portfolio von Flocka Tattoo' },
+  { title: 'LETTERING', description: 'Kräftige Buchstaben, harte Kontraste und ein Schriftzug mit eigener Haltung.', scope: 'Blackletter', detail: 'Schwarz-Rot', image: 'https://i.ibb.co/nqRpJX6w/process.webp', alt: 'Schwarz-rotes Blackletter-Tattoo aus dem Portfolio von Flocka Tattoo' },
 ]
 const services = [
   { title: 'INDIVIDUELLE TATTOOS', body: 'Von der ersten Idee bis zur letzten Linie: Wir entwickeln dein Motiv gemeinsam und passend zu dir.' },
@@ -69,10 +69,11 @@ const articles = [
 
 const runtimeConfig = useRuntimeConfig()
 const requestUrl = useRequestURL()
-const siteUrl = runtimeConfig.public.siteUrl || requestUrl.origin
+const siteUrl = (runtimeConfig.public.siteUrl || requestUrl.origin).replace(/\/$/, '')
 const pageTitle = 'Flocka Tattoo Köln · Sascha Schlüter'
-const pageDescription = 'Flocka Tattoo von Sascha Schlüter in Köln: individuelle Tattoos, Blackwork, Schwarz-Rot, Farbe, Ornamentik und Flash. Jetzt unverbindlich anfragen.'
-const ogImage = 'https://i.ibb.co/S49TG8s6/og-flocka-tattoo.webp'
+const pageDescription = 'Flocka Tattoo von Sascha Schlüter in Köln: individuelle Tattoos, Blackwork, Fine Line, Schwarz-Rot, Farbe, Ornamentik und Flash. Jetzt unverbindlich anfragen.'
+const ogImage = `${siteUrl}/images/og-flocka-tattoo.png`
+const logoImage = `${siteUrl}/images/flocka_logo.png`
 const instagramUrl = 'https://www.instagram.com/flockatattoo/'
 /* eslint-disable style/quote-props */
 const structuredData = {
@@ -86,9 +87,16 @@ const structuredData = {
       description: pageDescription,
       url: siteUrl,
       image: ogImage,
+      logo: logoImage,
       email: 'flockatattoo@proton.me',
       sameAs: [instagramUrl],
       areaServed: { '@type': 'City', name: 'Köln' },
+      openingHoursSpecification: [{
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '10:00',
+        closes: '19:00',
+      }],
       founder: { '@id': `${siteUrl}/#artist` },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
@@ -108,6 +116,15 @@ const structuredData = {
       url: siteUrl,
       sameAs: [instagramUrl],
       worksFor: { '@id': `${siteUrl}/#tattoo-parlor` },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      name: 'Flocka Tattoo',
+      alternateName: 'Flocka Tattoo Köln',
+      url: siteUrl,
+      inLanguage: 'de-DE',
+      publisher: { '@id': `${siteUrl}/#tattoo-parlor` },
     },
     {
       '@type': 'FAQPage',
@@ -189,7 +206,7 @@ function toggleFaq(index: number) {
         <FlockaReveal v-for="(project, index) in work" :key="project.title" :direction="index % 2 === 0 ? 'left' : 'right'">
           <article class="work-card grid gap-12 md:min-h-[39rem] md:grid-cols-2 md:items-center md:gap-16">
             <div class="flex h-full flex-col justify-center"><h3 class="max-w-xl font-display text-5xl uppercase leading-[.85] tracking-[-.05em] text-bone md:text-7xl">{{ project.title }}</h3><div class="mt-10 max-w-md"><p class="text-sm leading-relaxed text-muted md:text-base">{{ project.description }}</p><div class="mt-8 grid grid-cols-2 gap-y-2 text-sm text-muted"><span>Art:</span><span class="text-right text-bone">{{ project.scope }}</span><span>Richtung:</span><span class="text-right text-bone">{{ project.detail }}</span></div><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="mt-14 inline-flex items-center gap-4 border-2 border-bone px-6 py-4 text-base font-sans normal-case tracking-normal text-bone transition-colors hover:bg-bone hover:text-black">Motiv ansehen <Icon name="lucide:arrow-up-right" size="17" /></a></div></div>
-            <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="group block overflow-hidden border border-bone" :aria-label="`${project.title} ansehen`"><FlockaColorRevealImage :src="project.image" :alt="project.title" class="aspect-[1.37] w-full object-cover transition-transform duration-700 group-hover:scale-105" /></a>
+            <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="group block overflow-hidden border border-bone" :aria-label="`${project.title} ansehen`"><FlockaColorRevealImage :src="project.image" :alt="project.alt" class="aspect-[1.37] w-full object-cover transition-transform duration-700 group-hover:scale-105" /></a>
           </article>
         </FlockaReveal>
       </div>
@@ -218,7 +235,7 @@ function toggleFaq(index: number) {
     <section id="contact" class="surface-contact page-shell relative z-5 min-h-[553px] border-b border-line py-16 md:py-12"><p class="section-label text-signal-bright">Kontakt</p><div class="mt-12 grid gap-14 md:grid-cols-[1.15fr_.85fr] md:items-center"><div class="flex flex-col items-start"><h2 class="max-w-4xl font-display text-[clamp(3.5rem,9vw,8.5rem)] font-black uppercase leading-[.78] tracking-[-.07em] text-bone">Lass uns<br />über dein Tattoo sprechen</h2><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="btn-ghost mt-10 rounded-md border-2 border-bone px-5 py-3 text-base normal-case tracking-normal">Anfrage senden <Icon name="lucide:arrow-up-right" size="18" /></a></div><img src="https://i.ibb.co/HLDFtYk8/flocka-logo.webp" alt="Flocka Tattoo Logo" class="mx-auto mt-4 w-48 object-contain md:mx-0 md:mt-0 md:w-full md:max-w-[22rem] md:justify-self-end" /></div></section>
 
   <div class="surface-footer-stage sticky bottom-0 z-1">
-    <footer class="surface-footer relative grid min-h-[550px] gap-12 overflow-hidden px-5 pb-32 pt-18 text-black md:grid-cols-[1fr_auto] md:px-[2vw] md:pb-16 md:pt-18"><div><a href="mailto:flockatattoo@proton.me" class="block text-3xl font-semibold tracking-[-.04em] hover:opacity-60 md:text-5xl">flockatattoo@proton.me</a><p class="mt-10 max-w-xs text-lg leading-tight">Lust auf ein Tattoo? Schreib mir. Offen für neue Motive, Ideen und gute Gespräche.</p><div class="mt-10 flex gap-7"><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="text-lg hover:opacity-60">Instagram</a><a href="mailto:flockatattoo@proton.me" class="text-lg hover:opacity-60">Anfrage</a></div></div><div class="grid grid-cols-2 gap-16 text-lg"><div><p class="mb-5 font-semibold">Menü</p><div class="grid gap-3"><a href="#top" class="hover:opacity-60">Start</a><a href="#about" class="hover:opacity-60">Über mich</a><a href="#work" class="hover:opacity-60">Arbeiten</a><a href="#services" class="hover:opacity-60">Leistungen</a><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="hover:opacity-60">Kontakt</a></div></div><div><p class="mb-5 font-semibold">Hinweise</p><div class="grid gap-3"><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="hover:opacity-60">Datenschutz</a><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="hover:opacity-60">Impressum</a></div></div></div><p aria-hidden="true" class="pointer-events-none absolute bottom-[-.18em] left-[2vw] right-[2vw] font-display text-center text-[clamp(7rem,21vw,21rem)] font-black uppercase leading-[.72] tracking-[-.09em]">FLOCKA</p></footer>
+    <footer class="surface-footer relative grid min-h-[550px] gap-12 overflow-hidden px-5 pb-32 pt-18 text-black md:grid-cols-[1fr_auto] md:px-[2vw] md:pb-16 md:pt-18"><div><a href="mailto:flockatattoo@proton.me" class="block text-3xl font-semibold tracking-[-.04em] hover:opacity-60 md:text-5xl">flockatattoo@proton.me</a><p class="mt-10 max-w-xs text-lg leading-tight">Lust auf ein Tattoo? Schreib mir. Offen für neue Motive, Ideen und gute Gespräche.</p><div class="mt-10 flex gap-7"><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="text-lg hover:opacity-60">Instagram</a><a href="mailto:flockatattoo@proton.me" class="text-lg hover:opacity-60">Anfrage</a></div></div><div class="grid grid-cols-2 gap-16 text-lg"><div><p class="mb-5 font-semibold">Menü</p><div class="grid gap-3"><a href="#top" class="hover:opacity-60">Start</a><a href="#about" class="hover:opacity-60">Über mich</a><a href="#work" class="hover:opacity-60">Arbeiten</a><a href="#services" class="hover:opacity-60">Leistungen</a><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="hover:opacity-60">Kontakt</a></div></div><div><p class="mb-5 font-semibold">Hinweise</p><div class="grid gap-3"><NuxtLink to="/datenschutz" class="hover:opacity-60">Datenschutz</NuxtLink><NuxtLink to="/impressum" class="hover:opacity-60">Impressum</NuxtLink></div></div></div><p aria-hidden="true" class="pointer-events-none absolute bottom-[-.18em] left-[2vw] right-[2vw] font-display text-center text-[clamp(7rem,21vw,21rem)] font-black uppercase leading-[.72] tracking-[-.09em]">FLOCKA</p></footer>
   </div>
   </div>
 </template>

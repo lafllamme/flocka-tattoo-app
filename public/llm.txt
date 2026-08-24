@@ -1,0 +1,9 @@
+# Flocka Tattoo
+
+Flocka Tattoo is the official website of Sascha Schlüter, a tattoo artist based in Köln, Germany. The practice focuses on individual tattoos, Blackwork, Fine Line, Schwarz-Rot, selected colour work, Ornamentik, Flash tattoos and cover-up consultations.
+
+- Website: https://flocka.pages.dev/
+- Instagram: https://www.instagram.com/flockatattoo/
+- Email: mailto:flockatattoo@proton.me
+- Hours: Tuesday–Sunday, 10:00–19:00
+- Extended profile: https://flocka.pages.dev/llms-full.txt

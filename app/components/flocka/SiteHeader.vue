@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
         >{{ item.label }}</a>
       </TransitionGroup>
       <p class="mobile-menu-footer eyebrow text-muted mt-auto">
-        Köln · Di—Sa · 10:00—19:00
+        Köln · Di—So · 10:00—19:00
       </p>
       <img
         src="https://i.ibb.co/HLDFtYk8/flocka-logo.webp"
