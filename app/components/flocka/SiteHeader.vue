@@ -151,6 +151,10 @@ onBeforeUnmount(() => {
   will-change: transform;
 }
 
+@media (max-width: 767px) {
+  .site-header { padding-left: 4vw; }
+}
+
 @keyframes site-header-in {
   from { opacity: .001; transform: translateY(-150px); }
   to { opacity: 1; transform: translateY(0); }
