@@ -35,7 +35,7 @@ const imageSources = [
   'https://i.ibb.co/fY15ZQvQ/flash-after-dark.webp',
   'https://i.ibb.co/ZpBjSyJj/open-skin.webp',
   'https://i.ibb.co/ZR69H2cv/red-relic.webp',
-  'https://i.ibb.co/gZCPtLVP/archive.webp',
+  'https://i.ibb.co/gMJsF4Q7/Chat-GPT-Image-24-Aug-2026-17-08-10.webp',
 ]
 
 useIntersectionObserver(
