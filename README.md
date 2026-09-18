@@ -1,6 +1,8 @@
 # Flocka Tattoo
 
-Website for the Flocka Tattoo studio, built on Nuxt 4. A dark, motion-led single-page presentation with a gallery carousel, scroll-driven reveals, and the legally required pages.
+Website for the Flocka Tattoo studio in Köln, built on Nuxt 4. A dark, motion-led single-page presentation with a gallery carousel, scroll-driven reveals, and the legally required pages.
+
+Live at [flocka.pages.dev](https://flocka.pages.dev).
 
 > Work in progress. The design system is documented and implemented, but content and page structure are still being extended.
 
