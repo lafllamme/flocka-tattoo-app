@@ -21,10 +21,10 @@ const process = [
   { number: '04', title: 'PFLEGE', body: 'Du bekommst klare Hinweise für die Heilung und ehrliche Tipps, damit dein Tattoo gut ankommt.' },
 ]
 const testimonials = [
-  { quote: 'Ich war am Anfang total unsicher mit meiner Idee. Flocka hat mir geholfen, daraus etwas Eigenes zu machen, ohne dass es sich irgendwann fremd angefühlt hat.', author: 'Josefine T.', image: 'https://i.ibb.co/gZCPtLVP/archive.webp' },
-  { quote: 'Ich hatte nur ein paar Referenzen und wusste selbst noch nicht genau, wo es hingehen soll. Am Ende war das Tattoo viel persönlicher, als ich es mir vorgestellt hatte.', author: 'Cem S.', image: 'https://i.ibb.co/nqRpJX6w/process.webp' },
-  { quote: 'Die Session war super entspannt. Ich habe mich direkt wohlgefühlt und bin mit einem Tattoo nach Hause gegangen, das wirklich zu mir passt.', author: 'Luisa W.', image: 'https://i.ibb.co/ZpBjSyJj/open-skin.webp' },
-  { quote: 'Ich wollte eigentlich nur ein kleines Motiv und war dann überrascht, wie viel aus der Idee geworden ist. Flocka hat genau die richtige Richtung gefunden.', author: 'Tobi F.', image: 'https://i.ibb.co/ZR69H2cv/red-relic.webp' },
+  { quote: 'Ich war am Anfang total unsicher mit meiner Idee. Flocka hat mir geholfen, daraus etwas Eigenes zu machen, ohne dass es sich irgendwann fremd angefühlt hat.', author: 'Joel', image: 'https://i.ibb.co/gZCPtLVP/archive.webp' },
+  { quote: 'Ich hatte nur ein paar Referenzen und wusste selbst noch nicht genau, wo es hingehen soll. Am Ende war das Tattoo viel persönlicher, als ich es mir vorgestellt hatte.', author: 'Jester', image: 'https://i.ibb.co/nqRpJX6w/process.webp' },
+  { quote: 'Die Session war super entspannt. Ich habe mich direkt wohlgefühlt und bin mit einem Tattoo nach Hause gegangen, das wirklich zu mir passt.', author: 'Hannah', image: 'https://i.ibb.co/ZpBjSyJj/open-skin.webp' },
+  { quote: 'Ich wollte eigentlich nur ein kleines Motiv und war dann überrascht, wie viel aus der Idee geworden ist. Flocka hat genau die richtige Richtung gefunden.', author: 'Fenja', image: 'https://i.ibb.co/ZR69H2cv/red-relic.webp' },
 ]
 const faqs = [
   { question: 'Welche Tattoos macht Flocka?', answer: 'Individuelle Tattoos, Blackwork, Ornamentik, Schwarz-Rot, ausgewählte Farben und Flash. Am besten starten wir mit deiner Idee – nicht mit einer festen Schublade.' },
