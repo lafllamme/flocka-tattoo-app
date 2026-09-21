@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import FlockaColorRevealImage from '../components/flocka/ColorRevealImage.vue'
+import FlockaJournalLoopVideo from '../components/flocka/JournalLoopVideo.vue'
 import MotionViewCarousel from '../components/flocka/MotionViewCarousel.vue'
 import FlockaReveal from '../components/flocka/RevealOnScroll.vue'
+import FlockaSkeletonImage from '../components/flocka/SkeletonImage.vue'
 
 const work = [
   { title: 'CYBERLISM', description: 'Spitze Formen, organische Linien und ein Zeichen zwischen digitaler Ästhetik und dunkler Symbolik.', scope: 'Cyber Sigilism', detail: 'Schwarz-Rot', image: 'https://i.ibb.co/ZR69H2cv/red-relic.webp', alt: 'Schwarz-rotes Cyber-Sigilism-Tattoo aus dem Portfolio von Flocka Tattoo' },
@@ -35,9 +37,9 @@ const faqs = [
   { question: 'Wie starte ich eine Anfrage?', answer: 'Schreib uns mit deiner Idee, der Körperstelle, einer ungefähren Größe und ein paar Referenzen. Alles Weitere klären wir persönlich.' },
 ]
 const articles = [
-  { title: 'Ein Tattoo beginnt vor der Schablone', body: 'Warum das erste Gespräch genauso wichtig ist wie die letzte Linie.', image: 'https://i.imgur.com/egkTZJd.gif' },
-  { title: 'Blackwork als visuelle Sprache', body: 'Über Kontrast, Gewicht und Motive, die lesbar bleiben.', image: 'https://i.imgur.com/TGdtgDL.gif' },
-  { title: 'Die ruhige Disziplin der Pflege', body: 'Warum frische Tattoos Zeit brauchen, um richtig anzukommen.', image: 'https://i.imgur.com/SjHANWz.gif' },
+  { title: 'Ein Tattoo beginnt vor der Schablone', body: 'Warum das erste Gespräch genauso wichtig ist wie die letzte Linie.', video: '/media/journal/journal-consultation-v1.mp4', poster: '/media/journal/journal-consultation-v1-poster.webp' },
+  { title: 'Blackwork als visuelle Sprache', body: 'Über Kontrast, Gewicht und Motive, die lesbar bleiben.', video: '/media/journal/journal-blackwork-v1.mp4', poster: '/media/journal/journal-blackwork-v1-poster.webp' },
+  { title: 'Die ruhige Disziplin der Pflege', body: 'Warum frische Tattoos Zeit brauchen, um richtig anzukommen.', video: '/media/journal/journal-aftercare-v1.mp4', poster: '/media/journal/journal-aftercare-v1-poster.webp' },
 ]
 
 const runtimeConfig = useRuntimeConfig()
@@ -409,7 +411,7 @@ function toggleFaq(index: number) {
           </div>
         </FlockaReveal><div class="journal-grid mt-16 gap-8 grid md:mt-24 md:gap-6 md:grid-cols-3">
           <FlockaReveal v-for="(article, index) in articles" :key="article.title" direction="up" :delay="index * 90">
-            <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="journal-card zoom-frame group p-3 border border-bone block transition-colors hover:text-black hover:bg-bone"><div class="journal-card__media overflow-hidden"><FlockaColorRevealImage :src="article.image" :alt="article.title" allow-multiple-on-desktop class="image-zoom w-full aspect-[1.2] object-cover" /></div><div class="journal-card__body p-3 pb-4"><h3 class="text-lg text-bone leading-tight transition-colors group-hover:text-black">{{ article.title }}</h3><p class="text-sm text-muted leading-relaxed mt-3 transition-colors group-hover:text-black">{{ article.body }}</p></div></a>
+            <a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="journal-card zoom-frame group p-3 border border-bone block transition-colors hover:text-black hover:bg-bone"><div class="journal-card__media overflow-hidden"><FlockaJournalLoopVideo :src="article.video" :poster="article.poster" class="image-zoom w-full aspect-[1.2] object-cover" /></div><div class="journal-card__body p-3 pb-4"><h3 class="text-lg text-bone leading-tight transition-colors group-hover:text-black">{{ article.title }}</h3><p class="text-sm text-muted leading-relaxed mt-3 transition-colors group-hover:text-black">{{ article.body }}</p></div></a>
           </FlockaReveal>
         </div>
       </section>
@@ -446,7 +448,7 @@ function toggleFaq(index: number) {
             </h2><a href="https://www.instagram.com/flockatattoo/" target="_blank" rel="noreferrer" class="btn-ghost text-base tracking-normal mt-10 px-5 py-3 border-2 border-bone rounded-md normal-case">Anfrage senden <Icon name="lucide:arrow-up-right" size="18" /></a>
           </div>
         </FlockaReveal><FlockaReveal direction="right" :distance="96">
-          <img src="https://i.ibb.co/HLDFtYk8/flocka-logo.webp" alt="Flocka Tattoo Logo" loading="lazy" decoding="async" class="mx-auto mt-4 w-48 object-contain md:mx-0 md:mt-0 md:max-w-[22rem] md:w-full md:justify-self-end">
+          <FlockaSkeletonImage src="https://i.ibb.co/HLDFtYk8/flocka-logo.webp" alt="Flocka Tattoo Logo" loading="lazy" decoding="async" class="mx-auto mt-4 w-48 aspect-[1.304] object-contain md:mx-0 md:mt-0 md:max-w-[22rem] md:w-full md:justify-self-end" />
         </FlockaReveal>
       </div>
     </section>

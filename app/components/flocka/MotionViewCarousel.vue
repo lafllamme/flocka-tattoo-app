@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useIntersectionObserver, usePreferredReducedMotion } from '@vueuse/core'
 import { useColorRevealFocus } from '../../composables/useColorRevealFocus'
+import FlockaMediaSkeleton from './MediaSkeleton.vue'
+import FlockaSkeletonImage from './SkeletonImage.vue'
 
 interface MotionViewInstance {
   destroy?: () => void
@@ -123,13 +125,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="gallery" class="motionview-frame relative overflow-hidden grayscale transition-[filter] duration-[700ms] ease-out" :class="{ 'grayscale-0': revealed || shouldReduceMotion }">
-    <canvas ref="canvas" class="motionview-canvas block h-auto w-full" aria-label="Karussell mit ausgewählten Arbeiten" />
-    <div v-if="!isReady && !hasError" class="motionview-loading pointer-events-none absolute inset-0 grid place-items-center text-muted">
-      <span class="eyebrow">Arbeiten werden geladen</span>
-    </div>
-    <div v-if="hasError" class="grid gap-5 p-5 md:grid-cols-3">
-      <img v-for="(image, index) in imageSources" :key="image" :src="image" :alt="`Ausgewählte Arbeit ${index + 1}`" class="aspect-[1.2] w-full object-cover grayscale" loading="lazy">
+  <div ref="gallery" class="motionview-frame transition-[filter] duration-[700ms] ease-out relative overflow-hidden grayscale" :class="{ 'grayscale-0': revealed || shouldReduceMotion }">
+    <canvas ref="canvas" class="motionview-canvas h-auto w-full block" aria-label="Karussell mit ausgewählten Arbeiten" />
+    <FlockaMediaSkeleton :loading="!isReady && !hasError" />
+    <div v-if="hasError" class="p-5 gap-5 grid md:grid-cols-3">
+      <FlockaSkeletonImage v-for="(image, index) in imageSources" :key="image" :src="image" :alt="`Ausgewählte Arbeit ${index + 1}`" class="w-full aspect-[1.2] object-cover grayscale" loading="lazy" />
     </div>
   </div>
 </template>
@@ -137,5 +137,4 @@ onBeforeUnmount(() => {
 <style scoped>
 .motionview-frame { width: calc(100% + 4vw); margin-left: -2vw; }
 .motionview-canvas { aspect-ratio: 16 / 9; }
-.motionview-loading { background: transparent; }
 </style>

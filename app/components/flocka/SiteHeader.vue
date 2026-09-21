@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import FlockaSkeletonImage from './SkeletonImage.vue'
+
 const menuOpen = ref(false)
 
 const menuItems = [
@@ -57,13 +59,13 @@ onBeforeUnmount(() => {
       <p class="mobile-menu-footer eyebrow text-muted mt-auto">
         Köln · Di—So · 10:00—19:00
       </p>
-      <img
+      <FlockaSkeletonImage
         src="https://i.ibb.co/HLDFtYk8/flocka-logo.webp"
         alt="Flocka Tattoo"
         loading="lazy"
         decoding="async"
-        class="mobile-menu-logo max-w-[55vw] w-52 pointer-events-none select-none bottom-5 right-5 absolute"
-      >
+        class="mobile-menu-logo max-w-[55vw] w-52 aspect-[1.304] pointer-events-none select-none bottom-5 right-5 absolute object-contain"
+      />
     </div>
   </Transition>
 </template>

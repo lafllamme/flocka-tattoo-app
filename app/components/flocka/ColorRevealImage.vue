@@ -1,13 +1,27 @@
 <script setup lang="ts">
 import { useIntersectionObserver, useMediaQuery, usePreferredReducedMotion } from '@vueuse/core'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
 import { useColorRevealFocus } from '../../composables/useColorRevealFocus'
+import FlockaMediaSkeleton from './MediaSkeleton.vue'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   allowMultipleOnDesktop?: boolean
-}>()
+  alt: string
+  decoding?: 'async' | 'auto' | 'sync'
+  fetchpriority?: 'auto' | 'high' | 'low'
+  loading?: 'eager' | 'lazy'
+  src: string
+}>(), {
+  allowMultipleOnDesktop: false,
+  decoding: 'async',
+  fetchpriority: 'auto',
+  loading: 'lazy',
+})
 
-const target = ref<HTMLElement | null>(null)
+const target = shallowRef<HTMLElement | null>(null)
+const image = shallowRef<HTMLImageElement | null>(null)
+const isLoaded = shallowRef(false)
+const hasError = shallowRef(false)
 const focusId = Symbol('color-reveal-image')
 const { activeFocus, register } = useColorRevealFocus()
 const isInFocus = ref(false)
@@ -41,6 +55,26 @@ function recheckFocus() {
   updateFocus(visibleHeight / bounds.height >= 0.5)
 }
 
+function handleLoad() {
+  isLoaded.value = true
+  hasError.value = false
+}
+
+function handleError() {
+  isLoaded.value = false
+  hasError.value = true
+}
+
+function syncCachedImage() {
+  if (!image.value?.complete)
+    return
+
+  if (image.value.naturalWidth > 0)
+    handleLoad()
+  else
+    handleError()
+}
+
 useIntersectionObserver(
   target,
   ([entry]) => {
@@ -50,28 +84,68 @@ useIntersectionObserver(
 )
 
 const unregister = register(focusId, recheckFocus)
-onMounted(recheckFocus)
+watch(() => props.src, () => {
+  isLoaded.value = false
+  hasError.value = false
+})
+
+onMounted(() => {
+  recheckFocus()
+  syncCachedImage()
+})
 onBeforeUnmount(unregister)
 </script>
 
 <template>
-  <img
+  <span
     ref="target"
-    loading="lazy"
-    decoding="async"
-    v-bind="$attrs"
-    class="color-reveal-image grayscale"
-    :class="{ 'grayscale-0': revealed || prefersReducedMotion === 'reduce' }"
+    class="color-reveal-frame"
+    :data-media-error="hasError || undefined"
+    :data-media-loaded="isLoaded || undefined"
   >
+    <img
+      ref="image"
+      :src="props.src"
+      :alt="props.alt"
+      :loading="props.loading"
+      :decoding="props.decoding"
+      :fetchpriority="props.fetchpriority"
+      class="color-reveal-image grayscale"
+      :class="{
+        'color-reveal-image--loaded': isLoaded,
+        'grayscale-0': revealed || prefersReducedMotion === 'reduce',
+      }"
+      @load="handleLoad"
+      @error="handleError"
+    >
+    <FlockaMediaSkeleton :loading="!isLoaded" :error="hasError" />
+  </span>
 </template>
 
 <style scoped>
-.color-reveal-image {
-  transition: filter 800ms cubic-bezier(.22, 1, .36, 1), transform 700ms cubic-bezier(.4, 0, .2, 1) !important;
-  will-change: filter, transform;
+.color-reveal-frame {
+  display: block;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
 }
 
-.color-reveal-image.image-zoom {
+.color-reveal-image {
+  display: block;
+  height: 100%;
+  object-fit: inherit;
+  object-position: inherit;
+  opacity: 0;
+  transition: opacity 420ms cubic-bezier(.22, 1, .36, 1), filter 800ms cubic-bezier(.22, 1, .36, 1) !important;
+  width: 100%;
+  will-change: filter;
+}
+
+.color-reveal-image--loaded {
+  opacity: 1;
+}
+
+.color-reveal-frame.image-zoom {
   transform: scale(1);
 }
 
@@ -80,7 +154,7 @@ onBeforeUnmount(unregister)
     transition: none !important;
   }
 
-  .color-reveal-image.image-zoom {
+  .color-reveal-frame.image-zoom {
     transform: none;
   }
 }
